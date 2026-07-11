@@ -6,7 +6,7 @@
   "description": "A public shelf for useful plans, artifacts, and experiments.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "dev": "python3 -m http.server 4173 --directory site",
+    "dev": "npm run build && python3 -m http.server 4173 --directory dist",
     "check": "node scripts/check.mjs"
   }
 }

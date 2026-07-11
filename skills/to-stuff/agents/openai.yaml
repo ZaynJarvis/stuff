@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish to Stuff"
+  short_description: "Publish finished HTML artifacts to the Stuff site"
+  default_prompt: "Use $to-stuff to publish this finished HTML artifact to stuff.zaynjarvis.com."

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {
+      "slug": "sd-plan",
+      "title": "HuaSheng Sales Development Plan",
+      "summary": "Sixteen trigger-led accounts, public business contacts, tailored English outreach drafts, and a 90-day go-to-market plan. Chinese review notes included.",
+      "category": "Sales development",
+      "kind": "Research draft",
+      "published": "2026-07-11",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": true
+    }
+  ]
+}
