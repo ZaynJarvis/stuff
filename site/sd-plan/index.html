@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="HuaSheng 海外销售开发计划：16 个目标账户、英文开发邮件，以及 90 天市场进入计划。" />
+  <meta name="theme-color" content="#f4f0e8" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="HuaSheng Sales Development Plan" />
+  <meta property="og:description" content="Sixteen target accounts, tailored outreach drafts, and a 90-day go-to-market plan." />
+  <meta property="og:url" content="https://stuff.zaynjarvis.com/sd-plan/" />
+  <link rel="canonical" href="https://stuff.zaynjarvis.com/sd-plan/" />
+  <title>HuaSheng Sales Development Plan · Stuff</title>
+  <style>
+    :root {
+      --ink: #18201f;
+      --ink-soft: #4e5a57;
+      --paper: #f4f0e8;
+      --paper-deep: #e9e2d5;
+      --card: rgba(255, 253, 248, 0.92);
+      --line: #d6cdbd;
+      --line-dark: #aaa08f;
+      --accent: #d8562f;
+      --accent-dark: #9f3519;
+      --brass: #a8792e;
+      --forest: #23473e;
+      --blue: #2f5f78;
+      --warn: #fff0cf;
+      --warn-line: #d39731;
+      --danger: #8f2c20;
+      --success: #236449;
+      --shadow: 0 18px 44px rgba(35, 31, 24, 0.10);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(24, 32, 31, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 32, 31, 0.035) 1px, transparent 1px),
+        radial-gradient(circle at 86% 4%, rgba(216, 86, 47, 0.15), transparent 30rem),
+        var(--paper);
+      background-size: 36px 36px, 36px 36px, auto, auto;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.58;
+    }
+
+    a { color: inherit; }
+
+    button, input { font: inherit; }
+
+    button { cursor: pointer; }
+
+    :focus-visible {
+      outline: 3px solid rgba(216, 86, 47, 0.45);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(24, 32, 31, 0.16);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--ink);
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .top-meta {
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(290px, 0.55fr);
+      gap: 54px;
+      padding: 76px 0 54px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 24px;
+      font-family: Georgia, "Songti SC", "STSong", serif;
+      font-size: clamp(44px, 7vw, 82px);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-lede {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-lede strong { color: var(--ink); }
+
+    .decision-card {
+      position: relative;
+      padding: 26px;
+      color: white;
+      background: var(--forest);
+      border-radius: 4px 24px 4px 4px;
+      box-shadow: 12px 12px 0 rgba(35, 71, 62, 0.16);
+    }
+
+    .decision-card::before {
+      content: "RECOMMENDATION";
+      display: block;
+      margin-bottom: 12px;
+      color: #f0b79f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+
+    .decision-card p { margin: 0; font-size: 15px; }
+
+    .decision-card strong { color: #fff4e8; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      margin: 0 0 48px;
+      overflow: hidden;
+      background: var(--line-dark);
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      min-height: 122px;
+      padding: 22px;
+      background: rgba(255, 253, 248, 0.94);
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: Georgia, serif;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .stat span { color: var(--ink-soft); font-size: 13px; }
+
+    .section {
+      padding: 48px 0;
+      border-top: 1px solid rgba(24, 32, 31, 0.18);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-family: Georgia, "Songti SC", serif;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    .section-heading p { max-width: 780px; margin-bottom: 0; color: var(--ink-soft); }
+
+    .alert {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 18px;
+      padding: 22px;
+      background: var(--warn);
+      border: 1px solid var(--warn-line);
+      border-left: 7px solid var(--warn-line);
+      border-radius: 8px;
+    }
+
+    .alert-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      background: var(--danger);
+      border-radius: 50%;
+      font-weight: 900;
+    }
+
+    .alert h3 { margin-bottom: 6px; font-size: 17px; }
+    .alert p { margin-bottom: 0; color: #614f2e; font-size: 14px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .info-panel {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .info-panel h3 { margin-bottom: 14px; font-size: 16px; }
+
+    .compact-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .compact-list li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
+    .compact-list li::before { content: "→"; color: var(--accent); font-weight: 900; }
+
+    .priority-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .priority-account {
+      padding: 15px;
+      background: var(--ink);
+      color: white;
+      border-top: 4px solid var(--accent);
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .priority-account span { display: block; margin-bottom: 4px; color: #d7d1c7; }
+    .priority-account strong { font-size: 14px; }
+
+    .workspace {
+      padding-top: 26px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      display: grid;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: rgba(244, 240, 232, 0.94);
+      border: 1px solid var(--line-dark);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(35, 31, 24, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .toolbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filters { display: flex; gap: 7px; flex-wrap: wrap; }
+
+    .chip, .button {
+      min-height: 38px;
+      padding: 8px 13px;
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      background: #fffdf8;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 750;
+      transition: 150ms ease;
+    }
+
+    .chip:hover, .button:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .chip.active { border-color: var(--ink); background: var(--ink); color: white; }
+
+    .button.primary { border-color: var(--accent); background: var(--accent); color: white; }
+    .button.square { border-radius: 8px; }
+
+    .search-wrap { flex: 1; min-width: 230px; max-width: 430px; }
+
+    .search {
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 14px;
+      background: #fffdf8;
+      border: 1px solid var(--line-dark);
+      border-radius: 10px;
+      color: var(--ink);
+    }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 240px;
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 7px;
+      overflow: hidden;
+      background: var(--paper-deep);
+      border-radius: 99px;
+    }
+
+    .progress-bar { height: 100%; width: 0; background: var(--success); transition: width 220ms ease; }
+
+    .result-count { color: var(--ink-soft); font-size: 12px; }
+
+    .account-list { display: grid; gap: 14px; }
+
+    .account {
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(35, 31, 24, 0.06);
+    }
+
+    .account[data-status="ready"] { border-color: rgba(35, 100, 73, 0.55); }
+    .account[data-status="revise"] { border-color: rgba(216, 86, 47, 0.65); }
+
+    .account summary {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1.4fr) minmax(180px, 0.7fr) 140px 22px;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .account summary::-webkit-details-marker { display: none; }
+
+    .rank {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      color: var(--accent-dark);
+    }
+
+    .account-name { margin-bottom: 4px; font-size: 18px; font-weight: 850; }
+    .account-trigger { color: var(--ink-soft); font-size: 13px; }
+
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      color: var(--forest);
+      background: #e2ece7;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge.wave-a { color: #832c16; background: #f9d9c9; }
+    .badge.wave-b { color: #315368; background: #dcecf3; }
+
+    .review-state-label { font-size: 12px; font-weight: 800; }
+    .review-state-label.pending { color: var(--ink-soft); }
+    .review-state-label.revise { color: var(--accent-dark); }
+    .review-state-label.ready { color: var(--success); }
+
+    .chevron { font-size: 22px; transition: transform 180ms ease; }
+    details[open] .chevron { transform: rotate(45deg); }
+
+    .account-content {
+      padding: 0 22px 24px 96px;
+      border-top: 1px solid var(--line);
+    }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    .account-facts { display: grid; gap: 16px; align-content: start; }
+
+    .fact {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13px;
+    }
+
+    .fact:last-child { border-bottom: 0; }
+    .fact-label { color: var(--ink-soft); font-weight: 750; }
+    .fact-value { color: var(--ink); }
+
+    .fact-value a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .risk-box {
+      padding: 14px;
+      color: #704328;
+      background: #fff5e5;
+      border-left: 4px solid var(--brass);
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .email-card {
+      overflow: hidden;
+      background: #182221;
+      color: #f8f3e9;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(20, 28, 27, 0.14);
+    }
+
+    .email-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .email-label {
+      color: #e6a88e;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .email-actions { display: flex; gap: 7px; }
+
+    .email-button {
+      padding: 6px 10px;
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .email-button:hover { background: rgba(255, 255, 255, 0.15); }
+
+    .email-fields { padding: 16px 18px 0; color: #c9d2cf; font-size: 12px; }
+
+    .email-fields div { margin-bottom: 6px; }
+    .email-fields strong { display: inline-block; width: 58px; color: #f7efe3; }
+
+    .email-body {
+      margin: 0;
+      padding: 14px 18px 20px;
+      white-space: pre-wrap;
+      color: #e6eae6;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .status-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .status-control span { color: var(--ink-soft); font-size: 12px; font-weight: 750; }
+    .status-buttons { display: flex; gap: 7px; flex-wrap: wrap; }
+
+    .status-btn {
+      padding: 6px 10px;
+      background: transparent;
+      border: 1px solid var(--line-dark);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .status-btn.active[data-set-status="pending"] { background: var(--ink-soft); color: white; }
+    .status-btn.active[data-set-status="revise"] { background: var(--accent); border-color: var(--accent); color: white; }
+    .status-btn.active[data-set-status="ready"] { background: var(--success); border-color: var(--success); color: white; }
+
+    .empty {
+      padding: 50px;
+      text-align: center;
+      color: var(--ink-soft);
+      background: var(--card);
+      border: 1px dashed var(--line-dark);
+      border-radius: var(--radius);
+    }
+
+    .gtm-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+
+    .goal-card {
+      padding: 30px;
+      background: var(--accent);
+      color: white;
+      border-radius: 4px 22px 4px 4px;
+    }
+
+    .goal-card small {
+      display: block;
+      margin-bottom: 18px;
+      color: #ffd8c9;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .goal-card .goal-number {
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.95;
+    }
+
+    .goal-card p { margin: 0; color: #fff1eb; }
+
+    .strategy-card {
+      padding: 26px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .strategy-card h3 { margin-bottom: 16px; }
+
+    .ladder {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 18px;
+      overflow: hidden;
+      background: var(--line-dark);
+      border: 1px solid var(--line-dark);
+      border-radius: 10px;
+    }
+
+    .ladder-step { padding: 18px; background: var(--card); }
+    .ladder-step span { display: block; margin-bottom: 8px; color: var(--accent-dark); font-size: 11px; font-weight: 850; }
+    .ladder-step strong { display: block; margin-bottom: 6px; font-size: 14px; }
+    .ladder-step p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .timeline-item {
+      position: relative;
+      min-height: 165px;
+      padding: 20px;
+      background: var(--ink);
+      color: white;
+      border-radius: 8px;
+    }
+
+    .timeline-item::before {
+      content: attr(data-step);
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: rgba(255,255,255,0.12);
+      font-family: Georgia, serif;
+      font-size: 44px;
+    }
+
+    .timeline-item span { display: block; margin-bottom: 10px; color: #efad92; font-size: 11px; font-weight: 800; }
+    .timeline-item strong { display: block; margin-bottom: 8px; font-size: 15px; }
+    .timeline-item p { margin: 0; color: #cbd2cf; font-size: 12px; }
+
+    .cta-quote {
+      margin-top: 24px;
+      padding: 25px 28px;
+      background: white;
+      border-left: 8px solid var(--accent);
+      box-shadow: var(--shadow);
+      font-family: Georgia, serif;
+      font-size: clamp(18px, 2.3vw, 25px);
+      line-height: 1.4;
+    }
+
+    .cta-quote small {
+      display: block;
+      margin-top: 10px;
+      color: var(--ink-soft);
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    footer {
+      padding: 35px 0 55px;
+      border-top: 1px solid rgba(24, 32, 31, 0.18);
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      max-width: 320px;
+      padding: 12px 16px;
+      color: white;
+      background: var(--ink);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events: none;
+      transition: 180ms ease;
+      font-size: 13px;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero, .section-heading, .account-grid, .gtm-grid { grid-template-columns: 1fr; }
+      .hero { gap: 30px; padding-top: 52px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat:last-child { grid-column: 1 / -1; }
+      .priority-strip { grid-template-columns: repeat(3, 1fr); }
+      .account summary { grid-template-columns: 42px 1fr 22px; gap: 12px; }
+      .account summary .badges, .account summary .review-state-label { grid-column: 2; }
+      .account summary .chevron { grid-column: 3; grid-row: 1 / span 3; }
+      .account-content { padding-left: 22px; }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .ladder { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 24px, 1180px); }
+      .topbar { align-items: flex-start; }
+      .top-meta { font-size: 10px; }
+      h1 { font-size: 44px; }
+      .stat-grid, .two-col, .priority-strip, .timeline { grid-template-columns: 1fr; }
+      .stat:last-child { grid-column: auto; }
+      .toolbar { top: 4px; }
+      .toolbar-row { align-items: stretch; }
+      .search-wrap, .progress-wrap { max-width: none; width: 100%; }
+      .account summary { padding: 17px 14px; }
+      .account-content { padding: 0 14px 18px; }
+      .fact { grid-template-columns: 1fr; gap: 3px; }
+      .email-top, .status-control { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media print {
+      body { background: white; font-size: 10pt; }
+      .shell { width: 100%; }
+      .topbar, .toolbar, .email-actions, .status-control, .toast { display: none !important; }
+      .hero { padding: 24px 0; }
+      h1 { font-size: 38pt; }
+      .section { padding: 24px 0; break-inside: avoid; }
+      .account { break-inside: avoid; box-shadow: none; }
+      .account-content { display: block !important; }
+      .account-list { gap: 8px; }
+      .email-card { background: white; color: black; border: 1px solid #777; box-shadow: none; }
+      .email-label, .email-fields, .email-fields strong, .email-body { color: black; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <div class="topbar">
+      <a class="brand" href="/" aria-label="Back to all stuff"><span class="brand-mark">HS</span><span>HuaSheng Sales Development</span></a>
+      <div class="top-meta">Research draft<br />11 July 2026</div>
+    </div>
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">海外销售开发计划 · 审阅版</div>
+        <h1>别再卖目录，去接客户的交付压力</h1>
+        <p class="hero-lede">华盛不适合直接去抢城市基础设施总包。更现实的生意，是找到<strong>刚拿到合同、马上要交货</strong>的广告运营商和项目集成商，替他们按图生产，补上第二供应源或临时产能。</p>
+      </div>
+      <aside class="decision-card">
+        <p><strong>我的建议：</strong>先接数字广告箱体、灯箱、备件和金属组件。把表面质量、包装和交期做给客户看，再谈完整候车亭。首轮只联系 6 家，别群发。</p>
+      </aside>
+    </div>
+
+    <div class="stat-grid" aria-label="计划关键数字">
+      <div class="stat"><strong>16</strong><span>已筛选目标账户</span></div>
+      <div class="stat"><strong>10</strong><span>第一波：本周可触达</span></div>
+      <div class="stat"><strong>6</strong><span>第二波：资料包就绪后</span></div>
+      <div class="stat"><strong>3</strong><span>90 天目标：图纸 / NDA 交换</span></div>
+      <div class="stat"><strong>1</strong><span>90 天目标：付费试单</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section shell" id="positioning">
+      <div class="section-heading">
+        <div class="section-kicker">01 / Positioning</div>
+        <div>
+          <h2>华盛现在可以卖什么</h2>
+          <p>第一阶段只卖华盛真正能控制的部分：箱体、框架、门板、支架、座椅、灯箱和模块化候车亭。显示屏、电气、软件、当地结构签章、土建与安装，交给客户或当地合作伙伴。</p>
+        </div>
+      </div>
+
+      <div class="alert">
+        <div class="alert-icon">!</div>
+        <div>
+          <h3>发邮件前，先把这些证明补齐</h3>
+          <p>官网写的是 120,000 m² 基地、50,000 m² 车间、297 台设备、ISO 9001 和 IKEA 合格供应商；第三方审核记录里的签约法人却是 55 名员工、6,588 m² 厂房和 5 条生产线。两套数字也许分别对应集团和子公司，但客户不会替华盛解释。拿不出有效证书、审厂材料和可核验客户证明，就不要在邮件里引用这些说法。</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <article class="info-panel">
+          <h3>现在就能卖</h3>
+          <ul class="compact-list">
+            <li>公交候车亭框架、顶棚、侧板、座椅与替换件</li>
+            <li>DOOH 数字屏外壳、维护门、MUPI 与灯箱</li>
+            <li>户外亭体、设备柜、导视柱与金属支架</li>
+            <li>不锈钢、镀锌钢、铝制 OEM / ODM 组件</li>
+            <li>切割、折弯、焊接、喷涂、预装与出口包装</li>
+          </ul>
+        </article>
+        <article class="info-panel">
+          <h3>大范围联系客户前必须补齐</h3>
+          <ul class="compact-list">
+            <li>签约法人、集团关系、工厂面积与设备清单统一口径</li>
+            <li>当前有效 ISO、焊接与涂层相关证据</li>
+            <li>材料批次追溯、独立终检与第三方验货流程</li>
+            <li>中东 / 英国 / 澳洲 / 美国的合规责任矩阵</li>
+            <li>可核验项目验收、包装照片、交期与参考客户</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="priority-strip" aria-label="首轮六个重点账户">
+        <div class="priority-account"><span>01 · Saudi Arabia</span><strong>Al Arabia</strong></div>
+        <div class="priority-account"><span>02 · Brazil</span><strong>Eletromidia</strong></div>
+        <div class="priority-account"><span>03 · Saudi Arabia</span><strong>BackLite KSA</strong></div>
+        <div class="priority-account"><span>04 · UAE</span><strong>Hypermedia</strong></div>
+        <div class="priority-account"><span>05 · United Kingdom</span><strong>Bauer Outdoor</strong></div>
+        <div class="priority-account"><span>06 · United Kingdom</span><strong>JCDecaux</strong></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="accounts">
+      <div class="section-heading">
+        <div class="section-kicker">02 / Accounts</div>
+        <div>
+          <h2>账户计划与英文邮件草稿</h2>
+          <p>这里的“紧迫”，指的是对方刚中标、合同刚启动，或正在扩建资产。它不代表对方已经公开询价。邮箱都来自公司官网或官方招标文件，没有按姓名猜地址。发送前请替换签名，并附上经得起核验的供应商资料。</p>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <div class="toolbar" aria-label="账户筛选与操作">
+          <div class="toolbar-row">
+            <div class="filters" id="waveFilters">
+              <button class="chip active" data-filter-wave="all">全部账户</button>
+              <button class="chip" data-filter-wave="A">第一波</button>
+              <button class="chip" data-filter-wave="B">第二波</button>
+            </div>
+            <div class="filters" id="regionFilters">
+              <button class="chip active" data-filter-region="all">全部区域</button>
+              <button class="chip" data-filter-region="GCC">GCC</button>
+              <button class="chip" data-filter-region="Europe">欧洲</button>
+              <button class="chip" data-filter-region="APAC">亚太</button>
+              <button class="chip" data-filter-region="Americas">美洲</button>
+              <button class="chip" data-filter-region="Africa">非洲</button>
+            </div>
+          </div>
+          <div class="toolbar-row">
+            <label class="search-wrap">
+              <span style="position:absolute;left:-9999px">搜索账户、产品或国家</span>
+              <input class="search" id="searchInput" type="search" placeholder="搜索公司、国家、产品或邮箱…" autocomplete="off" />
+            </label>
+            <div class="progress-wrap" title="标记为“可发送”的账户占全部账户的比例">
+              <span id="progressText">0 / 16 可发送</span>
+              <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            </div>
+            <div class="filters">
+              <button class="button square" id="copyEmails">复制邮箱列表</button>
+              <button class="button square" id="expandAll">全部展开</button>
+              <button class="button square" id="printPlan">打印 / 存 PDF</button>
+            </div>
+          </div>
+          <div class="toolbar-row">
+            <div class="filters" id="statusFilters">
+              <button class="chip active" data-filter-status="all">全部状态</button>
+              <button class="chip" data-filter-status="pending">待审阅</button>
+              <button class="chip" data-filter-status="revise">需修改</button>
+              <button class="chip" data-filter-status="ready">可发送</button>
+            </div>
+            <div class="result-count" id="resultCount">显示 16 个账户</div>
+          </div>
+        </div>
+
+        <div class="account-list" id="accountList"></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="gtm">
+      <div class="section-heading">
+        <div class="section-kicker">03 / Go to market</div>
+        <div>
+          <h2>华盛该怎么进入这些市场</h2>
+          <p>别按行业名单扫射。盯住中标和合同启动，在采购窗口出现后的 72 小时内找到采购、资产交付和技术负责人，再写一封只针对这个项目的邮件。主战场放在 GCC；巴西、英国和亚太只挑少数值得投入的账户。</p>
+        </div>
+      </div>
+
+      <div class="gtm-grid">
+        <article class="goal-card">
+          <small>90-day commercial goal</small>
+          <div class="goal-number">1 paid pilot</div>
+          <p>中间目标是拿到 3 次 NDA / 图纸交换和 2 个合格试单 RFQ。回复率不重要。客户愿意交出一份真实图纸或 BOM，机会才算成立。</p>
+        </article>
+        <article class="strategy-card">
+          <h3>核心打法</h3>
+          <ul class="compact-list">
+            <li>找已经中标的特许经营商和集成商，不从政府招标起步</li>
+            <li>先做第二供应源、临时补量和替换件，不碰现有主供应商的核心份额</li>
+            <li>把电子、电气、软件、土建和当地签章留给合作方</li>
+            <li>一般邮箱明确要求转给 Asset Delivery / Procurement / Engineering</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="ladder" aria-label="产品切入阶梯">
+        <div class="ladder-step"><span>STEP 01 · 低门槛</span><strong>箱体、灯箱与替换件</strong><p>先用小单证明尺寸精度、表面质量、包装和响应速度。</p></div>
+        <div class="ladder-step"><span>STEP 02 · 中门槛</span><strong>模块化结构子组件</strong><p>框架、顶棚、门板、座椅与现场拼装套件。</p></div>
+        <div class="ladder-step"><span>STEP 03 · 高价值</span><strong>完整候车亭 OEM</strong><p>合规责任和当地安装伙伴明确后，再接完整候车亭。</p></div>
+      </div>
+
+      <div class="timeline" aria-label="90 天执行节奏">
+        <div class="timeline-item" data-step="1"><span>DAY 0–7</span><strong>修复可信度</strong><p>统一法人和产能口径。补齐认证、质检、项目和包装证据，再检查 SPF、DKIM、DMARC。</p></div>
+        <div class="timeline-item" data-step="2"><span>DAY 8–30</span><strong>首轮定制触达</strong><p>每周做 12 次有针对性的触达。先联系 6 个重点账户，以约到技术交流为目标。</p></div>
+        <div class="timeline-item" data-step="3"><span>DAY 31–60</span><strong>图纸与 DFM</strong><p>争取 3 次 NDA / 图纸交换，给出制造评审、包装方案和预算报价。</p></div>
+        <div class="timeline-item" data-step="4"><span>DAY 61–90</span><strong>转化付费试单</strong><p>拿到 2 个合格 RFQ，推动其中 1 个成为付费样机或小批量订单。</p></div>
+      </div>
+
+      <blockquote class="cta-quote">
+        “Send one drawing or BOM. HuaSheng will return a manufacturability review, export-packing concept and budgetary quotation within five business days.”
+        <small>首轮邮件只争取一份图纸或 BOM。不要再用“欢迎浏览我们的产品目录”收尾。</small>
+      </blockquote>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>HuaSheng 海外销售开发计划 · 研究草案</span>
+      <span>研究快照：2026-07-11 · 邮件发送前须复核项目状态与收件人职责</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const accounts = [
+      {
+        id: "eletromidia",
+        rank: 1,
+        company: "Eletromidia",
+        country: "巴西",
+        region: "Americas",
+        wave: "A",
+        products: ["候车亭", "MUPI", "街具"],
+        email: ["comercial@eletromidia.com.br"],
+        trigger: "2026 年 7 月 7 日中标 Santo André 城市家具特许经营项目，包含 746 座新候车亭、MUPI 和电子钟。",
+        source: "https://web.santoandre.sp.gov.br/portal/noticias/0/3/20661/santo-andre-realiza-leilao-na-bolsa-e-vai-modernizar-mobiliario-urbano-com-investimento-de-r-270-milhoes",
+        contactSource: "https://eletromidia.com.br/en/contact/",
+        goal: "摸清部署节奏，拿到一份典型图纸或 BOM，并争取 10 套试单报价。",
+        product: "平板包装的镀锌钢 / 铝制候车亭、MUPI、电子钟杆体与箱体、座椅和替换件。",
+        angle: "746 套产品需要稳定复制、耐候表面和分阶段装运。先用按图制造和出口包装能力切入。",
+        risk: "巴西进口税、当地结构规范和本地化采购可能抬高门槛。首封邮件只争取拿到图纸并做成本比较，不承诺整套交付。",
+        subject: "Can HuaSheng quote one Santo André shelter?",
+        body: `Hello Eletromidia team,
+
+I saw the Santo André award: 746 new shelters, plus MUPIs and electronic clocks. At that volume, consistent fabrication and sensible packing will matter as much as unit price.
+
+HuaSheng builds modular shelters and outdoor advertising hardware in Guangzhou. Give us one approved shelter or MUPI drawing and we can review the metalwork, suggest a packing plan, then price a 10-unit pilot. Your local team would keep responsibility for engineering approval, electronics and installation.
+
+Is the supply plan still open? If so, please point me to the Asset Delivery or Procurement lead. We can return a manufacturability review and budget quote within five business days.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "alarabia",
+        rank: 2,
+        company: "Al Arabia / Arabian Contracting Services",
+        country: "沙特阿拉伯",
+        region: "GCC",
+        wave: "A",
+        products: ["DOOH 箱体", "灯箱", "导视柱"],
+        email: ["info@al-arabia.com"],
+        trigger: "2026 年 6 月签署覆盖 18 个沙特机场、为期 10 年的广告资产合同，涵盖数字、互动和标志性屏幕结构。财务影响从 Q3 2026 开始。",
+        source: "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/?anCat=1&anId=96226&cs=4071&locale=en",
+        contactSource: "https://al-arabia.com/partner-with-alarabia",
+        goal: "约一次技术或供应商准入电话，拿到首批机场资产清单，再报价一个原型和首批量产。",
+        product: "机场数字屏箱体、互动屏外框、静态 LED 灯箱、户外导视柱、设备柜与维护门。",
+        angle: "18 个机场要把媒体规划落成一组可复制、好维护的硬件。邮件重点讲标准化和分批交付。",
+        risk: "机场项目对防火、电气、IP/IK、材料和审厂要求高。邮件只承诺机械制造范围，所有认证需按项目规格确认。",
+        subject: "A hardware production question for the 18-airport rollout",
+        body: `Hello Al Arabia team,
+
+The new concession across 18 Cluster 2 airports is a serious hardware mobilisation. The challenge is turning many screen formats into repeatable assets that crews can install and service without surprises.
+
+HuaSheng can manufacture the non-electronic portion from approved drawings: display enclosures, service cabinets, lightbox bodies, monolith frames and mounting assemblies. We can also trial-assemble and pack each batch by airport. Your local partners would keep the structural, electrical and site-work scope.
+
+Could the team responsible for technical delivery or vendor qualification share one representative asset specification? We would review it and quote a prototype plus the first production batch.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "backliteksa",
+        rank: 3,
+        company: "BackLite KSA / Multiply Media Group",
+        country: "沙特阿拉伯",
+        region: "GCC",
+        wave: "A",
+        products: ["DOOH 箱体", "MUPI", "展示框架"],
+        email: ["info@mmg.global"],
+        trigger: "2026 年 7 月 1 日宣布在利雅得和吉达四个目的地部署 80+ 块数字屏。这是一个刚启动、从零建设的网络。",
+        source: "https://www.mmg.global/news-insights/multiply-media-group-expands-into-saudi-arabia-through-strategic-partnership-with-cenomi-centers-and-the-launch-of-backlite-ksa",
+        contactSource: "https://www.mmg.global/contact-us",
+        goal: "进入 BackLite KSA 的供应商评估，拿到一个目的地的箱体规格并争取首站打样。",
+        product: "高端商业空间数字屏外壳、独立式 MUPI / 互动亭体、定制展示框架与支撑件。",
+        angle: "用同一套获批箱体方案，统一两座城市、四个目的地的外观、维护方式和制造质量。",
+        risk: "高端商业空间对表面品质和本地安装细节要求高；需提供真实表面样板和可核验检查标准。",
+        subject: "One enclosure family for BackLite KSA's 80+ screens",
+        body: `Hello Multiply Media Group team,
+
+The BackLite KSA launch caught our attention. More than 80 screens across Riyadh and Jeddah is enough scale to justify one enclosure family instead of a series of one-off builds.
+
+HuaSheng manufactures custom steel and aluminium display housings from client drawings. We could help standardise the hidden mechanical details—service doors, internal mounts and base interfaces—while keeping BackLite's exterior design intact. That should make approval, spare parts and phased delivery easier across the four locations.
+
+If the mechanical package is still being sourced, could you connect us with Asset Delivery or Procurement? One representative screen specification is enough for a DFM review and prototype quote.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "hypermedia",
+        rank: 4,
+        company: "Hypermedia",
+        country: "阿联酋",
+        region: "GCC",
+        wave: "A",
+        products: ["数字屏箱体", "MUPI", "维护门"],
+        email: ["info@hypermedia.ae"],
+        trigger: "2026 年 6 月 8 日获批在 Sheikh Zayed Road 沿线安装和运营 21 个数字 unipole；同时在 Motor City 扩建双面智能 MUPI 网络。",
+        source: "https://hypermedia.ae/mada-media-awards-hypermedia-concession-for-21-digital-unipoles-along-sheikh-zayed-road/",
+        contactSource: "https://hypermedia.ae/about/",
+        goal: "拿到一套规格和图纸，争取在批量生产前先做 3–5 套验证。",
+        product: "耐候 LED 箱体、维护门 / 平台、双面 MUPI 外壳、数字 gateway 金属件。",
+        angle: "统一新 unipole 和 MUPI 的机械接口，降低现场维护难度。杆体、基础和签章仍由当地工程师负责。",
+        risk: "迪拜户外温度、沙尘和风载要求高。不能笼统宣传“耐候”，应要求客户提供温升、IP/IK、涂层和结构规格。",
+        subject: "A 3–5 unit enclosure trial for Sheikh Zayed Road",
+        body: `Hello Hypermedia team,
+
+Twenty-one digital unipoles along Sheikh Zayed Road will be highly visible, and maintenance access will matter once the screens are live.
+
+HuaSheng can build the screen cabinets, service doors, internal frames and double-sided MUPI bodies to Hypermedia's approved design. We would trial the mechanical interfaces before shipment. Poles, foundations, wind-load approval, electronics and installation stay with your UAE team.
+
+Could we review one enclosure drawing before the production package is locked? We would return practical DFM comments and a quote for a 3–5 unit validation batch.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "bauer",
+        rank: 5,
+        company: "Bauer Media Outdoor UK",
+        country: "英国",
+        region: "Europe",
+        wave: "A",
+        products: ["候车亭组件", "灯箱", "备件"],
+        email: ["maria.macias@bauermediaoutdoor.com"],
+        trigger: "Bracknell Forest 候车亭特许合同自 2026 年 4 月 1 日起执行，合同金额约 £8.75m（未含 VAT）。",
+        source: "https://www.find-tender.service.gov.uk/Notice/010367-2026",
+        contactSource: "https://www.find-tender.service.gov.uk/Notice/010367-2026",
+        goal: "完成供应商引荐并争取 25–50 套组件试单，或先拿一套常用备件包。",
+        product: "私牌候车亭框架、顶棚、座椅、玻璃固定系统、照明广告柜和维护备件。",
+        angle: "不碰设计和本地施工，先做第二供应商，接超出既有产能的订单。",
+        risk: "英国对结构钢、玻璃、电气、可达性和供应链 ESG 的要求严格。第一步先过供应商资格审查，不要直接承诺成品候车亭。",
+        subject: "Could we benchmark one Bracknell shelter component?",
+        body: `Hello Maria,
+
+I'm writing about the Bracknell shelter contract, which entered delivery in April. Bauer will already have established suppliers, so I want to make a narrow proposal rather than pitch a wholesale change.
+
+HuaSheng could benchmark one repeat component—perhaps a frame assembly, roof, bench or illuminated cabinet—against Bauer's drawing and inspection requirements. The fit would be backup capacity or a spare-parts source, not a replacement for Bauer's design or installation partners.
+
+Would you route this to the colleague responsible for shelter procurement? One drawing and an annual volume range would let us return a landed-cost comparison and proposed inspection plan.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "jcdecaux",
+        rank: 6,
+        company: "JCDecaux UK",
+        country: "英国",
+        region: "Europe",
+        wave: "A",
+        products: ["FSU", "灯箱", "候车亭组件"],
+        email: ["cecile.turfrey@jcdecaux.com"],
+        trigger: "Reading 合同于 2026 年 5 月 10 日启动，范围包括候车亭、数字 FSU 和相关街具，并允许增购。",
+        source: "https://www.find-tender.service.gov.uk/Notice/013494-2026",
+        contactSource: "https://www.find-tender.service.gov.uk/Notice/013494-2026",
+        goal: "取得备用供应源评估机会，并拿到一份 FSU 或候车亭组件图纸做预算报价。",
+        product: "按图制造的 FSU 箱体、灯箱、候车亭金属子组件、维护门与安装套件。",
+        angle: "Reading 合同允许增购，可以先从单个 FSU 或候车亭组件的第二供应报价切入。设计、当地合规和安装仍由 JCDecaux 负责。",
+        risk: "JCDecaux 有成熟供应链和供应商标准。不要推完整替代方案，应从基准报价或单个模块开始。",
+        subject: "One Reading FSU component for a benchmark quote?",
+        body: `Hello Cecile,
+
+The Reading contract leaves room for additional shelters and digital free-standing units. That may create a small opening for a qualified component supplier.
+
+HuaSheng fabricates outdoor display enclosures and shelter metalwork from customer drawings. Rather than propose a broad supplier change, we would like to benchmark one selected FSU body, lightbox frame or service-door assembly. JCDecaux would keep control of design, certification, electronics and installation.
+
+Could you direct this to the right supplier or asset-delivery contact? With one drawing and a volume range, we can return DFM notes, an inspection approach and a budgetary landed-cost quote.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "hills",
+        rank: 7,
+        company: "Hills Advertising",
+        country: "阿联酋",
+        region: "GCC",
+        wave: "A",
+        products: ["桥梁广告框", "数字箱体", "灯箱"],
+        email: ["info@hillsadvertising.com"],
+        trigger: "2026 年 4 月签约 94 个桥梁横幅广告位，其中 20 个升级为数字屏，另含 20 个灯杆广告位。",
+        source: "https://www.mediaoffice.ae/en/news/2026/april/20-04/mada-media-signs-an-agreement-with-hills-advertising",
+        contactSource: "https://hillsadvertising.com/contact-us/",
+        goal: "拿到一套标准桥梁数字单元图纸，同时报价 1 个样机和 20 套量产。",
+        product: "镀锌钢 / 不锈钢展示框、数字屏耐候箱体、维护柜、灯箱子组件。",
+        angle: "20 个数字升级点可以先做 1 个标准样机，再复制量产。方案要突出维护门和现场装配效率。",
+        risk: "桥梁挂载的结构责任很重。华盛只按批准图纸制造，结构核算和许可必须由当地工程师负责。",
+        subject: "Can we quote one of the 20 digital bridge units?",
+        body: `Hello Hills Advertising team,
+
+The 20 digital upgrades in Hills' new bridge-media agreement look like a good fit for a prototype-first manufacturing plan.
+
+HuaSheng can build the display frame, screen cabinet and service panels to an approved local design. We would assemble the mechanical interfaces at the factory, then pack the parts by site. Structural calculations, bridge attachments, electronics and installation would remain with the UAE project team.
+
+Could you route this to Technical Delivery or Procurement and share one standard unit drawing? We can quote a prototype and a 20-unit production option.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "phi",
+        rank: 8,
+        company: "PHI Advertising",
+        country: "阿联酋",
+        region: "GCC",
+        wave: "A",
+        products: ["Unipole 箱体", "维护门", "框架"],
+        email: ["info@phiadvertising.com"],
+        trigger: "2026 年 4 月获得 9 个数字 unipole、9 个静态 unipole 和 1 个围挡媒体位的安装与运营权。",
+        source: "https://mediaoffice.ae/en/news/2026/april/05-04/mada-media-awards-out-of-home-advertising-bid-to-phi-advertising",
+        contactSource: "https://phiadvertising.com/contact",
+        goal: "先做 1 个验证样机，再为 9 个数字点位报价一套箱体和框架方案。",
+        product: "非关键钢 / 铝子组件、屏幕箱体、维护门、内部安装板与框架。",
+        angle: "统一 9 个数字点位的机械接口和维护方式，减少现场差异。杆体和基础仍由当地供应链负责。",
+        risk: "普通金属加工不能被说成一套已经认证的 unipole 系统。邮件只谈箱体和非关键子组件。",
+        subject: "A prototype quote for PHI's nine digital sites",
+        body: `Hello PHI Advertising team,
+
+I'm reaching out about PHI's new package of nine digital unipoles, nine static units and one hoarding site.
+
+For the digital sites, HuaSheng can manufacture screen enclosures, service doors, internal mounting plates and frame modules from PHI's approved drawings. We would not take on the pole, foundation, wind-load, electronics or installation scope.
+
+If the mechanical package is still open, could your technical team share one representative drawing? We would quote one validation unit first, with a separate option for all nine digital locations.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "signpost",
+        rank: 9,
+        company: "Signpost India",
+        country: "印度",
+        region: "APAC",
+        wave: "A",
+        products: ["智能候车亭", "灯箱", "亭体"],
+        email: ["info@signpostindia.com"],
+        trigger: "2026 年 2 月披露 ₹450 crore、为期 10 年的 Kolkata Streetscape Renaissance 合同，涉及街具、候车亭、亭体与广告资产。",
+        source: "https://bsmedia.business-standard.com/_media/bs/data/announcements/bse/23022026/1e33412c-622b-4844-bc2e-bdaf881d6a07.pdf",
+        contactSource: "https://signpostindia.com/contact-us/",
+        goal: "拿到街景资产 BOM 和阶段计划，为 3 套候车亭或灯箱原型报价。",
+        product: "模块化智能候车亭结构、背光灯箱、广告亭体、导视、座椅和垃圾箱。",
+        angle: "先做 3 个原型，验证广州到加尔各答的制造、包装和现场拼装。通过后再谈批量。",
+        risk: "印度本地制造和价格竞争激烈。需要用复杂加工、表面一致性或产能溢出证明进口价值。",
+        subject: "Three prototypes for the Kolkata streetscape programme",
+        body: `Hello Signpost India team,
+
+The Kolkata Streetscape Renaissance programme is large enough that packing and local assembly will affect cost almost as much as fabrication.
+
+HuaSheng can turn an approved shelter or advertising-unit design into factory-tested modules for container shipment. We would handle the metalwork, finish, trial assembly and packing. Signpost and its partners would keep local engineering, electronics, civil work and installation.
+
+Could the project team share one initial specification? We suggest starting with one to three prototypes so both sides can test landed cost and site assembly before discussing volume.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "tractor",
+        rank: 10,
+        company: "Tractor Outdoor",
+        country: "南非",
+        region: "Africa",
+        wave: "A",
+        products: ["DOOH 包边", "屏幕框", "设备柜"],
+        email: ["info@tractoroutdoor.com"],
+        trigger: "2026 年 6–7 月有多个新建和改造数字点位进入生产，并开始采用统一的高端建筑包边风格。",
+        source: "https://pressportal.co.za/stream/story/5c49825021806ece-20260623.html",
+        contactSource: "https://www.tractoroutdoor.com/",
+        goal: "选用一个现有包边设计，为 5 个即将上线的点位报价，争取后续批量生产。",
+        product: "粉末喷涂包边套件、LED 灯带槽、耐候屏幕框、维护面板和电源柜。",
+        angle: "不同尺寸的屏幕沿用同一套建筑外观，适合把包边和维护件做成标准模块。",
+        risk: "紧迫信号来自行业新闻而非公开招标，先确认采购是否已锁定本地供应商。",
+        subject: "Can we price one cladding design across five sites?",
+        body: `Hello Tractor Outdoor team,
+
+I saw the new and converted digital sites coming through Tygervalley, Rosebank and Sandton. Tractor's consistent cladding language is exactly the kind of design that benefits from repeatable hidden hardware.
+
+HuaSheng can manufacture the cladding, display frames, service panels and cabinet metalwork from Tractor's design. We would standardise the interfaces where it helps production, while leaving the visible design and local engineering untouched.
+
+Could your technical team share one existing design for a confidential comparison? We can review it and price a five-site batch, including export packing.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "creative",
+        rank: 11,
+        company: "Creative Outdoor Advertising",
+        country: "美国 / 加拿大",
+        region: "Americas",
+        wave: "B",
+        products: ["候车亭备件", "灯箱", "座椅"],
+        email: ["municipal@creativeoutdoor.com"],
+        trigger: "新获 Santa Clara VTA 公交候车亭广告合同，将负责清洁、维护和资产保养。",
+        source: "https://oohtoday.com/the-heart-of-silicon-valley-santa-clara-county-transportation-authority-bus-shelter-goes-to-creative-outdoor-advertising/",
+        contactSource: "https://coa.creativeoutdoor.com/street-furniture/bus-shelters/",
+        goal: "拿到 VTA 过渡期的翻新 / 备件清单，先争取 3 套候车亭或灯箱试单。",
+        product: "替换式候车亭模块、背光广告面板、座椅、垃圾箱和备件包。",
+        angle: "COA 已经有北美供应商。华盛只补备用、超出原供应商产能的订单和特殊件，不提替换主供应商。",
+        risk: "美国关税、Buy America、地方采购要求和既有供应商，会直接影响方案是否可行。报价前先检查原产地和合规要求。",
+        subject: "Which VTA shelter part is hardest to keep in stock?",
+        body: `Hello Creative Outdoor municipal team,
+
+The Santa Clara VTA transition will likely expose a few repeat parts that are damaged often or hard to replenish quickly.
+
+HuaSheng makes shelter metalwork and advertising housings from customer drawings. We know Creative Outdoor already has North American suppliers. The useful role for us would be backup production for a stable, non-urgent component—not a change to your main supply chain.
+
+Is there one high-consumption part worth comparing? If the sourcing rules allow it, send us the drawing and annual quantity. We will return a landed-cost estimate and a small validation-batch plan.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "clearchannel",
+        rank: 12,
+        company: "Clear Channel Ireland / Bauer Ireland",
+        country: "爱尔兰",
+        region: "Europe",
+        wave: "B",
+        products: ["候车亭备件", "广告面板", "替换套件"],
+        email: ["declan.ocarroll@clearchannel.ie"],
+        trigger: "€120m、96 个月的 NTA 合同覆盖约 2,250 座在役候车亭，包括新建、替换、零件与附加广告面板。",
+        source: "https://www.etenders.gov.ie/epps/cft/prepareViewCfTWS.do?resourceId=4361170",
+        contactSource: "https://www.etenders.gov.ie/epps/notices/viewPublishedContractNotice.do?documentId=5377115&extId=5376997&isNational=false&lang=en&noticeId=5376997&noticeType=30&resourceId=4361170",
+        goal: "拿到 2026–27 年替换预测，先选一个区域做标准备件或替换件试单。",
+        product: "可互换的顶棚、侧墙、框架、座椅、静态 / 数字广告面板和维护备件。",
+        angle: "2,250 座现有资产会持续产生替换件需求。先从尺寸稳定的备件开始。",
+        risk: "邮箱来自旧品牌和合同文件。组织整合后，收件人职责可能已经变化；首封邮件先请对方转给当前负责人。",
+        subject: "A parts benchmark for the 2,250-shelter NTA estate",
+        body: `Hello Declan,
+
+A 2,250-shelter estate creates steady demand for the same roofs, side frames, benches and advertising-panel parts year after year.
+
+HuaSheng manufactures these parts from customer drawings. We are interested in one repeat component or regional spares package, not a broad change to the network's design, installation or maintenance model.
+
+Are you still the right person for supplier introductions? If not, could you point me to Procurement or Asset Delivery? One high-volume drawing and annual quantity would be enough for a landed-cost benchmark.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "bravo",
+        rank: 13,
+        company: "Bravo Media",
+        country: "中国香港",
+        region: "APAC",
+        wave: "B",
+        products: ["数字广告框", "灯箱", "翻新套件"],
+        email: ["bmlsales@bravomedia.com.hk"],
+        trigger: "自 2025 年 10 月起独家运营 Citybus 300+ 座候车亭广告网络，其中包括 75 个数字广告框。",
+        source: "https://www.citybus.com.hk/en/uploadedPressRelease/21695_Citybus%20Appoints%20Bravo%20Media%20as%20the%20Exclusive%20Agency%20for%20Bus%20Shelter%20Network.pdf",
+        contactSource: "https://www.bravomedia.com.hk/en",
+        goal: "争取对 10 个点位做现状检查和替换件试点，并请 Bravo 转接 Citybus 资产运营团队。",
+        product: "LED / 背光海报柜、数字屏箱体、替换门板 / 玻璃、顶棚特装结构与翻新套件。",
+        angle: "接手 300+ 个点位后，翻新、备件和数字广告框标准化都会产生需求。广州距离近，响应会更快。",
+        risk: "候车亭所有权和采购权限可能在 Citybus 而非 Bravo。邮件必须请求转给实际资产负责人。",
+        subject: "A ten-site parts trial for the Citybus shelter network",
+        body: `Hello Bravo Media team,
+
+More than 300 Citybus shelters—and 75 digital frames—will create a steady flow of refurbishment and replacement work.
+
+HuaSheng is based in Guangzhou and makes shelter and advertising metalwork from drawings or approved samples. The short distance could be useful for digital enclosures, poster cabinets, replacement doors and other parts ordered in small batches. Bravo and Citybus would keep electronics, local compliance and installation.
+
+Is there one planned refurbishment or frequently replaced part we could review? We would price a ten-site trial and propose the packing method at the same time.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "qms",
+        rank: 14,
+        company: "QMS New Zealand",
+        country: "新西兰",
+        region: "APAC",
+        wave: "B",
+        products: ["数字改造箱体", "六联灯箱", "特殊街具"],
+        email: ["marketing@qmsmedia.com"],
+        trigger: "Auckland Transport 特许经营覆盖近 2,000 个街具广告面，2025 年完成交接并计划增加数字资产。",
+        source: "https://www.qmsmedia.com/news/qms-lights-up-auckland-with-successful-street-furniture-handover",
+        contactSource: "https://www.qmsmedia.com/hubfs/QMS_Cathedral%20Classic%20%2450K%20NFP%20Package%20Promotion_TermsConditions.pdf",
+        goal: "请当前邮箱转给新西兰资产交付负责人，再争取 10–20 个点位的数字改造或特装试点。",
+        product: "数字改造箱体、六联灯箱、耐候维护门、安装框架和小批量特装街具。",
+        angle: "先从现有 2,000 个广告面的改造件和特殊件切入，不去争整张网络的供货。",
+        risk: "公开邮箱属于市场部门，邮件第一段就请对方转给新西兰资产交付或运营负责人。",
+        subject: "One Auckland retrofit component for comparison",
+        body: `Hello QMS team,
+
+With nearly 2,000 Auckland Transport panels now under QMS, retrofit parts and one-off builds should become a recurring need.
+
+HuaSheng manufactures display cabinets, six-sheet lightbox bodies, service doors and custom outdoor metalwork from approved designs. A single planned retrofit or repeat replacement part would be a better starting point than a network-wide proposal.
+
+Could you forward this to the New Zealand Asset Delivery or Operations lead? One specification would let us check manufacturability, packing density and landed cost for a 10–20 site trial.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "parcelat",
+        rank: 15,
+        company: "Parcelat",
+        country: "沙特阿拉伯",
+        region: "GCC",
+        wave: "B",
+        products: ["智能柜体", "控制台外壳", "户外机柜"],
+        email: ["jfaqihi@parcelat.com", "support@parcelat.com"],
+        trigger: "与 Panda Retail 和 DHL 的合作，已经为全国智能快递柜网络扩张提供了站点和业务通道。",
+        source: "https://parcelat.com/parcelat-and-panda-retail-company-sign-memorandum-of-understanding-to-expand-smart-parcel-locker-network-across-saudi-arabia/",
+        contactSource: "https://parcelat.com/contact-us/",
+        goal: "取得柜体图纸、气候和防盗要求，争取 20–50 套机械柜体试单。",
+        product: "模块化柜体、门板、户外防护外壳、触控控制台壳体、通风板和底座；电子与软件由 Parcelat 保留。",
+        angle: "合作伙伴提供站点后，产能瓶颈可能转向标准化机械柜体。华盛只做金属硬件。",
+        risk: "这不是华盛当前最核心的产品。接触客户前，先确认门锁公差、防撬、IP、热管理和售后备件能力。",
+        subject: "Can HuaSheng quote one Parcelat locker cabinet?",
+        body: `Hello Parcelat team,
+
+Panda and DHL give Parcelat the sites. The next constraint is producing the same locker hardware reliably as the network grows.
+
+HuaSheng can manufacture the cabinet body, doors, control-console shell and plinth from Parcelat's design. We would stay out of the locks, electronics, software and field service.
+
+Could the product or supply-chain team share one current drawing, along with the environmental and security requirements? We would review it and quote a 20–50 unit mechanical pilot.
+
+Best,
+[Name]
+[Title] | HuaSheng Metal`
+      },
+      {
+        id: "bojamhoor",
+        rank: 16,
+        company: "Bojamhoor Trading & Contracting",
+        country: "卡塔尔",
+        region: "GCC",
+        wave: "B",
+        products: ["候车亭套件", "座椅", "安装支架"],
+        email: ["info@bojamhoor.com"],
+        trigger: "官网仍将 2,000 座空调 / 非空调候车亭及基础设施项目标记为进行中，并开放供应商注册。",
+        source: "https://www.bojamhoor.com/AllProjects/busshelter.html",
+        contactSource: "https://www.bojamhoor.com/contact.html",
+        goal: "提交供应商资料，确认是否还有剩余批次、替换件或第二供应商机会。",
+        product: "平板包装的空调预留型候车亭框架、隔热顶棚 / 侧板、座椅、太阳能与信息屏安装件。",
+        angle: "这 2,000 座资产可能仍有后续批次和长期备件需求。土建、系统集成和安装由 Bojamhoor 负责。",
+        risk: "项目可能已经接近完成。先确认剩余数量和采购窗口；收到真实 BOM 之前，不要投入定制打样。",
+        subject: "Are shelter spares still open for vendor qualification?",
+        body: `Hello Bojamhoor team,
+
+Your website still lists the Qatar bus-stop shelter programme as active. I realise the main production packages may already be placed, so this is a question about remaining lots and spares.
+
+HuaSheng manufactures shelter frames, roof and side-panel structures, benches and equipment mounts from contractor drawings. We could qualify for selected replacement parts or backup quantities. Bojamhoor would keep the civil work, AC integration, approvals and installation.
+
+Is this category still open for vendor qualification? If so, please send the registration requirements or one representative BOM so we can decide whether a pilot quote makes sense.
+
+Regards,
+[Name]
+[Title] | HuaSheng Metal`
+      }
+    ];
+
+    const STORAGE_KEY = "huasheng-sales-review-v1";
+    const statusLabels = { pending: "待审阅", revise: "需修改", ready: "可发送" };
+    const regionLabels = { GCC: "GCC", Europe: "欧洲", APAC: "亚太", Americas: "美洲", Africa: "非洲" };
+
+    let reviewState = {};
+    try { reviewState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch (_) { reviewState = {}; }
+
+    const filters = { wave: "all", region: "all", status: "all", search: "" };
+    const accountList = document.getElementById("accountList");
+    const resultCount = document.getElementById("resultCount");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    const toast = document.getElementById("toast");
+
+    const escapeHtml = (value) => String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+    const accountStatus = (id) => reviewState[id] || "pending";
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 1900);
+    }
+
+    async function copyText(value, message = "已复制") {
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch (_) {
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+      }
+      showToast(message);
+    }
+
+    function emailText(account) {
+      return `To: ${account.email.join(", ")}\nSubject: ${account.subject}\n\n${account.body}`;
+    }
+
+    function mailto(account) {
+      return `mailto:${account.email[0]}?subject=${encodeURIComponent(account.subject)}&body=${encodeURIComponent(account.body)}`;
+    }
+
+    function matches(account) {
+      const status = accountStatus(account.id);
+      const haystack = [account.company, account.country, account.email.join(" "), account.products.join(" "), account.trigger, account.product].join(" ").toLowerCase();
+      return (filters.wave === "all" || account.wave === filters.wave)
+        && (filters.region === "all" || account.region === filters.region)
+        && (filters.status === "all" || status === filters.status)
+        && (!filters.search || haystack.includes(filters.search));
+    }
+
+    function renderAccount(account, index) {
+      const status = accountStatus(account.id);
+      const emailLinks = account.email.map((email) => `<a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>`).join("<br />");
+      const badges = [
+        `<span class="badge wave-${account.wave.toLowerCase()}">Wave ${account.wave}</span>`,
+        `<span class="badge">${escapeHtml(regionLabels[account.region])}</span>`,
+        ...account.products.map((product) => `<span class="badge">${escapeHtml(product)}</span>`)
+      ].join("");
+
+      return `
+        <article class="account" data-id="${account.id}" data-status="${status}">
+          <details ${index < 2 ? "open" : ""}>
+            <summary>
+              <div class="rank">${String(account.rank).padStart(2, "0")}</div>
+              <div>
+                <div class="account-name">${escapeHtml(account.company)}</div>
+                <div class="account-trigger">${escapeHtml(account.country)} · ${escapeHtml(account.trigger)}</div>
+              </div>
+              <div class="badges">${badges}</div>
+              <div class="review-state-label ${status}">${statusLabels[status]}</div>
+              <div class="chevron" aria-hidden="true">＋</div>
+            </summary>
+            <div class="account-content">
+              <div class="account-grid">
+                <div class="account-facts">
+                  <div class="fact"><div class="fact-label">公开邮箱</div><div class="fact-value">${emailLinks}<br /><a href="${escapeHtml(account.contactSource)}" target="_blank" rel="noopener">查看联系方式来源 ↗</a></div></div>
+                  <div class="fact"><div class="fact-label">账户目标</div><div class="fact-value">${escapeHtml(account.goal)}</div></div>
+                  <div class="fact"><div class="fact-label">推荐产品</div><div class="fact-value">${escapeHtml(account.product)}</div></div>
+                  <div class="fact"><div class="fact-label">切入逻辑</div><div class="fact-value">${escapeHtml(account.angle)}</div></div>
+                  <div class="fact"><div class="fact-label">需求证据</div><div class="fact-value"><a href="${escapeHtml(account.source)}" target="_blank" rel="noopener">打开触发事件来源 ↗</a></div></div>
+                  <div class="risk-box"><strong>审阅提醒：</strong>${escapeHtml(account.risk)}</div>
+                </div>
+                <div class="email-card">
+                  <div class="email-top">
+                    <span class="email-label">English outreach draft</span>
+                    <div class="email-actions">
+                      <button class="email-button" data-copy-email="${account.id}">复制邮件</button>
+                      <a class="email-button" href="${escapeHtml(mailto(account))}">在邮箱中打开</a>
+                    </div>
+                  </div>
+                  <div class="email-fields">
+                    <div><strong>To</strong>${escapeHtml(account.email.join(", "))}</div>
+                    <div><strong>Subject</strong>${escapeHtml(account.subject)}</div>
+                  </div>
+                  <pre class="email-body">${escapeHtml(account.body)}</pre>
+                </div>
+              </div>
+              <div class="status-control">
+                <span>你的审阅状态会自动保存在这台设备上</span>
+                <div class="status-buttons" role="group" aria-label="设置账户审阅状态">
+                  ${["pending", "revise", "ready"].map((value) => `<button class="status-btn ${status === value ? "active" : ""}" data-set-status="${value}" data-account="${account.id}">${statusLabels[value]}</button>`).join("")}
+                </div>
+              </div>
+            </div>
+          </details>
+        </article>`;
+    }
+
+    function updateProgress() {
+      const ready = accounts.filter((account) => accountStatus(account.id) === "ready").length;
+      progressText.textContent = `${ready} / ${accounts.length} 可发送`;
+      progressBar.style.width = `${(ready / accounts.length) * 100}%`;
+    }
+
+    function render() {
+      const visible = accounts.filter(matches);
+      accountList.innerHTML = visible.length
+        ? visible.map(renderAccount).join("")
+        : `<div class="empty">没有符合当前筛选条件的账户。请清除部分条件后重试。</div>`;
+      resultCount.textContent = `显示 ${visible.length} 个账户`;
+      updateProgress();
+    }
+
+    function setChip(group, target, filterName, value) {
+      document.querySelectorAll(`#${group} .chip`).forEach((chip) => chip.classList.toggle("active", chip === target));
+      filters[filterName] = value;
+      render();
+    }
+
+    document.getElementById("waveFilters").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-filter-wave]");
+      if (button) setChip("waveFilters", button, "wave", button.dataset.filterWave);
+    });
+
+    document.getElementById("regionFilters").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-filter-region]");
+      if (button) setChip("regionFilters", button, "region", button.dataset.filterRegion);
+    });
+
+    document.getElementById("statusFilters").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-filter-status]");
+      if (button) setChip("statusFilters", button, "status", button.dataset.filterStatus);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", (event) => {
+      filters.search = event.target.value.trim().toLowerCase();
+      render();
+    });
+
+    accountList.addEventListener("click", (event) => {
+      const copyButton = event.target.closest("[data-copy-email]");
+      if (copyButton) {
+        const account = accounts.find((item) => item.id === copyButton.dataset.copyEmail);
+        if (account) copyText(emailText(account), `已复制 ${account.company} 邮件`);
+        return;
+      }
+
+      const statusButton = event.target.closest("[data-set-status]");
+      if (statusButton) {
+        reviewState[statusButton.dataset.account] = statusButton.dataset.setStatus;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(reviewState));
+        render();
+        showToast(`已标记为“${statusLabels[statusButton.dataset.setStatus]}”`);
+      }
+    });
+
+    document.getElementById("copyEmails").addEventListener("click", () => {
+      const emails = [...new Set(accounts.flatMap((account) => account.email))].join("\n");
+      copyText(emails, `已复制 ${accounts.length} 家公司的公开邮箱`);
+    });
+
+    let allExpanded = false;
+    document.getElementById("expandAll").addEventListener("click", (event) => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll(".account details").forEach((details) => { details.open = allExpanded; });
+      event.currentTarget.textContent = allExpanded ? "全部收起" : "全部展开";
+    });
+
+    document.getElementById("printPlan").addEventListener("click", () => window.print());
+
+    let printOpenState = [];
+    window.addEventListener("beforeprint", () => {
+      const details = [...document.querySelectorAll(".account details")];
+      printOpenState = details.map((item) => item.open);
+      details.forEach((item) => { item.open = true; });
+    });
+    window.addEventListener("afterprint", () => {
+      document.querySelectorAll(".account details").forEach((item, index) => { item.open = printOpenState[index] ?? item.open; });
+    });
+
+    render();
+  </script>
+</body>
+</html>

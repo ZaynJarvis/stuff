@@ -1,0 +1,12 @@
+{
+  "name": "zaynjarvis-stuff",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A public shelf for useful plans, artifacts, and experiments.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python3 -m http.server 4173 --directory site",
+    "check": "node scripts/check.mjs"
+  }
+}
