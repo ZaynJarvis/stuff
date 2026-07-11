@@ -26,6 +26,7 @@ The static output is written to `dist/`.
 
 ## Cloudflare Pages
 
+- Project name: `zaynjarvis-stuff`
 - Production branch: `main`
 - Build command: `npm run build`
 - Build output directory: `dist`
