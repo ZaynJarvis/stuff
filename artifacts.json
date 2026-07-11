@@ -11,6 +11,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": true
+    },
+    {
+      "slug": "openviking-explained",
+      "title": "OpenViking, Explained",
+      "summary": "An interactive, source-pinned architecture board for OpenViking — the open-source context database for AI agents — with code-traced Write / Retrieve / Manage pipelines and a bilingual reading path.",
+      "category": "Architecture",
+      "kind": "Interactive explorer",
+      "published": "2026-07-12",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
