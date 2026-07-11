@@ -24,7 +24,15 @@ for (const artifact of artifacts) {
   if (!index.includes(`href="/${artifact.slug}/"`)) throw new Error(`Index does not link to /${artifact.slug}/`);
   const detail = await readFile(resolve(root, `dist/${artifact.slug}/index.html`), "utf8");
   if (!detail.includes('href="/"')) throw new Error(`${artifact.slug} has no route back to the artifact list`);
-  if (/\b(?:localhost|127\.0\.0\.1|file:\/\/)/i.test(detail)) throw new Error(`${artifact.slug} contains a local-only URL`);
+  // Only an actual resource reference (a live URL, a src/href, or a CSS url())
+  // to a local host is a problem — not localhost/127.0.0.1/file:// appearing in
+  // documentation prose or code comments describing software behavior.
+  const localHostRef = [
+    /\bhttps?:\/\/(?:localhost|127\.0\.0\.1)\b/i,
+    /(?:src|href)\s*=\s*["']\s*(?:file:\/\/|https?:\/\/(?:localhost|127\.0\.0\.1))/i,
+    /url\(\s*["']?\s*(?:file:\/\/|https?:\/\/(?:localhost|127\.0\.0\.1))/i,
+  ];
+  if (localHostRef.some((pattern) => pattern.test(detail))) throw new Error(`${artifact.slug} contains a local-only URL`);
 }
 
 const script = [...plan.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].at(-1)?.[1];
