@@ -22,6 +22,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "mom-test",
+      "title": "别问妈妈 · The Mom Test 学习手册",
+      "summary": "把 The Mom Test 拆成 74 篇可连续阅读、检索和无限展开证据的双语学习短文。",
+      "category": "创业与客户访谈",
+      "kind": "互动学习手册",
+      "published": "2026-07-12",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
