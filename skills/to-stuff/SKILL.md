@@ -40,7 +40,7 @@ Require an HTML file path. Infer sensible metadata from the artifact, but ask wh
    ```
 
    Use `--replace` only when the user asks to update an existing slug. Use `--pin` only when the user explicitly wants the item above the pinned SD Plan.
-5. **Validate.** In the repository run `npm run build && npm run check`. Inspect the generated `dist/index.html` and `dist/<slug>/index.html`. Verify the list links to the detail page and the detail page links back to `/`.
+5. **Validate.** In the repository run `npm run build && npm run check`. Inspect the generated `dist/index.html` and `dist/<slug>/index.html`. Verify the index links directly to the detail page and the detail page contains no Stuff chrome or route back to `/`.
 6. **Publish.** The explicit `/to-stuff` request authorizes a direct content commit to `main` after validation. Stage only `artifacts.json` and `site/<slug>/index.html`. Commit as `publish <slug> artifact`, then push. If push is rejected, rebase only on a clean, fully understood tree, rerun checks, and push again.
 7. **Verify production.** Confirm local and remote commit hashes match. Poll both `https://stuff.zaynjarvis.com/` and `https://stuff.zaynjarvis.com/<slug>/` for up to two minutes. The root must contain the title; the detail route must return HTTP 200. Use a query such as `?v=<commit>` to avoid stale cache.
 8. **Report.** Return the public detail URL, index URL, GitHub commit, and validation result. State any unverified gap plainly.
@@ -52,4 +52,5 @@ Require an HTML file path. Infer sensible metadata from the artifact, but ask wh
 - Do not change factual claims while making a page public.
 - Do not deploy when the repository has unrelated changes or validation fails.
 - Keep `sd-plan` pinned first unless the user explicitly changes the order.
+- Treat artifact pages as standalone destinations. Never inject a Stuff header, back button, or route to the index.
 - Treat a successful push as incomplete until the public detail URL returns the new content.

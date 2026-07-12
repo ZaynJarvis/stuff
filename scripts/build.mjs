@@ -60,7 +60,7 @@ const artifactList = artifacts.map((artifact, index) => `
               <div><dt>Format</dt><dd>${escapeHtml(artifact.format)}</dd></div>
               <div><dt>Language</dt><dd>${escapeHtml(artifact.language)}</dd></div>
             </dl>
-            <span class="arrow" aria-hidden="true">↗</span>
+            <span class="arrow" aria-hidden="true">→</span>
           </a>
         </li>`).join("");
 

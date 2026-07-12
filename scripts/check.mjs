@@ -23,7 +23,9 @@ if (artifacts[0]?.slug !== "sd-plan" || !artifacts[0]?.pinned) throw new Error("
 for (const artifact of artifacts) {
   if (!index.includes(`href="/${artifact.slug}/"`)) throw new Error(`Index does not link to /${artifact.slug}/`);
   const detail = await readFile(resolve(root, `dist/${artifact.slug}/index.html`), "utf8");
-  if (!detail.includes('href="/"')) throw new Error(`${artifact.slug} has no route back to the artifact list`);
+  if (/<a\b[^>]*\bhref\s*=\s*["']\/["'][^>]*>/i.test(detail)) {
+    throw new Error(`${artifact.slug} contains Stuff-level navigation; artifact pages must stand alone`);
+  }
   // Only an actual resource reference (a live URL, a src/href, or a CSS url())
   // to a local host is a problem — not localhost/127.0.0.1/file:// appearing in
   // documentation prose or code comments describing software behavior.
@@ -44,4 +46,4 @@ if (!accountsSource) throw new Error("SD Plan account data was not found");
 const accounts = Function(`return ${accountsSource[1]}`)();
 if (accounts.length !== 16) throw new Error(`Expected 16 SD Plan accounts, found ${accounts.length}`);
 
-console.log(`Checks passed: ${artifacts.length} artifact${artifacts.length === 1 ? "" : "s"}; index ↔ detail routes; 16 SD Plan accounts`);
+console.log(`Checks passed: ${artifacts.length} artifact${artifacts.length === 1 ? "" : "s"}; index → standalone detail routes; 16 SD Plan accounts`);

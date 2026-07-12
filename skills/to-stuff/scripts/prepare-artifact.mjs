@@ -110,7 +110,8 @@ function inspectHtml(html) {
       errors.push(`Local resource dependency is not publishable as one HTML file: ${reference}`);
     }
   }
-  for (const match of html.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) {
+  const htmlWithoutScripts = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  for (const match of htmlWithoutScripts.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) {
     const reference = match[1].trim();
     if (!/^(?:https?:|data:|#)/i.test(reference)) {
       errors.push(`Local CSS resource dependency is not publishable as one HTML file: ${reference}`);
@@ -118,10 +119,15 @@ function inspectHtml(html) {
   }
 
   if (/\b(?:localhost|127\.0\.0\.1|file:\/\/)/i.test(html)) errors.push("Contains a local-only URL or hostname");
+  if (/<a\b[^>]*\bhref\s*=\s*["']\/["'][^>]*>/i.test(html)) {
+    errors.push("Artifact pages are standalone destinations and must not link back to the Stuff index");
+  }
   if (/\b(?:internal review|confidential|do not distribute)\b|内部审阅|机密|请勿外传/i.test(html)) {
     warnings.push("Contains internal or confidential wording; review it before publishing");
   }
-  if (/\blorem ipsum\b|\bTODO\b|\bPLACEHOLDER\b/i.test(html)) warnings.push("Contains placeholder or unfinished-copy markers");
+  if (/\blorem ipsum\b/i.test(html) || /\b(?:TODO|PLACEHOLDER)\b/.test(html)) {
+    warnings.push("Contains placeholder or unfinished-copy markers");
+  }
   return { errors: [...new Set(errors)], warnings: [...new Set(warnings)] };
 }
 
@@ -142,11 +148,6 @@ function makePublic(html, { title, slug }) {
   if (!/<title>[^<]*<\/title>/i.test(html)) additions.push(`<title>${title.replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</title>`);
   if (additions.length) html = html.replace(/<\/head>/i, `  ${additions.join("\n  ")}\n</head>`);
 
-  if (!/href\s*=\s*["']\/["']/i.test(html)) {
-    const style = `<style data-to-stuff-home>.to-stuff-home{position:fixed;left:14px;top:14px;z-index:2147483647;padding:9px 12px;border:1px solid rgba(0,0,0,.22);border-radius:999px;background:rgba(255,255,255,.94);color:#171c1a;font:700 12px/1.2 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.10);backdrop-filter:blur(10px)}.to-stuff-home:focus-visible{outline:3px solid rgba(198,77,45,.45);outline-offset:3px}@media print{.to-stuff-home{display:none}}</style>`;
-    html = html.replace(/<\/head>/i, `  ${style}\n</head>`);
-    html = html.replace(/<body([^>]*)>/i, `<body$1>\n  <a class="to-stuff-home" href="/" aria-label="Back to all stuff">← All stuff</a>`);
-  }
   return html;
 }
 
