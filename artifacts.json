@@ -44,6 +44,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "founding-sales",
+      "title": "创始人销售作战手册 · Founding Sales",
+      "summary": "把早期 B2B 销售从创始人验证到团队复制拆成 105 篇短课、完整来源索引和销售容量工作台。",
+      "category": "创始人销售",
+      "kind": "互动学习手册",
+      "published": "2026-07-13",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
