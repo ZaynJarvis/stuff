@@ -33,6 +33,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "obviously-awesome",
+      "title": "让价值变得显而易见 · Obviously Awesome 定位手册",
+      "summary": "把 April Dunford 的定位方法拆成 53 篇可检索短文、完整来源覆盖图和可填写定位画布。",
+      "category": "产品定位",
+      "kind": "互动学习手册",
+      "published": "2026-07-13",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
