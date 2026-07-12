@@ -55,6 +55,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "zhen-benshi",
+      "title": "真本事 · 从会工作到会赚钱",
+      "summary": "把个人价值、职业选择、沟通、杠杆与第一次收费重构成 91 篇可读、可查、可实操的中文短课。",
+      "category": "职业与个人商业",
+      "kind": "互动学习手册",
+      "published": "2026-07-13",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
