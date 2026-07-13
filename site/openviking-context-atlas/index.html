@@ -35,6 +35,11 @@
       --shadow: 0 18px 70px rgba(12, 23, 32, .09);
     }
 
+    html[lang="zh-CN"] {
+      --serif: "Songti SC", STSong, "Noto Serif CJK SC", Georgia, serif;
+      --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+    }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: var(--paper); color: var(--ink); }
     body {
@@ -140,6 +145,18 @@
       border-left: 1px solid rgba(255,255,255,.1);
     }
     .top-progress { color: #d5dfe1; font: 700 12px/1 var(--mono); }
+    .language-button {
+      min-width: 48px;
+      padding: 8px 10px;
+      border: 1px solid rgba(94,212,198,.42);
+      border-radius: 7px;
+      background: rgba(94,212,198,.08);
+      color: var(--cyan-bright);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .03em;
+    }
+    .language-button:hover { border-color: var(--cyan-bright); background: rgba(94,212,198,.15); }
     .menu-button {
       display: none;
       padding: 8px 11px;
@@ -601,6 +618,9 @@
     @media (max-width: 620px) {
       .brand-mark { width: 34px; height: 34px; flex-basis: 34px; }
       .top-progress { display: none; }
+      .top-actions { gap: 7px; padding-right: 10px; }
+      .language-button { min-width: 42px; padding-inline: 8px; }
+      .menu-button { padding-inline: 9px; }
       .hero { padding: 56px 23px 50px; }
       .hero h1 { font-size: clamp(49px, 16vw, 70px); }
       .hero-deck { font-size: 18px; }
@@ -660,6 +680,7 @@
     <div class="top-chapter"><b>00</b><span>Context has a place</span></div>
     <div class="top-actions">
       <span class="top-progress">0%</span>
+      <button class="language-button" type="button" data-action="toggle-language" data-no-i18n aria-label="Switch to Chinese">中文</button>
       <button class="menu-button" type="button" data-action="open-menu" aria-haspopup="dialog" aria-expanded="false">Chapters</button>
     </div>
   </header>
@@ -1441,6 +1462,753 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
+/* ZH_TEXT_START */
+const zhText = {
+  "Skip to the field guide": "跳到正文",
+  "OpenViking field guide home": "OpenViking 导读首页",
+  "Context field guide": "上下文导读",
+  "Switch to Chinese": "切换为中文",
+  "Context has a place": "上下文有了位置",
+  "Chapters": "目录",
+  "Field guide chapters": "导读目录",
+  "Atlas route": "阅读路线",
+  "One context asset, traced from source to retrieval to durable memory.": "跟着一份上下文资产，看它怎样从源材料进入检索，再沉淀成持久记忆。",
+  "The context stack": "上下文栈",
+  "Give context an address": "给上下文一个地址",
+  "Progressive depth": "逐层深入",
+  "Write: compile the source": "写入：编译源材料",
+  "Read: retrieval is navigation": "读取：检索就是导航",
+  "Remember: commit the session": "记忆：提交会话",
+  "The runtime map": "运行时地图",
+  "Production boundaries": "生产环境的边界",
+  "The field around it": "它所在的技术谱系",
+  "Build with judgment": "带着判断去构建",
+  "Sources & audit": "来源与审读",
+  "The model context is a temporary view; the context system is the durable substrate.": "模型上下文只是临时视图；上下文系统才是持久底座。",
+  "More stored text can create more noise, latency, and stale state—not more intelligence.": "存下更多文本，可能只会带来噪声、延迟和过时状态，并不会让系统更聪明。",
+  "Ask where each useful fact lives, who owns it, what resolution is loaded, and how its next update is audited.": "逐一追问：有用事实存在哪里，归谁所有，以哪种精度载入，下一次更新又如何审计。",
+  "A source-backed field guide": "一份以源码为依据的实战指南",
+  "Context has": "上下文有",
+  "a place.": "自己的位置。",
+  "A larger context window is not a memory system. OpenViking’s stronger idea is to make what an agent knows": "更大的上下文窗口，不等于记忆系统。OpenViking 更有价值的想法，是让智能体知道的内容",
+  "addressable, layered, retrievable, and able to evolve": "有地址、有层次、可检索、能演化",
+  "—without hiding the path from source to prompt.": "，同时保留从源材料到提示词的完整路径。",
+  "Reviewed at 1a01a30": "审读版本 1a01a30",
+  "v0.4.9 + 4 commits": "v0.4.9 后 4 次提交",
+  "13 Jul 2026": "2026 年 7 月 13 日",
+  "~26 min": "约 26 分钟",
+  "Begin the trace ↓": "开始追踪 ↓",
+  "Jump to implementation": "直接看实现",
+  "The end-to-end context loop": "端到端上下文循环",
+  "Ingest": "写入",
+  "Accept files, URLs, code, media": "接收文件、URL、代码和媒体",
+  "Organize": "组织",
+  "Build a durable URI tree": "建立持久的 URI 树",
+  "Compile": "编译",
+  "Derive L0/L1 and vectors": "生成 L0、L1 和向量",
+  "Retrieve": "检索",
+  "Find promising branches": "找到值得深入的分支",
+  "Load": "载入",
+  "Read only useful depth": "只读到有用的深度",
+  "Use": "使用",
+  "Assemble model context": "装配模型上下文",
+  "Commit": "提交",
+  "Archive the interaction": "归档本次交互",
+  "Remember": "记忆",
+  "Patch durable state": "更新持久状态",
+  "Context engineering selects the smallest high-signal working set for the next inference.": "上下文工程要为下一次推理选出尽可能小、信号尽可能强的工作集。",
+  "Treating RAG, memory, and context assembly as synonyms hides different write and failure paths.": "把 RAG、记忆和上下文装配混为一谈，会掩盖各自不同的写入路径和故障模式。",
+  "For every token entering the model, name its source, selection policy, lifetime, and update owner.": "每个进入模型的 token，都应说清来源、筛选策略、生命周期和更新责任人。",
+  "CHAPTER 01 · ORIENTATION": "第 01 章 · 建立坐标",
+  "A long context window is not a memory system.": "上下文窗口再长，也不是记忆系统。",
+  "The window is where the model thinks now. A context system decides what can be known, where it lives, what should enter that window, and what survives afterward.": "窗口承载模型此刻的思考。上下文系统则决定哪些内容可被知道、存在哪里、何时进入窗口，以及调用结束后留下什么。",
+  "The point": "关键判断",
+  "Context engineering is the parent discipline. Retrieval is one read path. Memory adds a write path and a lifecycle.": "上下文工程管的是整个问题。检索只是其中一条读取路径，记忆还带来写入路径和生命周期。",
+  "An agent loop produces a growing universe of possible context: instructions, tools, repository files, customer facts, message history, intermediate results, and lessons from prior runs. Putting all of it into the next call is not neutral. Attention has a budget, stale details compete with current evidence, and a relevant fact can be present yet effectively invisible.": "智能体每跑一轮，候选上下文都会继续增长：指令、工具、代码仓库、客户事实、消息历史、中间结果，还有以往任务留下的经验。把它们全塞进下一次调用并非没有代价。注意力有预算，旧信息会和眼前证据争夺位置；某条事实即便已经放进窗口，也可能实际上没有被模型注意到。",
+  "Anthropic’s useful formulation is to optimize the utility of the tokens used for each inference. That reframes the problem from “How large is the window?” to “What is the smallest, highest-signal working set that makes the desired behavior likely?”": "Anthropic 给出了一个实用的表述：优化每次推理所用 token 的效用。问题因此不再是“窗口有多大”，而是“哪一组上下文最小、信号最强，又足以让期望行为更可能发生？”",
+  "Context engineering ↗": "上下文工程 ↗",
+  "Inference surface": "推理界面",
+  "Prompt & context window": "提示词与上下文窗口",
+  "The temporary material visible to the model for one call: instructions, messages, tool descriptions, and retrieved evidence.": "一次调用中模型能看到的临时材料，包括指令、消息、工具说明和检索到的证据。",
+  "Read mechanism": "读取机制",
+  "Retrieval-augmented generation": "检索增强生成",
+  "A retriever selects non-parametric evidence for generation. It answers “what evidence should I fetch?”—not the whole lifecycle.": "检索器为生成过程挑选非参数化证据。它回答的是“该取哪些证据”，并不负责整个生命周期。",
+  "Persistent state": "持久状态",
+  "Agent memory": "智能体记忆",
+  "Interaction-derived state that can survive, be recalled, revised, merged, or forgotten. Persistence alone does not make its contents true.": "由交互产生、能够保留的状态。它可以被召回、修订、合并或遗忘。保存下来，并不代表其中的内容就一定正确。",
+  "Control plane": "控制平面",
+  "Context database": "上下文数据库",
+  "An address space and lifecycle for heterogeneous context assets, plus deterministic and semantic ways to locate and inspect them.": "为不同类型的上下文资产提供地址空间和生命周期，并支持按确定路径或语义来定位、查看它们。",
+  "The systems question is larger than top-k": "系统问题远不止 top-k",
+  "The original RAG architecture joined a generator to explicit non-parametric memory through retrieval. That remains foundational. OpenViking does not eliminate it; it asks what must exist around it: stable addresses, typed assets, hierarchy, progressive representations, session state, write policy, ownership, and an audit trail.": "最初的 RAG 架构通过检索，把生成器接到显式的非参数化记忆上。这层基础依然重要。OpenViking 没有取代它，而是继续追问：周围还需要哪些机制？稳定地址、资产类型、层级结构、渐进式表示、会话状态、写入策略、所有权和审计轨迹，都在这个范围内。",
+  "RAG, NeurIPS 2020 ↗": "RAG，NeurIPS 2020 ↗",
+  "A clean separation helps:": "把职责拆开看会更清楚：",
+  "retrieval": "检索",
+  "proposes candidates,": "提出候选项。",
+  "context assembly": "上下文装配",
+  "decides what representation to load under a budget, and": "在预算内决定载入哪种表示。",
+  "memory management": "记忆管理",
+  "decides what interaction-derived state to preserve or change. One product may perform all three, but they should still be evaluated independently.": "决定哪些交互状态该保留、该修改。一个产品可以同时承担三项职责，但评估时仍应分别观察。",
+  "A precise advocate claim:": "一句更准确的推荐理由：",
+  "OpenViking is interesting because it connects the read, manage, and write loops behind an inspectable address space—not because vectors or summaries are new by themselves.": "OpenViking 值得关注，是因为它用可检查的地址空间串起读取、管理和写入循环。向量与摘要本身并不新鲜。",
+  "Chapter diagnostic": "本章诊断",
+  "Invariant": "不变量",
+  "The context window is a temporary projection, not the durable knowledge substrate.": "上下文窗口是临时投影，不是持久知识底座。",
+  "Failure pattern": "常见故障",
+  "“Add memory” becomes “append more text,” and later calls receive a noisy historical dump.": "所谓“增加记忆”变成了“继续追加文本”，后续调用只能接到一份嘈杂的历史记录。",
+  "Diagnostic": "排查方法",
+  "Trace every token to a source, selection rule, lifetime, and update owner.": "追踪每个 token 的来源、筛选规则、生命周期和更新责任人。",
+  "A URI names a durable context asset independently of whether it is currently in the model window.": "URI 标识一份持久的上下文资产，与它此刻是否进入模型窗口无关。",
+  "A directory tree can be mistaken for an ontology or for access control.": "目录树很容易被误当成完整本体，甚至误当成访问控制。",
+  "Check asset type, canonical owner scope, representation level, and authorization separately.": "分别检查资产类型、规范所有者作用域、表示层级和授权。",
+  "CHAPTER 02 · DATA MODEL": "第 02 章 · 数据模型",
+  "Give context an address.": "给上下文一个地址。",
+  "Anonymous chunks can be similar. Addressed context can also be browsed, scoped, cited, updated, moved, inspected, and deliberately loaded.": "匿名文本块只能谈相似度。有了地址，上下文还可以浏览、划分作用域、引用、更新、移动、检查，并按需载入。",
+  "is not decoration. It gives context a canonical, navigable location.": "不只是装饰。它为上下文提供了规范且可导航的位置。",
+  "A simplified public namespace · addresses shown, physical storage hidden": "简化后的公开命名空间 · 只展示地址，隐藏物理存储",
+  "Simplified Viking URI tree": "简化的 Viking URI 树",
+  "Resource": "资源（Resource）",
+  "Memory": "记忆（Memory）",
+  "Session": "会话",
+  "Skill": "技能（Skill）",
+  "Peer scope": "Peer 作用域",
+  "Shared skill": "共享技能",
+  "What you provide": "你提供的内容",
+  "Objective or project knowledge: documents, code, media, rules, and reference material. Usually added intentionally and changed externally.": "客观知识或项目知识，例如文档、代码、媒体、规则与参考材料。通常由人主动加入，也从外部发生变化。",
+  "What interaction teaches": "交互留下的认识",
+  "Durable user- or execution-relevant state derived from sessions: events, preferences, entities, experiences, tools, and more.": "从会话中提炼、与用户或执行过程有关的持久状态，包括事件、偏好、实体、经验、工具等。",
+  "How the agent acts": "智能体如何行动",
+  "Declarable capability or workflow context. Definitions are relatively stable; usage experience can become memory.": "可声明的能力或工作流上下文。定义相对稳定，使用过程中积累的经验则可以进入记忆。",
+  "Not public content types": "并非公开内容类型",
+  "Session & internals": "会话与内部机制",
+  "Sessions, queues, temporary parsing state, and upload state support the lifecycle but are not a fourth public context family.": "会话、队列、临时解析状态和上传状态共同支撑生命周期，但它们不构成第四类公开上下文。",
+  "openviking/core/context.py · the two independent enums": "openviking/core/context.py · 两组彼此独立的枚举",
+  "Copy": "复制",
+  "Verbatim excerpt · reviewed commit": "源码原文 · 已核对提交版本",
+  "source ↗": "源码 ↗",
+  "Four axes, not one taxonomy": "这是四条轴，不是一套单线分类",
+  "Asset type and representation depth are only two axes. Ownership scope and cognitive role answer different questions. Keeping them independent prevents the common mistake of reading L0/L1/L2 as short-, medium-, and long-term memory.": "资产类型和表示深度只是其中两条轴。所有权作用域与认知角色回答的是另外两类问题。把它们分开，才能避免把 L0/L1/L2 误解成短期、中期和长期记忆。",
+  "Axis": "维度",
+  "Question": "要回答的问题",
+  "Examples": "示例",
+  "Asset semantics": "资产语义",
+  "What kind of thing is this?": "这是什么类型的内容？",
+  "Resource, Memory, Skill": "资源（Resource）、记忆（Memory）、技能（Skill）",
+  "Representation depth": "表示深度",
+  "How much is loaded?": "载入了多少细节？",
+  "L0 abstract, L1 overview, L2 detail": "L0 摘要、L1 概览、L2 详情",
+  "Scope & lifecycle": "作用域与生命周期",
+  "Who owns it, and for how long?": "归谁所有，要保留多久？",
+  "Account-shared resources, current user, peer, shared agent skill, session": "账号共享资源、当前用户、Peer、共享智能体技能、会话",
+  "Cognitive role": "认知角色",
+  "How will the agent use it?": "智能体会怎样使用它？",
+  "Working, episodic, semantic, procedural": "工作记忆、情景记忆、语义记忆、程序性记忆",
+  "A filesystem is a navigation model, not an ontology": "文件系统是导航模型，不是本体",
+  "Paths preserve neighborhood, naming, and deterministic location. They are especially useful for just-in-time exploration: an agent can inspect a directory, read its overview, then descend. Moving an asset changes its URI and requires relation and index maintenance; the address is canonical location, not immutable object identity. A tree also cannot naturally express every many-to-many relationship, so links, metadata, or a graph remain useful for cross-cutting semantics.": "路径保留了邻接关系、命名和确定位置，很适合即时探索：智能体可以查看目录，读一遍概览，再继续深入。移动资产会改变 URI，也要同步维护关系和索引；地址代表规范位置，不是永不变化的对象身份。树结构也无法自然表达所有多对多关系，因此跨领域语义仍需要链接、元数据或图来补充。",
+  "Likewise, a namespace is not authorization by itself. Current code canonicalizes a user root and constrains visible roots, while storage queries also inject tenant filters. Ownership policy—not the string prefix alone—protects isolation.": "同样，命名空间本身并不等于授权。现有代码会规范化用户根目录、限制可见根目录，存储查询还会注入租户过滤条件。真正维持隔离的是所有权策略，不能只靠字符串前缀。",
+  "Viking URI ↗": "Viking URI ↗",
+  "The URI identifies an asset even when only a summary—or nothing—is in the current prompt.": "无论当前提示词里只有摘要，还是完全没有这份内容，URI 都能标识对应资产。",
+  "Teams assume a directory is a complete ontology or that a URI prefix is sufficient access control.": "团队把目录当作完整本体，或以为 URI 前缀足以完成访问控制。",
+  "Inspect type, representation, canonical owner, and authorization as separate fields.": "把类型、表示、规范所有者和授权拆成独立字段检查。",
+  "L0, L1, and L2 are different resolutions of an asset, not different memory lifetimes.": "L0、L1、L2 是同一资产的不同表示精度，不代表不同的记忆时长。",
+  "A generated summary can omit the exact fact needed for a precise answer.": "生成式摘要可能漏掉精确回答所需的关键事实。",
+  "Use summaries to decide where to look; read L2 before making precision-sensitive claims.": "用摘要判断该去哪里找；涉及精确事实时，先读 L2 再下结论。",
+  "CHAPTER 03 · REPRESENTATION": "第 03 章 · 表示层级",
+  "Do not pay full detail before relevance is known.": "还没判断相关性，就不必付出读取全部细节的成本。",
+  "OpenViking materializes multiple semantic resolutions so an agent can scan cheaply, navigate with context, and open the source only when precision warrants it.": "OpenViking 会生成多种语义精度。智能体可以低成本扫描，带着上下文导航，只有在精度要求足够高时才打开源材料。",
+  "L0 says “is this neighborhood promising?” L1 says “where inside should I go?” L2 answers from the source.": "L0 回答“这片区域值得继续找吗”，L1 回答“应该往里面哪里走”，L2 则回到源材料作答。",
+  "Simplified teaching model": "简化教学模型",
+  "Progressive disclosure lab": "渐进式披露实验",
+  "Counts illustrate one hypothetical asset. They are not measured OpenViking costs or contractual limits.": "这些数量来自一份假设资产，只用于说明思路，并非 OpenViking 的实测开销或承诺上限。",
+  "Choose context depth": "选择上下文深度",
+  "Scan · L0 only": "扫一眼 · 只看 L0",
+  "Navigate · through L1": "找路径 · 读到 L1",
+  "Verify · through L2": "做核验 · 读到 L2",
+  "“OpenViking retrieval uses typed targets and optional recursive directory search.”": "“OpenViking 检索使用带类型的目标，也可选择递归搜索目录。”",
+  "~46 tokens": "约 46 tokens",
+  "Module map, main classes, entry points, and directions to the exact implementation files.": "模块图、主要类、入口，以及通往具体实现文件的路径。",
+  "+264 tokens": "+264 个 token",
+  "Source files, tests, comments, configuration, and every line required to verify behavior.": "源文件、测试、注释、配置，以及核验行为所需的全部代码行。",
+  "+1,930 tokens": "+1,930 个 token",
+  "Enough to rank a neighborhood, not enough to explain the algorithm.": "足够判断哪片区域值得看，还不足以解释算法。",
+  "The official model describes L0 as a short abstract used for quick filtering, L1 as a navigational overview, and L2 as original detail. Directory semantics are generated bottom-up: child information helps describe its parent. This makes navigation metadata useful context in its own right.": "官方模型把 L0 定义为用于快速筛选的短摘要，L1 是导航概览，L2 则是原始详情。目录语义自下而上生成：子项信息会参与描述父项。这样一来，导航元数据本身也成了有用的上下文。",
+  "Context layers ↗": "上下文层级 ↗",
+  "The design resonates with hierarchical retrieval research such as RAPTOR, which also retrieves across multiple abstraction levels. The mechanism is different: RAPTOR builds a semantic tree through clustering and recursive summarization; OpenViking generally works over a resource or directory tree and writes explicit semantic sidecars. Similar intuition does not make them the same system.": "这套设计与 RAPTOR 等层级检索研究有相通之处，后者同样会跨抽象层级检索。不过机制并不相同：RAPTOR 通过聚类和递归摘要建立语义树；OpenViking 通常基于资源树或目录树，并写入显式的语义伴随文件。思路相似，不代表它们是同一种系统。",
+  "RAPTOR, ICLR 2024 ↗": "RAPTOR，ICLR 2024 ↗",
+  "Version note:": "版本说明：",
+  "documentation alternates between roughly 1k and roughly 2k tokens when describing L1. Treat these as design targets, not a durable API contract. The artifact’s lab uses its own clearly labeled example counts.": "文档描述 L1 时，曾分别采用约 1k 和约 2k token。应把这些数字视为设计目标，而不是长期有效的 API 契约。本页实验中的数量是另行标注的教学示例。",
+  "The summary is a map, not evidence of every street": "摘要是地图，不能替每条街作证",
+  "Every abstraction can hide a boundary condition, qualifier, or exact value. The safe pattern is progressive: use L0 to shortlist, L1 to navigate, and L2 to support the final precision-sensitive claim. The wrong pattern is to cite a generated overview as if it were the source.": "任何抽象都可能藏起边界条件、限定语或精确数值。稳妥的用法是逐层深入：用 L0 缩小范围，用 L1 导航，最后由 L2 支撑那些对精度敏感的结论。直接把生成的概览当成原始来源来引用，会留下风险。",
+  "Layers express resolution. The same asset can be encountered at L0, L1, or L2.": "层级表达的是表示精度。同一份资产可以通过 L0、L1 或 L2 被访问。",
+  "A concise summary looks authoritative and silently drops the one exception that matters.": "简短摘要看起来很可靠，却可能悄悄漏掉最关键的那个例外。",
+  "Use summaries for routing; open the source for exact claims and irreversible actions.": "摘要用于导航；涉及精确结论或不可逆操作时，要打开源材料。",
+  "Durable content is written before fallible semantic materialization and indexing finish.": "先写入持久化内容，再等待可能失败的语义视图生成与索引流程。",
+  "An accepted resource can exist in storage while its summaries or vectors are not search-ready.": "资源即使已经接收并落盘，它的摘要或向量也可能还不能用于检索。",
+  "Track source persistence and semantic readiness as different states; use wait or task status when freshness matters.": "把源内容持久化与语义就绪当作两个状态跟踪。对新鲜度有要求时，用 wait 或任务状态确认。",
+  "Resource ingestion flow": "资源接入流程",
+  "CHAPTER 04 · INGESTION": "第 04 章 · 资源接入",
+  "Write once. Compile several views.": "源内容只写一次，视图可以编译多份。",
+  "The ingestion path behaves like a compiler: preserve the source tree first, then derive summaries and search records asynchronously.": "接入路径很像编译器：先保住源目录树，再异步生成摘要和检索记录。",
+  "OpenViking separates what must not be lost from what can be rebuilt.": "OpenViking 把不能丢的源内容，与随时可以重建的派生数据分开。",
+  "Request": "请求",
+  "Add resource": "添加资源",
+  "URL, file, directory, code, media": "URL、文件、目录、代码、媒体",
+  "Structure": "结构化",
+  "Parser + TreeBuilder": "Parser + TreeBuilder",
+  "Media parsers may invoke a VLM": "媒体解析器可能调用 VLM",
+  "Source truth": "事实源",
+  "Persist to AGFS": "持久化到 AGFS",
+  "URI tree becomes durable": "URI 树完成持久化",
+  "Async": "异步",
+  "SemanticQueue": "SemanticQueue",
+  "Bottom-up L0/L1 generation": "自底向上生成 L0/L1",
+  "EmbeddingQueue": "EmbeddingQueue",
+  "Materialize index records": "生成索引记录",
+  "validates the target and starts processing. Parsers convert the source into a temporary structured tree. Under a destination lock, the resource processor persists files and rewrites references, then hands semantic work to the queue. The semantic processor generates directory views bottom-up; a separate embedding queue writes L0, L1, and L2 search records.": "会校验目标位置并启动处理。解析器先把源内容转换成临时的结构化目录树。资源处理器取得目标位置的锁后，持久化文件并重写引用，再把语义处理交给队列。语义处理器自底向上生成目录视图，另一条嵌入队列则写入 L0、L1 和 L2 检索记录。",
+  "This separation is an operational choice, not only a diagram. Model calls and vector services can be slow or unavailable. Keeping source content durable before derived views complete lets the system recover and reindex. It also creates eventual consistency:": "这种拆分不只是画在架构图上，也直接影响系统怎样运行。模型调用和向量服务可能很慢，也可能暂时不可用。先把源内容持久化，即使派生视图尚未完成，系统仍能恢复并重建索引。代价是引入最终一致性：",
+  "accepted is not the same as searchable": "已接收，不等于可检索",
+  "Minimal embedded quickstart · current public API": "最小内嵌示例 · 当前公开 API",
+  "Adapted from the repository quickstart": "根据仓库的快速上手文档改写",
+  "The storage invariant": "存储不变量",
+  "OpenViking’s transaction guide says the filesystem is the source of truth and the vector database is a derived index. A missing index entry can be rebuilt; lost source content cannot. That is why the architecture prefers a temporarily missed result over an inconsistent one.": "OpenViking 的事务指南把文件系统定义为事实源，把向量数据库定义为派生索引。索引条目丢了可以重建，源内容丢了却无法挽回。因此，这套架构宁可暂时漏掉一条结果，也不愿返回不一致的数据。",
+  "Transactions ↗": "事务机制 ↗",
+  "The index is richer than “one vector per chunk.” Current records carry URI, context type, level, dense and optional sparse data, ownership, timestamps, usage metadata, and optional full text. The code can feed different text to embeddings and lexical retrieval, preserving raw text for BM25 while using summary-oriented input for semantic recall.": "索引远不止“每个分块一个向量”。当前记录包含 URI、上下文类型、层级、稠密数据与可选的稀疏数据，还带有归属方、时间戳、使用元数据和可选全文。代码可以分别为嵌入检索和词法检索提供不同文本：BM25 保留原文，语义召回则使用面向摘要的输入。",
+  "Failure boundary:": "故障边界：",
+  "enqueue or setup failures may appear as resource warnings; failures after enqueue appear in request or queue status. In either case, a durable tree may already exist while a derived semantic stage has failed.": "资源入队或初始化失败，可能表现为资源警告；入队后的故障则会写进请求或队列状态。无论哪一种，持久化目录树都可能已经存在，而某个派生语义阶段仍然失败。",
+  "is a completion barrier only when the caller also inspects every queue group’s": "只有在调用方还逐一检查每个队列组的",
+  "AGFS content is source truth; summaries and vector records are materialized views.": "AGFS 内容是事实源；摘要和向量记录只是物化视图。",
+  "The API returns success, then an immediate search misses a resource still moving through queues.": "API 已返回成功，紧接着发起检索，却找不到仍在队列中处理的资源。",
+  "Observe persistence and semantic readiness separately; wait or poll when freshness is required.": "分别观察持久化状态和语义就绪状态。需要最新结果时，等待完成或轮询任务。",
+  "The recursive directory algorithm is the THINKING path; without a configured reranker the default is QUICK flat tenant search.": "递归目录算法只用于 THINKING 路径；如果没有配置重排器，默认走 QUICK 的租户级扁平检索。",
+  "A marketing diagram can overstate the path actually taken in a given configuration.": "营销图往往会把某项配置下真正执行的路径画得更复杂。",
+  "Record mode, targets, planner output, reranker use, traversed branches, scores, and final loaded URIs.": "记录检索模式、目标、规划器输出、重排器使用情况、遍历分支、分数，以及最终加载的 URI。",
+  "Implementation pipelines": "实现管线",
+  "Pipeline stages": "处理阶段",
+  "CHAPTER 05 · RETRIEVAL": "第 05 章 · 检索",
+  "Retrieval is navigation—when the runtime is equipped to navigate.": "只有运行时具备导航条件，检索才真的是导航。",
+  "The source contains both a fast vector path and a recursive directory path. Which one runs depends on configuration, query type, and whether reranking is available.": "源码里同时存在快速向量路径和递归目录路径。实际运行哪一条，要看配置、查询类型，以及重排器是否可用。",
+  "is one direct question.": "对应一次直接查询。",
+  "can plan from session context. The retriever then chooses QUICK or THINKING.": "则可以根据会话上下文制定检索计划。之后，检索器再选择 QUICK 或 THINKING。",
+  "Retrieve · context-aware search": "检索 · 带上下文的搜索",
+  "Faithful implementation walkthrough": "依据源码还原",
+  "Entry": "入口",
+  "Planning input": "规划输入",
+  "Best use": "适用场景",
+  "Important correction": "重要校正",
+  "One query plus explicit/default target roots": "一条查询，加显式或默认目标根目录",
+  "Direct, stateless lookup": "直接、无状态查询",
+  "Still uses": "仍会调用",
+  "; the runtime mode decides flat versus recursive behavior.": "；最终走扁平检索还是递归检索，由运行模式决定。",
+  "Can include archive overview, current messages, and target abstract": "可以包含归档概览、当前消息和目标摘要",
+  "Conversational or ambiguous lookup": "对话式查询，或意图含糊的查询",
+  "Session material is optional. Without it, search falls back to a direct typed query.": "会话材料不是必需项。没有它，search 会退回到直接的类型化查询。",
+  "What THINKING actually does": "THINKING 实际做了什么",
+  "Embed the query once and resolve policy-approved target roots.": "只嵌入一次查询，并解析策略允许访问的目标根目录。",
+  "Globally search L0/L1 records for promising starting points.": "全局检索 L0/L1 记录，找出值得继续深入的起点。",
+  "Rerank directory abstracts when a reranker is configured.": "配置了重排器时，对目录摘要重新排序。",
+  "Use a priority queue to expand immediate children in bounded parallel batches.": "通过优先队列分批并行展开直接子节点，并限制每批规模。",
+  "Blend child relevance with the parent score, deduplicate by URI, and recurse only through directory-level results.": "把子节点相关度与父节点分数融合，按 URI 去重，而且只沿目录级结果继续递归。",
+  "Stop after repeated top-k convergence or search stagnation, then return typed matches.": "top-k 多次收敛或搜索停滞后停止，再返回类型化命中结果。",
+  "This is not the only path. QUICK performs one tenant-scoped vector search. The retriever defaults to QUICK when no reranker is available, THINKING when one is, and QUICK/L2 for image queries.": "这并非唯一的检索路径。QUICK 只做一次租户范围内的向量搜索。没有重排器时，检索器默认使用 QUICK；有重排器时默认使用 THINKING；图片查询则走 QUICK/L2。",
+  "openviking/retrieve/hierarchical_retriever.py · mode selection": "openviking/retrieve/hierarchical_retriever.py · 模式选择",
+  "Retrieval is still not assembled context": "检索结果还不是最终上下文",
+  "A matched context can carry URI, type, level, abstract, score, and other metadata. The integration still decides whether to use the abstract, open an overview, read full content, cite it, and how much budget to allocate. A high score is an invitation to inspect—not permission to overfill the prompt.": "一条命中的上下文可以带有 URI、类型、层级、摘要、分数和其他元数据。是否使用摘要、是否打开概览、是否读取全文、要不要引用，以及分配多少预算，仍由集成层决定。高分只表示值得检查，不代表可以把内容一股脑塞进提示词。",
+  "Source correction:": "源码校正：",
+  "the current retriever converts matched contexts with an empty": "当前检索器在转换命中上下文时，会把",
+  "list. Documentation that suggests relation expansion in the main retrieval result is ahead of this reviewed implementation path.": "设为空列表。文档若声称主检索结果已经扩展关系，则领先于本次核查的实现。",
+  "Recursive traversal is the configured THINKING path, not an unconditional property of every query.": "递归遍历只属于配置后的 THINKING 路径，并不是每次查询都会具备的特性。",
+  "A team believes hierarchy is active while its deployment is running flat QUICK retrieval.": "团队以为层级检索已经生效，部署实际跑的却是扁平 QUICK 检索。",
+  "Capture mode, planner, targets, reranker, traversed branches, scores, and loaded URIs in one trace.": "在同一条追踪记录里收集模式、规划器、目标、重排器、遍历分支、分数和已加载 URI。",
+  "Commit archives durable evidence first, then compiles memory in a background phase.": "提交时先归档持久证据，再在后台阶段编译记忆。",
+  "A completed archive can coexist with partial or failed semantic and memory outputs.": "归档已经完成时，语义输出和记忆输出仍可能只完成了一部分，甚至已经失败。",
+  "Poll the commit task, inspect the archive and memory_diff, and never equate task acceptance with searchable memory.": "轮询提交任务，检查归档与 memory_diff。任务已接收，绝不等于记忆已经可以检索。",
+  "Session commit flow": "会话提交流程",
+  "CHAPTER 06 · SESSION MEMORY": "第 06 章 · 会话记忆",
+  "A transcript becomes memory only after policy.": "会话文本经过策略处理，才会变成记忆。",
+  "OpenViking’s commit path is not “save the chat.” It snapshots evidence, derives summaries, consults existing memory, and applies structured changes to durable state.": "OpenViking 的提交路径不是简单地“保存聊天”。它会快照留存证据、生成摘要、查阅已有记忆，再把结构化变更写入持久状态。",
+  "Memory is a compiler output. The session archive is its provenance.": "记忆是编译结果，会话归档则是它的来源证据。",
+  "Live": "实时",
+  "Messages & tools": "消息与工具",
+  "Current interaction evidence": "当前交互证据",
+  "Inline · locked": "同步阶段 · 已加锁",
+  "Archive first": "先归档",
+  "Split retained tail, persist history": "保留最近消息，持久化历史记录",
+  "Background": "后台",
+  "Summarize": "生成摘要",
+  "Generate archive semantic views": "生成归档的语义视图",
+  "Extract & resolve": "提取并消解冲突",
+  "Read/search existing memory": "读取或检索已有记忆",
+  "Audit": "审计",
+  "Patch + diff": "更新 + 差异记录",
+  "Write changes, index, mark done": "写入变更、建立索引、标记完成",
+  "Phase 1 holds an exact session-path lock. It snapshots the messages to archive, keeps the configured recent tail live, creates a tracked task, and returns. Phase 2 runs in the background: hydrate large tool results, generate archive summaries, extract long-term and execution-derived memory, apply structured operations, write": "第一阶段会锁住准确的会话路径。它把待归档消息做成快照，按配置保留最近一段实时消息，创建可追踪任务后返回。第二阶段在后台运行：补全大型工具结果、生成归档摘要、提取长期记忆和执行过程产生的记忆、应用结构化操作，并写入",
+  ", and place the completion marker last.": "，最后再写完成标记。",
+  "The durable-first boundary matters. A crash after archival does not erase the evidence. A pending redo record can retry long-term-memory extraction after an abrupt interruption; it is not a full replay of Phase 2. The phase is not atomic: summary, memory, and execution tasks can succeed or fail independently, and successful sibling outputs are not rolled back.": "先持久化再处理，这条边界很重要。归档后即使系统崩溃，证据也不会消失。突然中断后，待处理的 redo 记录可以重试长期记忆提取，但它不会完整重放第二阶段。这个阶段也不是原子事务：摘要、记忆和执行任务可以各自成功或失败，已经成功的同级输出不会回滚。",
+  "openviking/session/session.py · the two-phase contract": "openviking/session/session.py · 两阶段约定",
+  "Faithful condensation of the source docstring": "按源码文档字符串忠实压缩",
+  "Current memory is schema-driven": "当前记忆机制由 schema 驱动",
+  "The v3 compressor loads memory types from YAML, constructs a context provider over the archive and existing memory, and runs a bounded extraction loop that can search and read before proposing additions, patches, links, or deletes. Mergeable updates can be batched; append-only operations can be applied immediately.": "v3 压缩器从 YAML 加载记忆类型，并基于归档和已有记忆构建上下文提供器。它运行一个有次数上限的提取循环：先搜索和读取，再提出新增、修改、关联或删除操作。可合并的更新能够批量处理，只追加的操作则可以立即执行。",
+  "Explanatory role": "解释角色",
+  "Enabled schemas in the reviewed snapshot": "本次核查快照中启用的 schema",
+  "Caveat": "注意",
+  "Working evidence": "工作证据",
+  "Live messages, completed archive views": "实时消息、已完成的归档视图",
+  "The actual model working set is assembled by the integration.": "真正送进模型的工作集由集成层组装。",
+  "Episodic": "情景记忆",
+  "An extracted summary is a lossy representation of the episode.": "提取出的摘要会损失这段经历的部分信息。",
+  "Semantic / personal": "语义 / 个人",
+  "Operational schemas, not claims of biological equivalence.": "这些是工程 schema，不表示它们与生物记忆等价。",
+  "Procedural": "程序性记忆",
+  "Executable procedures require stronger safety than prose guidance.": "可执行流程需要比文字建议更严格的安全约束。",
+  "Identity / constitutional": "身份 / 宪制性",
+  "High-impact state needs especially explicit ownership and review.": "影响重大的状态尤其需要明确归属，并接受审查。",
+  "Code beats a stale category table:": "遇到过时的分类表，以代码为准：",
+  "the reviewed bundle contains eleven enabled schemas. The official session page still shows an older fixed eight-category pipeline, including": "本次核查的代码包启用了 11 个 schema。官方会话页面仍展示较旧的固定八类流程，其中还包括",
+  ", which has no bundled schema in this snapshot. Treat types as a versioned registry, not timeless product copy.": "，但该快照中并没有内置对应 schema。记忆类型应按版本化注册表理解，不能把产品文案当成永恒定义。",
+  "Example audit output · memory_diff.json": "审计输出示例 · memory_diff.json",
+  "Illustrative shape; values are fictional": "结构示意；内容均为虚构",
+  "documented format ↗": "文档格式 ↗",
+  "Use is feedback, not truth": "使用记录是反馈，不是真相",
+  "records which URIs helped the current run. After successful Phase 2 processing, OpenViking links the session to those assets and increments their": "会记录本轮运行用到了哪些 URI。第二阶段成功完成后，OpenViking 会把会话与这些资源关联，并增加它们的",
+  ". THINKING retrieval may blend that hotness signal with semantic relevance when": "。THINKING 检索可以把这项热度信号与语义相关度混合，但前提是启用了",
+  "is enabled; QUICK does not. This closes a useful “retrieve → use → remember → retrieve” loop—but popularity remains a ranking signal, never evidence that the content is correct.": "；QUICK 不会使用它。这样便形成了“检索 → 使用 → 记忆 → 再检索”的循环。不过，热度始终只是排序信号，不能证明内容正确。",
+  "Compression, consolidation, and reflection are different": "压缩、整合与反思不是一回事",
+  "Compression": "压缩",
+  "reduces representation size while trying to preserve important state.": "在尽量保留重要状态的同时，缩小表示规模。",
+  "Consolidation": "整合",
+  "turns many observations into more stable summaries, entity state, or patterns.": "把多条观察整理成更稳定的摘要、实体状态或模式。",
+  "Reflection": "反思",
+  "generates a higher-level lesson or inference from experience.": "从经验中提炼更高层次的教训或推断。",
+  "OpenViking’s commit path performs application-layer consolidation. “Self-evolving” means external state changes and conditions later inference. It does": "OpenViking 的提交路径做的是应用层整合。“自我演化”指外部状态发生变化，并影响后续推理。它",
+  "not": "并不",
+  "mean the base model’s weights changed, the lesson is verified truth, or the core": "意味着基础模型权重已经改变，也不意味着这条经验经过了事实验证；核心",
+  "will auto-commit at a token threshold. In this snapshot, integrations trigger commit explicitly.": "也不会在 token 达到阈值时自动提交。在这个快照里，提交由集成层显式触发。",
+  "Raw evidence is archived before background memory compilation can fail.": "原始证据先归档，后台的记忆编译随后才有可能失败。",
+  "Task acceptance is shown as “memory saved,” even though extraction remains pending or partial.": "提取仍在等待，或只完成了一部分，界面却把任务已接收显示成“记忆已保存”。",
+  "Poll task state; inspect archive, completion marker, and memory diff; test the next recall.": "轮询任务状态，检查归档、完成标记和记忆差异，再测试下一次召回。",
+  "Transports delegate to a shared service composition root, keeping business behavior below REST, CLI, and MCP.": "各种传输入口都委托给同一个服务组合根，让业务行为留在 REST、CLI 和 MCP 之下的共享层。",
+  "Calling the filesystem metaphor the implementation can hide queues, model providers, indexes, locks, and tenant policy.": "如果把文件系统这个比喻直接当成实现，就会忽略队列、模型提供方、索引、锁和租户策略。",
+  "Trace a public call across transport, service, engine, source storage, derived index, and background work.": "追踪一次公开调用，依次穿过传输层、服务层、引擎、源存储、派生索引和后台任务。",
+  "OpenViking runtime architecture": "OpenViking 运行时架构",
+  "CHAPTER 07 · CORE IMPLEMENTATION": "第 07 章 · 核心实现",
+  "The filesystem is the interface. The runtime is a service graph.": "文件系统是接口，运行时是一张服务图。",
+  "At the center,": "系统中心的",
+  "wires business services to storage, queues, models, processors, identity, and operational controls.": "负责把业务服务接到存储、队列、模型、处理器、身份与运行控制上。",
+  "The architecture earns depth by hiding machinery behind a small vocabulary: add, browse, find, search, read, session, commit.": "这套架构用一组简短词汇承载内部复杂度：add、browse、find、search、read、session、commit。",
+  "ENTRY": "入口层",
+  "Embedded Python": "Python 内嵌模式",
+  "HTTP SDK / REST": "HTTP SDK / REST",
+  "Rust CLI": "Rust CLI",
+  "MCP / integrations": "MCP / 集成",
+  "SERVICE": "服务层",
+  "FSService": "FSService",
+  "SearchService": "SearchService",
+  "ResourceService": "ResourceService",
+  "SessionService": "SessionService",
+  "ENGINES": "引擎层",
+  "VikingFS": "VikingFS",
+  "Retrieve + rerank": "检索 + 重排",
+  "Parse + semantic DAG": "解析 + 语义 DAG",
+  "Memory compiler": "记忆编译器",
+  "FABRIC": "基础设施层",
+  "AGFS content": "AGFS 内容",
+  "Vector index": "向量索引",
+  "QueueManager": "QueueManager",
+  "Locks + redo": "锁 + redo",
+  "The composition root first initializes configuration, process and path locks, AGFS bindings, queues, the vector manager, and an embedder. During asynchronous initialization it creates the shared context collection, builds VikingFS with retrieval and rerank configuration, initializes canonical directories, then attaches resource, skill, memory, privacy, watch, and debug components.": "组合根先初始化配置、进程锁与路径锁、AGFS 绑定、队列、向量管理器和嵌入器。进入异步初始化后，它会创建共享上下文集合，按检索与重排配置构建 VikingFS，初始化标准目录，随后接入资源、技能、记忆、隐私、监视和调试组件。",
+  "Business services receive the same underlying VikingFS and processors. That is why embedded and server deployments can expose similar semantics instead of duplicating logic in each transport. The service layer is not merely architectural ceremony: it is the seam between public API behavior and the stateful runtime.": "各项业务服务共用底层的 VikingFS 和处理器。因此，内嵌部署与服务端部署可以提供近似的语义，不必在每种传输入口里重复实现逻辑。服务层不是为了架构形式而存在，它正是公开 API 行为与有状态运行时之间的接缝。",
+  "openviking/service/core.py · public service composition": "openviking/service/core.py · 公开服务组合",
+  "Verbatim excerpt · one link service omitted for width": "源码原文 · 为控制宽度省略一个关联服务",
+  "Layer": "层面",
+  "Owns": "负责",
+  "Should not own": "不应负责",
+  "Transport / client": "传输层 / 客户端",
+  "Serialization, connection, user ergonomics": "序列化、连接、使用体验",
+  "Retrieval ranking or memory policy": "检索排序或记忆策略",
+  "Service": "服务层",
+  "Validation, public operation semantics, orchestration": "校验、公开操作语义、编排",
+  "Physical storage formats": "物理存储格式",
+  "Engine": "引擎层",
+  "URI filesystem, retrieval, parsing, memory compilation": "URI 文件系统、检索、解析、记忆编译",
+  "Caller-specific presentation": "面向特定调用方的呈现方式",
+  "Fabric": "基础设施层",
+  "Durability, derived index, queues, locks, recovery": "持久性、派生索引、队列、锁、恢复",
+  "Product-level context meaning": "产品层的上下文含义",
+  "A useful “context operating system” analogy—with limits": "“上下文操作系统”这个类比有用，但别越界",
+  "The system has symbolic addresses, multiple representations, policy-scoped visibility, background compilation, and paging-like progressive reads. That makes “context operating system” a productive mental model. It is still an application service, not a kernel, a literal disk filesystem, or a replacement for the agent harness that assembles each model call.": "这个系统有符号化地址、多种表示、受策略约束的可见范围、后台编译，以及类似分页的渐进读取。因此，把它理解成“上下文操作系统”确实有帮助。不过，它仍然是应用服务，不是内核，不是字面意义上的磁盘文件系统，也不能取代为每次模型调用组装上下文的 agent harness。",
+  "Public transports converge on a shared service and engine graph.": "所有公开传输入口最终汇入同一张服务与引擎图。",
+  "The filesystem metaphor hides operational dependencies and eventual-consistency boundaries.": "文件系统这个比喻容易遮住运行依赖和最终一致性的边界。",
+  "Trace one call through transport, service, engine, storage, index, and queued work.": "追踪一次调用，让它依次经过传输层、服务层、引擎、存储、索引和队列任务。",
+  "Reliability requires separate guarantees for source durability, derived-view freshness, memory quality, and tenant isolation.": "系统是否可靠，要分别看四件事：源数据能否持久保存、派生视图是否新鲜、记忆质量是否过关、租户是否真正隔离。",
+  "A successful demo can conceal stale indexes, partial commits, poisoned memory, or cross-scope leakage.": "演示跑通，不代表系统可靠。陈旧索引、只完成一半的提交、被污染的记忆，以及跨作用域泄漏，都可能藏在流畅结果后面。",
+  "Test the lifecycle in layers: write, materialize, retrieve, answer, update, delete, isolate, and recover.": "按层测试整条生命周期：写入、物化、检索、作答、更新、删除、隔离与恢复。",
+  "OpenViking combines established ideas into a database-shaped lifecycle; it should not claim neighboring mechanisms it does not implement.": "OpenViking 把已有思想组合成一套数据库式生命周期，但不该把尚未实现的相邻机制也算在自己名下。",
+  "Loose analogies turn every hierarchy into RAPTOR, every link into GraphRAG, and every persistent text into agentic memory.": "类比一旦失去边界，任何层级都会被说成 RAPTOR，任何链接都会被说成 GraphRAG，任何持久文本都会被说成 Agent 记忆。",
+  "Compare systems by persistent unit, organization, read policy, write/update policy, provenance, and primary failure mode.": "比较系统时，应逐项看持久化单元、组织方式、读取策略、写入与更新策略、来源，以及主要故障模式。",
+  "A successful integration specifies capture, scope, loading, commit, conflict, privacy, and evaluation policy—not only an API key.": "真正完成的集成，会明确采集、作用域、加载、提交、冲突、隐私和评估策略，而不只是填好一个 API key。",
+  "Automatic recall and commit can create silent coupling and memory pollution across users, peers, or tasks.": "自动召回和自动提交可能在用户、peer 或任务之间埋下隐性耦合，久而久之污染记忆。",
+  "Write the context policy before enabling automation, then test one complete trace and one failure trace.": "先写清上下文策略，再开启自动化；随后各跑一条完整轨迹和失败轨迹。",
+  "Implementation claims are pinned to a reviewed commit; field claims link to primary sources.": "实现层面的判断固定到已审阅的提交；领域层面的判断则链接一手来源。",
+  "Living documentation and main-branch links can silently drift away from the behavior being described.": "持续更新的文档和 main 分支链接，可能悄悄偏离文中描述的行为。",
+  "Pin code, date the review, label project-reported results, and distinguish source fact from editorial inference.": "固定代码版本，记录审阅日期，标明项目自报结果，并把来源事实与编辑判断分开。",
+  "CHAPTER 08 · OPERATIONS": "第 08 章 · 运行边界",
+  "The database earns its name at the failure boundaries.": "数据库配不配叫数据库，要看它怎样面对故障。",
+  "Production quality is not “the server starts.” It is knowing what survives, what can lag, what can be rebuilt, who can see it, and how a bad memory is found and removed.": "所谓生产可用，不只是“服务能启动”。你得知道哪些数据会留下，哪些结果会延迟，哪些视图能重建，谁有权查看，以及坏记忆如何被定位和删除。",
+  "Source durability, semantic freshness, memory correctness, and authorization are four different promises.": "源数据持久性、语义新鲜度、记忆正确性和授权，是四项彼此独立的承诺。",
+  "Consistency": "一致性",
+  "Path locks + redo": "路径锁 + redo",
+  "Core writes acquire path locks. A pending redo record can retry long-term-memory extraction after interruption; it is not full Phase 2 replay.": "核心写入会先拿路径锁。中断后，待处理的 redo 记录可以重试长期记忆抽取，但它不会完整重放 Phase 2。",
+  "Freshness": "新鲜度",
+  "Queues + task state": "队列 + 任务状态",
+  "Semantic and embedding work is decoupled. A caller needs explicit readiness when immediate recall is part of the contract.": "语义处理与 embedding 相互解耦。如果调用方承诺立即可召回，就必须显式确认数据已经就绪。",
+  "Isolation": "隔离",
+  "Identity + visible roots": "身份 + 可见根目录",
+  "Canonical user and peer scopes combine with access checks and tenant filters. Namespaces assist policy; they do not replace it.": "规范化的 user、peer 作用域还要配合访问检查和租户过滤。命名空间可以辅助策略，却不能替代策略。",
+  "Governance": "治理",
+  "Diffs + deletion + reindex": "差异 + 删除 + 重建索引",
+  "Durable state should be inspectable, correctable, and removable. A derived index must follow source changes or be rebuilt.": "持久状态应该能检查、能纠正、也能删除。源数据发生变化后，派生索引必须随之更新，必要时重新构建。",
+  "Six concrete risks": "六个具体风险",
+  "Eventual consistency:": "最终一致性：",
+  "source content exists before summaries and vectors are ready.": "源内容已经存在时，摘要和向量可能还没准备好。",
+  "Model-dependent materialization:": "依赖模型的物化：",
+  "L0/L1 quality and memory extraction inherit model errors, cost, latency, and drift.": "L0/L1 的质量与记忆抽取会继承模型的错误、成本、延迟和漂移。",
+  "Memory pollution:": "记忆污染：",
+  "a plausible extracted lesson can be false, overgeneralized, scoped to the wrong peer, or stale.": "一条看似合理的经验，可能本身就是错的，也可能被过度概括、归给错误的 peer，或早已过期。",
+  "Partial background success:": "后台任务只完成一部分：",
+  "commit Phase 2 is recoverable but not transactionally all-or-nothing.": "commit 的 Phase 2 可以恢复，但没有事务层面的全有或全无保证。",
+  "Context injection:": "上下文注入：",
+  "stored resources and memories can contain instructions that should never outrank trusted policy.": "存储的资源和记忆可能夹带指令，而这些指令绝不能凌驾于可信策略。",
+  "Version drift:": "版本漂移：",
+  "docs, schemas, tools, and defaults can diverge; production behavior must be pinned and observed.": "文档、schema、工具和默认值都可能彼此偏离；生产行为必须固定版本并持续观测。",
+  "Security boundary:": "安全边界：",
+  "a context database can make untrusted text easier to retrieve. It cannot decide that retrieved instructions are safe to follow. Preserve provenance, separate data from policy, enforce instruction hierarchy in the harness, and test poisoned-memory scenarios.": "上下文数据库会让不可信文本更容易被检索出来，却无法判断其中的指令是否值得执行。保留来源，把数据与策略分开，在 Agent harness 中严格执行指令层级，并专门测试记忆投毒场景。",
+  "Evaluate the lifecycle, not only the final answer": "评估整条生命周期，别只看最终答案",
+  "Measure": "衡量指标",
+  "Useful ablation": "有用的消融对照",
+  "Capture": "采集",
+  "Extraction precision/recall, false memory, dedup and conflict correctness, readiness time": "抽取精确率与召回率、错误记忆、去重与冲突处理正确性、就绪时间",
+  "Raw archive vs extracted memory": "原始归档 vs 抽取后的记忆",
+  "Retrieval": "检索",
+  "Recall@k, rank quality, branch accuracy, irrelevant-token ratio, provenance coverage": "Recall@k、排序质量、分支准确率、无关 token 占比、来源覆盖率",
+  "QUICK vs THINKING; planner and reranker on/off": "QUICK vs THINKING；分别开关 planner 与 reranker",
+  "Answer": "作答",
+  "Correctness, faithfulness, citation, temporal reasoning, abstention": "正确性、忠实度、引用、时间推理、拒答能力",
+  "Same model and returned-token budget": "固定模型与返回 token 预算",
+  "Agent outcome": "Agent 任务结果",
+  "Task success, repeat-task improvement, transfer, contamination": "任务成功率、重复任务提升、迁移效果、污染程度",
+  "Memory enabled vs isolated baseline": "启用记忆 vs 隔离基线",
+  "Deletion completeness, stale state, tenant leakage, poisoning resistance": "删除完整性、陈旧状态、租户泄漏、抗投毒能力",
+  "Adversarial scope and update tests": "对作用域与更新做对抗测试",
+  "Systems": "系统",
+  "Model calls, tokens, p50/p95 latency, storage growth, retries, repair time": "模型调用数、token、p50/p95 延迟、存储增长、重试次数、修复时间",
+  "Layer policy and index backend": "分层策略与索引后端",
+  "The repository publishes version-specific LoCoMo, agent-memory, and knowledge-base results. They are useful project-reported evidence, not an independent guarantee of superiority for every agent, model, or workload. A fair claim pins the version, baseline, metric, token budget, and evaluator.": "仓库公布了特定版本下的 LoCoMo、Agent 记忆和知识库结果。这些是有参考价值的项目自报证据，却不能独立证明它在所有 Agent、模型和工作负载上都更优。要提出公平的结论，必须固定版本、基线、指标、token 预算和评估器。",
+  "Evaluation tables ↗": "评估表 ↗",
+  "Durability, freshness, correctness, and isolation must each have an explicit signal.": "持久性、新鲜度、正确性和隔离性，都必须有各自明确的信号。",
+  "A green health check masks a stale index, partial commit, or wrong-scope memory.": "健康检查一片绿色，却掩盖了陈旧索引、部分提交或作用域错误的记忆。",
+  "Test write, materialize, retrieve, update, delete, isolate, crash, and recover as separate stages.": "把写入、物化、检索、更新、删除、隔离、崩溃与恢复拆成独立阶段逐一测试。",
+  "CHAPTER 09 · INTELLECTUAL LINEAGE": "第 09 章 · 思想脉络",
+  "OpenViking belongs to a field, not a vacuum.": "OpenViking 自有来处，也置身于一个不断演进的研究领域。",
+  "Its strongest case is a synthesis: retrieval, progressive abstraction, virtual context, reflection, durable state, filesystem navigation, and database operations brought into one inspectable control plane.": "它最有说服力之处在于综合：检索、渐进式抽象、虚拟上下文、反思、持久状态、文件系统导航和数据库运维，被放进同一个可检查的控制面。",
+  "Credit the lineage precisely. The new value is the shape of the whole loop.": "准确交代思想来源。新的价值，落在整条循环怎样被组织起来。",
+  "RAG": "RAG",
+  "Couples generation to explicit non-parametric memory through retrieval, foregrounding updateability and provenance.": "通过检索把生成与显式的非参数记忆连接起来，也让可更新性和来源追踪走到台前。",
+  "Generative Agents · CoALA · MemGPT · Reflexion": "Generative Agents · CoALA · MemGPT · Reflexion",
+  "Memory streams and reflection, cognitive memory/action taxonomies, virtual context tiers, and textual feedback across trials.": "这一时期出现了记忆流与反思、认知式记忆与行动分类、虚拟上下文分层，以及跨轮次保留的文字反馈。",
+  "RAPTOR · GraphRAG": "RAPTOR · GraphRAG",
+  "Develops two different structural moves: retrieval across recursively summarized abstractions, and graph/community views for local-to-global questions.": "它们走向两种不同的结构：一种跨递归摘要形成的抽象层检索，另一种用图与社区视图回答从局部到整体的问题。",
+  "Context engineering": "上下文工程",
+  "Frames every inference as selection under a finite attention budget and promotes just-in-time exploration through stable identifiers.": "它把每次推理都看作有限注意力预算下的选择，并借助稳定标识符，让 Agent 在需要时再逐步探索。",
+  "VikingMem · OpenViking": "VikingMem · OpenViking",
+  "Memory-base research and an open-source context database push write, manage, read, and operations into a unified system.": "记忆库研究与开源上下文数据库开始把写入、管理、读取和运行保障放进同一套系统。",
+  "Approach": "方法",
+  "Persistent unit": "持久化单元",
+  "Primary move": "核心做法",
+  "Keep distinct from OpenViking": "与 OpenViking 的区别",
+  "Classic RAG": "经典 RAG",
+  "Passages in an external corpus": "外部语料库中的段落",
+  "Retrieve evidence for generation": "为生成检索证据",
+  "Does not by itself define sessions, updates, typed assets, or a context filesystem.": "它本身并不定义 session、更新流程、类型化资产或上下文文件系统。",
+  "RAPTOR": "RAPTOR",
+  "Chunks plus recursively clustered summaries": "文本块与递归聚类摘要",
+  "Retrieve across semantic abstraction levels": "跨语义抽象层检索",
+  "Its generated semantic tree is not OpenViking’s directory/resource tree.": "它生成的语义树，不是 OpenViking 的目录与资源树。",
+  "GraphRAG ↗": "GraphRAG ↗",
+  "Entities, relations, text units, community reports": "实体、关系、文本单元、社区报告",
+  "Graph and community reasoning": "基于图与社区的推理",
+  "OpenViking links do not make its core retrieval a knowledge graph.": "OpenViking 存在链接，不等于它的核心检索就是知识图谱。",
+  "MemGPT": "MemGPT",
+  "Context-resident and external memory tiers": "上下文内与外部记忆层",
+  "Agent-controlled virtual context paging": "由 Agent 控制的虚拟上下文换页",
+  "L0/L1/L2 are resolutions of an asset, not hot/warm/cold residency tiers.": "L0/L1/L2 表示同一资产的不同信息分辨率，不是热、温、冷数据的驻留层级。",
+  "Generative Agents / Reflexion": "Generative Agents / Reflexion",
+  "Experience records, reflections, verbal feedback": "经历记录、反思、文字反馈",
+  "Condition future behavior on consolidated experience": "用沉淀后的经历影响后续行为",
+  "Reflection is generated state, not verified truth or a weight update.": "反思是生成出来的状态，不是经过验证的事实，也不是权重更新。",
+  "OpenViking": "OpenViking",
+  "Addressed resources, memories, skills, sessions, semantic views": "带地址的资源、记忆、技能、session 与语义视图",
+  "Unify write, manage, read, scope, and operations": "统一写入、管理、读取、作用域与运行保障",
+  "A context database—not a model, ontology, or universal memory policy.": "它是上下文数据库，不是模型、知识本体或通用记忆策略。",
+  "The cognitive analogy is useful if it stays an analogy": "认知类比很有用，前提是别把类比当事实",
+  "CoALA’s working, episodic, semantic, and procedural vocabulary helps describe how an agent may use stored material. OpenViking’s live session resembles working evidence; events, cases, and trajectories can serve episodic roles; entities and preferences can serve semantic roles; tools and skills can serve procedural roles. These are explanatory mappings across independent taxonomies—not biological claims.": "CoALA 使用工作记忆、情景记忆、语义记忆和程序性记忆来描述 Agent 如何使用存储材料。OpenViking 的实时 session 可类比为手头正在使用的证据。event、case 和 trajectory 可以承担情景角色，entity 与 preference 可以承担语义角色，tool 和 skill 则可以承担程序性角色。这是在两套独立分类之间建立解释性映射，不是生物学主张。",
+  "CoALA ↗": "CoALA ↗",
+  "MemGPT’s operating-system analogy explains why limited model context benefits from external tiers and explicit movement. Anthropic’s context-engineering guidance explains why lightweight paths and progressive exploration are valuable. OpenViking’s contribution is to give those instincts a database-shaped, inspectable substrate.": "MemGPT 的操作系统类比说明了：模型上下文有限时，外部层级和显式搬运为什么有用。Anthropic 的上下文工程指南则解释了轻量路径与渐进探索的价值。OpenViking 的贡献，是为这些直觉提供一个数据库式、可检查的底座。",
+  "MemGPT ↗": "MemGPT ↗",
+  "Paper boundary:": "论文边界：",
+  "the OpenViking repository says it open-sources a subset of the VikingMem paper’s capabilities. Do not automatically attribute the paper’s event/entity evolution or temporal weighting mechanisms to every OpenViking code path.": "OpenViking 仓库说明，它只开源了 VikingMem 论文中的部分能力。因此，不能把论文里的 event/entity 演化或时间加权机制，自动归到 OpenViking 的每一条代码路径上。",
+  "VikingMem ↗": "VikingMem ↗",
+  "Why this synthesis is worth advocating": "为什么这套综合方案值得推荐",
+  "An agent can keep a URI instead of a whole document, inspect a neighborhood before opening a file, retrieve semantically without surrendering deterministic navigation, preserve raw interaction evidence before extracting a lesson, audit what memory changed, and rebuild search views from source truth. None of those moves is magic. Together they form a practical answer to the central context-engineering problem:": "Agent 不必把整份文档塞进上下文，留住 URI 即可。打开文件前，它能先看周边；语义检索也不会牺牲确定性导航。它还可以先保存原始交互证据再抽取经验，审计记忆改了什么，并从权威源数据重建检索视图。这里没有哪一步是魔法。但这些能力放在一起，确实给出了上下文工程核心问题的一种务实答案：",
+  "put the right evidence, at the right depth, into the right call—and preserve a trail back out.": "把正确的证据，以合适的深度，放进正确的调用；同时留下可追溯的出口。",
+  "The value is the composed lifecycle, not a claim to have invented every component technique.": "价值来自组合后的完整生命周期，而不是声称每项技术都由自己发明。",
+  "Neighboring labels are used as synonyms, making comparisons impressive but technically false.": "把相邻概念混作同义词，比较看起来很亮眼，技术上却站不住脚。",
+  "Compare unit, hierarchy, read policy, write policy, provenance, and failure mode.": "比较持久化单元、层级、读取策略、写入策略、来源与故障模式。",
+  "CHAPTER 10 · FIELD PRACTICE": "第 10 章 · 实践",
+  "Build a context policy, not just a connector.": "先定上下文策略，再接连接器。",
+  "The integration is finished when the team can explain what is stored, who sees it, how it enters the prompt, when it changes, and how failures are detected.": "只有当团队能说清楚存了什么、谁能看到、内容怎样进入 prompt、何时会变化，以及故障如何被发现，这次集成才算完成。",
+  "Start with one end-to-end trace. Automate recall and commit only after the boundaries are observable.": "先跑通一条端到端轨迹。等边界都能观测，再自动化 recall 与 commit。",
+  "Embedded end-to-end skeleton · adapted from an integration test": "嵌入式端到端骨架 · 改编自集成测试",
+  "Production code also needs a polling timeout": "生产代码还需要轮询超时",
+  "workflow spine ↗": "工作流主干 ↗",
+  "task API ↗": "任务 API ↗",
+  "The happy path is only half the design": "顺利路径只占设计的一半",
+  "Also exercise one summary failure, one delayed index, one empty retrieval, one conflicting preference, one wrong-peer query, one commit interrupted before": "还要逐一模拟：摘要失败、索引延迟、检索为空、偏好冲突、查错 peer，以及 commit 在",
+  ", and one deletion followed by reindex. A context system becomes trustworthy through these failure traces, not through a single fluent answer.": "之前中断；最后再验证删除后的索引重建。上下文系统的可信度来自这些失败轨迹，不是一次流畅回答。",
+  "Local field worksheet": "本地实践清单",
+  "Your context policy": "你的上下文策略",
+  "0 / 8 decided": "已决定 0 / 8 项",
+  "Asset boundary": "资产边界",
+  "We know what becomes Resource, Memory, or Skill—and what must never be stored.": "我们清楚哪些内容会成为 Resource、Memory 或 Skill，也知道哪些内容绝不能存。",
+  "Ownership and isolation": "所有权与隔离",
+  "Account, user, peer, and shared-agent visibility are explicit and adversarially tested.": "account、user、peer 与共享 Agent 的可见范围已经写清，并通过对抗测试验证。",
+  "Loading depth": "加载深度",
+  "L0/L1/L2 selection has a token budget and a rule for opening source detail.": "L0/L1/L2 的选择有明确 token 预算，也有打开源内容细节的规则。",
+  "Retrieval mode": "检索模式",
+  "We know when QUICK or THINKING runs and record planner, reranker, paths, and scores.": "我们知道何时运行 QUICK 或 THINKING，并记录 planner、reranker、路径和分数。",
+  "Commit trigger": "Commit 触发条件",
+  "After-turn, threshold, compaction, shutdown, and explicit commits have deliberate semantics.": "每轮结束、达到阈值、压缩、关闭和显式 commit，都有经过设计的语义。",
+  "Conflict policy": "冲突策略",
+  "Duplicate, contradiction, merge, delete, provenance, and human correction are defined.": "重复、矛盾、合并、删除、来源记录和人工修正，都有明确处理方式。",
+  "Sensitive-data boundary": "敏感数据边界",
+  "Retention, encryption, deletion, prompt injection, and tenant leakage have controls.": "数据保留、加密、删除、prompt 注入与租户泄漏，都有对应控制。",
+  "Lifecycle evaluation": "生命周期评估",
+  "Capture, retrieval, answer, agent outcome, governance, and systems metrics are separated.": "采集、检索、作答、Agent 结果、治理和系统指标分别计算。",
+  "Copy policy template": "复制策略模板",
+  "Reset": "重置",
+  "The smallest useful next action": "现在最值得做的一小步",
+  "Pick one real recurring agent task. Ingest only its authoritative resources. Run one search with telemetry, load the minimum useful depth, record the used URIs, commit one session, inspect the memory diff, then repeat the task. If the second run improves for the right reason—and unrelated tasks do not regress—you have the beginning of a memory system rather than a memory demo.": "挑一个真实、会反复发生的 Agent 任务，只导入它的权威资源。带着 telemetry 跑一次检索，加载刚好够用的信息深度，记录实际使用的 URI，commit 一次 session，检查记忆差异，然后重做同一任务。如果第二次确实因为正确的记忆而改善，而且无关任务没有退化，你才算搭出了记忆系统的雏形，而不只是做了一个记忆演示。",
+  "Automation follows an explicit capture, scope, loading, update, privacy, and evaluation policy.": "自动化必须服从明确的采集、作用域、加载、更新、隐私与评估策略。",
+  "Recall and commit are enabled globally; contamination appears only after many sessions.": "recall 与 commit 全局开启，污染却要经过许多 session 才浮现。",
+  "Run one complete happy trace, one failure trace, and one unrelated-task contamination test.": "各跑一次完整顺利轨迹、失败轨迹，以及无关任务的污染测试。",
+  "SOURCE NOTE · REVIEWED 2026-07-13": "来源说明 · 审阅于 2026-07-13",
+  "Evidence before enthusiasm.": "热情之前，先看证据。",
+  "This guide was traced against commit": "本指南逐项核对到提交",
+  ", four commits after tag": "；它比标签",
+  ". It uses public repository, documentation, and primary research links.": "晚四次提交。文中只使用公开仓库、官方文档和一手研究链接。",
+  "OpenViking is a living project. The code links below are pinned; documentation links describe the current public model and may continue to evolve. Where code and docs differed materially, the guide names the difference. Benchmark statements are explicitly treated as project-reported and were not independently reproduced for this artifact.": "OpenViking 仍在持续演进。下面的代码链接都固定到具体版本；文档链接描述当前公开模型，今后仍可能变化。代码与文档存在实质差异时，本指南会直接指出。所有 benchmark 结论均按项目自报结果处理，本工件没有独立复现。",
+  "OpenViking sources": "OpenViking 来源",
+  "Official docs": "官方文档",
+  "Architecture overview": "架构概览",
+  "Services, storage boundary, major flows, deployment modes.": "服务、存储边界、主要流程与部署模式。",
+  "Context types": "上下文类型",
+  "Resource, Memory, Skill and their intended semantics.": "Resource、Memory、Skill 及其预期语义。",
+  "L0 / L1 / L2": "L0 / L1 / L2",
+  "Progressive disclosure and bottom-up semantic views.": "渐进展开与自底向上的语义视图。",
+  "find, search, typed results, and intended hierarchy.": "find、search、类型化结果与预期层级。",
+  "Sessions & memory": "Session 与记忆",
+  "Commit flow, archive shape, memory diff, documented categories.": "commit 流程、归档结构、记忆差异与文档中的分类。",
+  "Transactions": "事务",
+  "Path locks, redo, filesystem source truth, derived index.": "路径锁、redo、作为权威源的文件系统，以及派生索引。",
+  "Pinned code": "固定版本源码",
+  "HierarchicalRetriever": "HierarchicalRetriever",
+  "QUICK/THINKING selection, recursive expansion, convergence.": "QUICK/THINKING 选择、递归展开与收敛。",
+  "Session commit": "Session commit",
+  "Durable-first archive, background compilation, task tracking.": "优先持久化的归档、后台编译与任务追踪。",
+  "Memory compiler v3": "记忆编译器 v3",
+  "Schema registry, isolation, extraction, structured updates.": "schema 注册表、隔离、抽取与结构化更新。",
+  "Service composition": "服务组合",
+  "Runtime wiring across services, storage, queues, and models.": "服务、存储、队列与模型之间的运行时装配。",
+  "Primary field sources": "相关领域的一手资料",
+  "Context engineering · 2025": "上下文工程 · 2025",
+  "Effective context engineering for AI agents": "Effective context engineering for AI agents",
+  "Finite attention budget, just-in-time context, progressive discovery.": "有限注意力预算、按需加载上下文、渐进发现。",
+  "NeurIPS · 2020": "NeurIPS · 2020",
+  "Retrieval-Augmented Generation": "Retrieval-Augmented Generation",
+  "Parametric generation plus explicit non-parametric memory.": "参数化生成，加上显式的非参数记忆。",
+  "ICLR · 2024": "ICLR · 2024",
+  "Tree-organized retrieval across recursively summarized abstractions.": "在递归摘要形成的抽象层之间，按树组织检索。",
+  "Research · 2024": "研究 · 2024",
+  "From Local to Global: GraphRAG": "From Local to Global: GraphRAG",
+  "Entity graphs and community summaries for query-focused corpus understanding.": "借助实体图与社区摘要，围绕查询理解整套语料。",
+  "Research · 2023": "研究 · 2023",
+  "Virtual context management inspired by hierarchical memory systems.": "受分层记忆系统启发的虚拟上下文管理。",
+  "UIST · 2023": "UIST · 2023",
+  "Generative Agents": "Generative Agents",
+  "Memory stream, retrieval, reflection, and planning.": "记忆流、检索、反思与规划。",
+  "NeurIPS · 2023": "NeurIPS · 2023",
+  "Reflexion": "Reflexion",
+  "Verbal feedback in episodic memory without weight updates.": "把文字反馈写入情景记忆，无需更新模型权重。",
+  "TMLR · 2024": "TMLR · 2024",
+  "CoALA": "CoALA",
+  "Working, episodic, semantic, and procedural memory in language agents.": "语言 Agent 中的工作记忆、情景记忆、语义记忆与程序性记忆。",
+  "VLDB · 2026": "VLDB · 2026",
+  "VikingMem": "VikingMem",
+  "Memory-base research related to, but not identical with, OpenViking.": "与 OpenViking 相关、但并不等同的记忆库研究。",
+  "Editorial position:": "编辑立场：",
+  "the most inspiring claim is also the most testable one. OpenViking makes context a place an agent can navigate and a system an engineer can inspect. The source trail above is part of the product argument, not an appendix to it.": "最让人振奋的主张，也恰好最容易检验：OpenViking 让上下文成为 Agent 可以导航的地方，也成为工程师能够检查的系统。上面的来源链条本身就是产品论证的一部分，不是可有可无的附录。",
+  "Implementation facts are pinned; research analogies and product claims are labeled.": "实现事实固定到具体版本；研究类比与产品主张都有明确标记。",
+  "A living docs page is treated as historical proof for behavior at an earlier commit.": "把持续更新的文档页面，当成早期提交行为的历史证据。",
+  "Record commit, date, config, source links, and any code-versus-doc correction.": "记录 commit、日期、配置、来源链接，以及所有代码与文档之间的校正。",
+  "OpenViking: Context Has a Place": "OpenViking：上下文有了位置",
+  "An independent, source-backed educational artifact. OpenViking is an AGPL-3.0 open-source project from Volcengine. Product claims are separated from reviewed implementation facts and research analogies.": "这是一份独立制作、以来源为依据的教育工件。OpenViking 是火山引擎推出的 AGPL-3.0 开源项目。文中将产品主张、经过审阅的实现事实和研究类比分别标注。",
+  "Current chapter diagnostic": "本章诊断",
+  "Trace lens": "追踪镜头",
+  "Close chapters": "关闭章节导航",
+  "Source note": "来源说明",
+  "Copied": "已复制",
+  "Select code": "请手动选择代码",
+  "Enough to choose the right module and source path; exact behavior still needs L2.": "足够选中模块和源码路径；要确认精确行为，还得读 L2。",
+  "Full evidence loaded for precision-sensitive verification.": "完整证据已载入，可以核验精度敏感的结论。",
+  "~310 tokens": "约 310 tokens",
+  "~2,240 tokens": "约 2,240 tokens",
+  "Ingest · source to derived context": "写入 · 从源内容到派生上下文",
+  "Client": "客户端",
+  "Validates the source, destination, and wait contract before handing work to the resource service.": "校验来源、目标位置和等待约定。确认无误后，任务才会交给资源服务。",
+  "Resource service": "资源服务",
+  "validate + dispatch": "校验并分发",
+  "Resolves the target URI, starts parsing, and coordinates the durable write path.": "解析目标 URI，启动解析流程，并协调需要持久化的写入步骤。",
+  "Resource processor": "资源处理器",
+  "persist source": "保存源内容",
+  "Writes the source and structure into AGFS under a destination lock. This filesystem state is source truth.": "在目标路径锁内，把源内容和目录结构写入 AGFS。此时的文件系统状态才是事实来源。",
+  "Semantic queue": "语义队列",
+  "compile L0 / L1": "生成 L0 / L1",
+  "Builds bottom-up abstracts and overviews asynchronously after durable content exists.": "源内容落盘后，队列异步自底向上生成摘要和概览。",
+  "Embedding queue": "向量队列",
+  "index records": "写入索引记录",
+  "Embeds derived L0, L1, and L2 records into the rebuildable vector index. wait=True completes request-scoped queues; callers must still inspect every error_count.": "把派生出的 L0、L1、L2 记录写入可重建的向量索引。wait=True 只表示本次请求的队列已结束，调用方仍要检查每个 error_count。",
+  "Search service": "搜索服务",
+  "find() or search()": "find() 或 search()",
+  "Resolves query and targets. search() may add session evidence; without it the service falls back to a direct typed query.": "解析查询与目标。search() 可以带上会话证据；没有会话材料时，就退回直接的类型化查询。",
+  "Intent analyzer": "意图分析器",
+  "plan when useful": "需要时再规划",
+  "Turns conversational context into retrieval intent only when that extra context is available and relevant.": "只有额外的会话上下文确实存在且相关时，才把它整理成检索意图。",
+  "Retriever": "检索器",
+  "choose mode": "选择模式",
+  "Uses QUICK for one flat scoped vector search, or THINKING for reranked recursive directory exploration.": "QUICK 做一次限定范围的扁平向量搜索；THINKING 会重排结果，并递归探索目录。",
+  "policy-scoped recall": "按策略限定召回范围",
+  "Searches only approved roots with tenant constraints. Similarity proposes candidates; it does not grant access.": "只在策略允许的根目录内搜索，同时受租户条件约束。相似度负责提名候选，不能授予访问权。",
+  "Rerank + recurse": "重排并递归",
+  "THINKING only": "仅 THINKING",
+  "Seeds from global L0/L1 recall, then expands immediate children through a bounded priority queue until convergence.": "全局 L0/L1 召回给出起点。有界优先队列接着展开直接子节点，直到结果收敛。",
+  "MatchedContext": "MatchedContext",
+  "typed result": "类型化结果",
+  "Returns URI, score, level, and asset type. The caller still decides which detail to load into the model context.": "返回 URI、分数、层级和资产类型。哪些细节真正进入模型上下文，仍由调用方决定。",
+  "Remember · session to durable update": "记忆 · 从会话到持久更新",
+  "Takes an explicit snapshot of current interaction state and begins the durable-first commit path.": "显式截取当前交互状态，随后进入持久化优先的提交路径。",
+  "Path lock": "路径锁",
+  "archive first": "先归档",
+  "Archives the message slice and retained tail under an exact path lock; usage records are snapshotted afterward for Phase 2 linking.": "在精确路径锁内归档消息片段并保留尾部消息；锁外再截取使用记录，留给第二阶段建立链接。",
+  "Task tracker": "任务跟踪器",
+  "return task id": "返回任务 ID",
+  "Acknowledges the background compilation task. Archive durability and memory readiness are separate states.": "确认后台编译任务已受理。归档已经持久化，不等于记忆已经可用。",
+  "Extract loop": "提取循环",
+  "read + propose": "读取并提出变更",
+  "One bounded loop can browse evidence, then propose operations across the allowed schema registry. Long-term and execution-memory pipelines are separate Phase 2 tasks.": "一个有界循环会浏览证据，并针对策略允许的 schema 提出操作。长期记忆与执行记忆是第二阶段的两条独立任务线。",
+  "Memory updater": "记忆更新器",
+  "patch / append / delete": "修改 / 追加 / 删除",
+  "Applies structured updates to current memory files with category-specific prompts and update semantics.": "按各类别的提示词和更新规则，把结构化变更写入现有记忆文件。",
+  "Diff + index": "差异记录与索引",
+  "audit + readiness": "审计并确认就绪",
+  "Records memory_diff.json, refreshes derived indexes, and marks completion. A pending redo can retry long-term extraction, not replay all of Phase 2.": "写下 memory_diff.json，刷新派生索引，再标记完成。待处理的 redo 只能重试长期记忆提取，不能重放整个第二阶段。",
+  "Policy copied": "策略模板已复制",
+  "Copy unavailable": "当前无法复制",
+  "decided": "已确定"
+};
+/* ZH_TEXT_END */
+      const englishTitle = 'OpenViking: Context Has a Place';
+      const chineseTitle = 'OpenViking：上下文有了位置';
+      const englishDescription = 'A source-backed visual field guide to how OpenViking turns resources, memories, and skills into a navigable context system for AI agents.';
+      const chineseDescription = '一份以源码为依据的 OpenViking 图解指南：看懂资源、记忆与技能如何组成 AI Agent 可导航的上下文系统。';
+      const languageStorageKey = 'openviking-context-atlas-language-v1';
+      const languageButton = $('[data-action="toggle-language"]');
+      const i18nTextNodes = [];
+      const i18nAttributeNodes = [];
+      let currentLanguage = 'en';
+      let activePipeline = 'retrieve';
+      let currentDepth = 0;
+
+      function tr(value) {
+        return currentLanguage === 'zh' ? (zhText[value] || value) : value;
+      }
+
+      function captureTranslations() {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const parent = node.parentElement;
+          const english = node.nodeValue.trim();
+          if (!english || !parent || parent.closest('script, style, pre, code, [data-no-i18n]') || !zhText[english]) continue;
+          const raw = node.nodeValue;
+          i18nTextNodes.push({
+            node,
+            english,
+            prefix: (raw.match(/^\s*/) || [''])[0],
+            suffix: (raw.match(/\s*$/) || [''])[0]
+          });
+        }
+
+        const attributes = ['aria-label', 'title', 'placeholder', 'data-title', 'data-invariant', 'data-risk', 'data-diagnostic', 'data-uri'];
+        $$('*').forEach((element) => {
+          attributes.forEach((attribute) => {
+            const english = element.getAttribute(attribute);
+            if (english && zhText[english]) i18nAttributeNodes.push({ element, attribute, english });
+          });
+        });
+      }
+
+      function resolveInitialLanguage() {
+        const requested = new URLSearchParams(window.location.search).get('lang');
+        if (requested === 'zh' || requested === 'en') return requested;
+        try {
+          const saved = localStorage.getItem(languageStorageKey);
+          if (saved === 'zh' || saved === 'en') return saved;
+        } catch (_) { /* English remains the safe default. */ }
+        return 'en';
+      }
+
+      function applyLanguage(language, persist = true) {
+        currentLanguage = language === 'zh' ? 'zh' : 'en';
+        document.documentElement.lang = currentLanguage === 'zh' ? 'zh-CN' : 'en';
+        document.title = currentLanguage === 'zh' ? chineseTitle : englishTitle;
+        const description = $('meta[name="description"]');
+        if (description) description.setAttribute('content', currentLanguage === 'zh' ? chineseDescription : englishDescription);
+
+        i18nTextNodes.forEach((item) => {
+          item.node.nodeValue = `${item.prefix}${currentLanguage === 'zh' ? zhText[item.english] : item.english}${item.suffix}`;
+        });
+        i18nAttributeNodes.forEach((item) => {
+          item.element.setAttribute(item.attribute, currentLanguage === 'zh' ? zhText[item.english] : item.english);
+        });
+
+        languageButton.textContent = currentLanguage === 'zh' ? 'EN' : '中文';
+        languageButton.setAttribute('aria-label', currentLanguage === 'zh' ? '切换为英文' : 'Switch to Chinese');
+        languageButton.setAttribute('aria-pressed', String(currentLanguage === 'zh'));
+
+        renderPipeline(activePipeline);
+        selectDepth(currentDepth);
+        activateSection(currentSection, true);
+        updatePolicyCount();
+
+        if (persist) {
+          try { localStorage.setItem(languageStorageKey, currentLanguage); }
+          catch (_) { /* The switch still works for this page view. */ }
+        }
+        const url = new URL(window.location.href);
+        if (currentLanguage === 'zh') url.searchParams.set('lang', 'zh');
+        else url.searchParams.delete('lang');
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+      }
+
       /* Reading progress + chapter trace lens */
       const sections = $$('main section[id]');
       const chapterNumber = $('.top-chapter b');
@@ -1452,13 +2220,13 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
       let currentSection = sections[0];
       let ticking = false;
 
-      function activateSection(section) {
-        if (!section || section === currentSection && section.dataset.active === 'true') return;
+      function activateSection(section, force = false) {
+        if (!section || !force && section === currentSection && section.dataset.active === 'true') return;
         sections.forEach((item) => delete item.dataset.active);
         section.dataset.active = 'true';
         currentSection = section;
         const id = section.id;
-        const title = section.dataset.title || '';
+        const title = tr(section.dataset.title || '');
         const number = section.dataset.no || '';
         $$('[data-nav] a, [data-mobile-nav] a').forEach((link) => {
           const active = link.getAttribute('href') === `#${id}`;
@@ -1470,7 +2238,7 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
         chapterTitle.textContent = title;
         lensTitle.textContent = title;
         ['invariant', 'risk', 'diagnostic', 'uri'].forEach((key) => {
-          if (lensFields[key]) lensFields[key].textContent = section.dataset[key] || '';
+          if (lensFields[key]) lensFields[key].textContent = tr(section.dataset[key] || '');
         });
       }
 
@@ -1551,10 +2319,11 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
       const layerButtons = $$('[data-depth]');
       const layerBands = $$('[data-layer]');
       function selectDepth(depth) {
+        currentDepth = depth;
         layerButtons.forEach((button) => button.setAttribute('aria-pressed', String(Number(button.dataset.depth) === depth)));
         layerBands.forEach((band) => band.classList.toggle('is-loaded', Number(band.dataset.layer) <= depth));
-        $('[data-layer-message]').textContent = layerCopy[depth].message;
-        $('[data-layer-total]').textContent = layerCopy[depth].total;
+        $('[data-layer-message]').textContent = tr(layerCopy[depth].message);
+        $('[data-layer-total]').textContent = tr(layerCopy[depth].total);
       }
       layerButtons.forEach((button) => button.addEventListener('click', () => selectDepth(Number(button.dataset.depth))));
 
@@ -1609,15 +2378,16 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
         const label = document.createElement('span');
         const heading = document.createElement('h4');
         const copy = document.createElement('p');
-        label.textContent = stage[0];
-        heading.textContent = stage[1];
-        copy.textContent = stage[2];
+        label.textContent = tr(stage[0]);
+        heading.textContent = tr(stage[1]);
+        copy.textContent = tr(stage[2]);
         traceDetail.append(label, heading, copy);
       }
 
       function renderPipeline(key) {
+        activePipeline = key;
         const pipeline = pipelines[key];
-        traceTitle.textContent = pipeline.title;
+        traceTitle.textContent = tr(pipeline.title);
         pipelineTabs.forEach((tab) => {
           const selected = tab.dataset.pipeline === key;
           tab.setAttribute('aria-selected', String(selected));
@@ -1632,8 +2402,8 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
           button.setAttribute('aria-pressed', String(index === 0));
           const label = document.createElement('small');
           const heading = document.createElement('b');
-          label.textContent = stage[0];
-          heading.textContent = stage[1];
+          label.textContent = tr(stage[0]);
+          heading.textContent = tr(stage[1]);
           button.append(label, heading);
           button.addEventListener('click', () => showStage(stage, button));
           traceStages.append(button);
@@ -1673,9 +2443,9 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
         const original = button.textContent;
         try {
           await copyText(code.textContent.trim());
-          button.textContent = 'Copied';
+          button.textContent = tr('Copied');
         } catch (_) {
-          button.textContent = 'Select code';
+          button.textContent = tr('Select code');
         }
         window.setTimeout(() => { button.textContent = original; }, 1500);
       }));
@@ -1694,7 +2464,8 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
         updatePolicyCount();
       }
       function updatePolicyCount() {
-        count.textContent = `${checks.filter((check) => check.checked).length} / ${checks.length} decided`;
+        const decided = checks.filter((check) => check.checked).length;
+        count.textContent = currentLanguage === 'zh' ? `已确定 ${decided} / ${checks.length}` : `${decided} / ${checks.length} decided`;
       }
       function persistPolicy() {
         const state = Object.fromEntries(checks.map((check) => [check.dataset.check, check.checked]));
@@ -1717,14 +2488,17 @@ commit = session.commit()  <span class="cm"># accepted result contains task_id</
         const button = event.currentTarget;
         const original = button.textContent;
         try {
-          await copyText(`# OpenViking context policy\n\n${lines.join('\n')}`);
-          button.textContent = 'Policy copied';
+          await copyText(`${currentLanguage === 'zh' ? '# OpenViking 上下文策略' : '# OpenViking context policy'}\n\n${lines.join('\n')}`);
+          button.textContent = tr('Policy copied');
         } catch (_) {
-          button.textContent = 'Copy unavailable';
+          button.textContent = tr('Copy unavailable');
         }
         window.setTimeout(() => { button.textContent = original; }, 1500);
       });
       renderPolicy();
+      captureTranslations();
+      languageButton.addEventListener('click', () => applyLanguage(currentLanguage === 'zh' ? 'en' : 'zh'));
+      applyLanguage(resolveInitialLanguage(), false);
     })();
   </script>
 </body>
