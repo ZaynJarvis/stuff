@@ -1,0 +1,1730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c1720">
+  <meta name="description" content="A source-backed visual field guide to how OpenViking turns resources, memories, and skills into a navigable context system for AI agents.">
+  <title>OpenViking: Context Has a Place</title>
+  <style>
+    :root {
+      --basalt: #0c1720;
+      --basalt-2: #152630;
+      --basalt-3: #213640;
+      --paper: #f3f0e8;
+      --paper-2: #ebe6da;
+      --sheet: #fffdf7;
+      --ink: #132129;
+      --muted: #617078;
+      --line: #cfc9bb;
+      --cyan: #21736c;
+      --cyan-bright: #5ed4c6;
+      --cyan-soft: #d6eee9;
+      --amber: #9b5410;
+      --amber-bright: #f0a24a;
+      --amber-soft: #f5e2c9;
+      --coral: #a43e32;
+      --coral-soft: #f3d8d2;
+      --blue: #3c7eff;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --rail: 242px;
+      --lens: 264px;
+      --top: 66px;
+      --shadow: 0 18px 70px rgba(12, 23, 32, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); color: var(--ink); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, transparent 49.9%, rgba(19, 33, 41, .025) 50%, transparent 50.1%) 0 0 / 48px 48px,
+        var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-underline-offset: .2em; }
+    button, input { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+    ::selection { background: var(--cyan-soft); color: var(--ink); }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 8px;
+      left: 12px;
+      padding: 10px 14px;
+      border-radius: 7px;
+      background: var(--sheet);
+      color: var(--basalt);
+      font-weight: 800;
+      transform: translateY(-150%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .topbar {
+      position: fixed;
+      z-index: 100;
+      inset: 0 0 auto 0;
+      height: var(--top);
+      display: grid;
+      grid-template-columns: var(--rail) minmax(0, 1fr) var(--lens);
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,.11);
+      background: rgba(12, 23, 32, .94);
+      color: #fff;
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 11px;
+      height: 100%;
+      padding: 0 20px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      text-decoration: none;
+    }
+    .brand-mark {
+      position: relative;
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(94,212,198,.6);
+      border-radius: 50%;
+      background: rgba(94,212,198,.08);
+    }
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      bottom: 9px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 14px solid var(--cyan-bright);
+    }
+    .brand-mark::before { left: 6px; opacity: .62; }
+    .brand-mark::after { right: 5px; border-left-width: 9px; border-right-width: 9px; border-bottom-width: 18px; }
+    .brand-copy { min-width: 0; }
+    .brand-copy strong, .brand-copy small { display: block; }
+    .brand-copy strong { font-size: 14px; letter-spacing: .02em; white-space: nowrap; }
+    .brand-copy small { margin-top: 2px; color: #a8babf; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; }
+    .top-chapter {
+      min-width: 0;
+      padding: 0 28px;
+      color: #bac8cc;
+      font-size: 13px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .top-chapter b { color: var(--cyan-bright); font-family: var(--mono); font-size: 12px; margin-right: 9px; }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 13px;
+      height: 100%;
+      padding: 0 20px;
+      border-left: 1px solid rgba(255,255,255,.1);
+    }
+    .top-progress { color: #d5dfe1; font: 700 12px/1 var(--mono); }
+    .menu-button {
+      display: none;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 7px;
+      background: transparent;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .progress-line {
+      position: fixed;
+      z-index: 101;
+      top: calc(var(--top) - 3px);
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan-bright), var(--amber-bright));
+      transition: width .12s linear;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: var(--rail) minmax(0, 880px) var(--lens);
+      justify-content: center;
+      align-items: start;
+      min-height: 100vh;
+      padding-top: var(--top);
+    }
+    .atlas-rail {
+      position: sticky;
+      top: var(--top);
+      height: calc(100vh - var(--top));
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      background: rgba(235, 230, 218, .74);
+      scrollbar-width: thin;
+    }
+    .rail-intro { padding: 30px 22px 21px; border-bottom: 1px solid var(--line); }
+    .rail-intro span { color: var(--cyan); font: 800 12px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .rail-intro p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.58; }
+    .atlas-nav { padding: 14px 12px 44px; }
+    .atlas-nav a {
+      position: relative;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: start;
+      gap: 8px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: #59676d;
+      font-size: 13px;
+      line-height: 1.35;
+      text-decoration: none;
+    }
+    .atlas-nav a::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 28px;
+      bottom: -9px;
+      width: 1px;
+      background: var(--line);
+    }
+    .atlas-nav a:last-child::before { display: none; }
+    .atlas-nav a:hover { background: rgba(255,255,255,.45); color: var(--ink); }
+    .atlas-nav a.is-active { background: var(--sheet); color: var(--ink); font-weight: 800; box-shadow: 0 2px 12px rgba(12,23,32,.05); }
+    .atlas-nav a.is-active .nav-no { border-color: var(--cyan); background: var(--cyan); color: #fff; }
+    .nav-no {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #aeb7b6;
+      border-radius: 50%;
+      background: var(--paper-2);
+      font: 700 10px/1 var(--mono);
+    }
+
+    main {
+      min-width: 0;
+      background: var(--sheet);
+      box-shadow: var(--shadow);
+    }
+    .hero, .chapter { scroll-margin-top: calc(var(--top) + 1px); }
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--top));
+      overflow: hidden;
+      padding: 78px 68px 68px;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(94,212,198,.17), transparent 28rem),
+        linear-gradient(155deg, var(--basalt), #0f222b 64%, #173038);
+      color: #f7f7f1;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -130px;
+      bottom: -180px;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(94,212,198,.2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 66px rgba(94,212,198,.035), 0 0 0 132px rgba(94,212,198,.025);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 22px;
+      color: var(--cyan-bright);
+      font: 800 12px/1.2 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+    .hero h1 {
+      max-width: 700px;
+      margin: 0;
+      font: 500 clamp(54px, 7.5vw, 92px)/.91 var(--serif);
+      letter-spacing: -.055em;
+    }
+    .hero h1 em { color: var(--cyan-bright); font-weight: 500; }
+    .hero-deck {
+      max-width: 670px;
+      margin: 30px 0 0;
+      color: #c8d4d6;
+      font: 400 20px/1.65 var(--serif);
+    }
+    .hero-deck strong { color: #fff; font-weight: 650; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 30px 0 0; }
+    .hero-meta span {
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      color: #b9c9cc;
+      font: 700 11px/1 var(--mono);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin: 34px 0 0; }
+    .button-primary, .button-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+    .button-primary { background: var(--cyan-bright); color: var(--basalt); }
+    .button-primary:hover { background: #7be1d5; }
+    .button-ghost { border: 1px solid rgba(255,255,255,.22); color: #fff; }
+    .button-ghost:hover { background: rgba(255,255,255,.07); }
+    .loop-map {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 720px;
+      margin: 58px 0 0;
+      padding: 1px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,.14);
+    }
+    .loop-step { min-height: 91px; padding: 14px; background: rgba(8,21,28,.83); }
+    .loop-step span { display: block; color: var(--cyan-bright); font: 700 10px/1 var(--mono); }
+    .loop-step b { display: block; margin-top: 11px; color: #fff; font-size: 13px; }
+    .loop-step small { display: block; margin-top: 5px; color: #8fa7ac; font-size: 11px; line-height: 1.35; }
+
+    .chapter {
+      position: relative;
+      padding: 86px 68px 94px;
+      border-top: 1px solid var(--line);
+    }
+    .chapter:nth-of-type(even) { background: #fbf8f1; }
+    .chapter-head { margin-bottom: 45px; }
+    .chapter-no { color: var(--cyan); font: 800 12px/1 var(--mono); letter-spacing: .12em; }
+    .chapter h2 {
+      max-width: 720px;
+      margin: 13px 0 0;
+      font: 600 clamp(36px, 5vw, 56px)/1.03 var(--serif);
+      letter-spacing: -.035em;
+    }
+    .chapter-lede {
+      max-width: 720px;
+      margin: 19px 0 0;
+      color: #48585f;
+      font: 400 20px/1.62 var(--serif);
+    }
+    .chapter h3 { margin: 42px 0 14px; font: 650 26px/1.2 var(--serif); letter-spacing: -.015em; }
+    .chapter h4 { margin: 24px 0 8px; font-size: 15px; }
+    .prose { max-width: 720px; }
+    .prose p, .prose li { color: #2d3c43; font-size: 17px; line-height: 1.76; }
+    .prose p { margin: 0 0 19px; }
+    .prose ul, .prose ol { margin: 12px 0 24px; padding-left: 23px; }
+    .prose li + li { margin-top: 8px; }
+    .prose strong { color: var(--ink); }
+    code, .uri { font-family: var(--mono); }
+    .prose code, td code, li code {
+      padding: .12em .34em;
+      border: 1px solid #d9d3c7;
+      border-radius: 4px;
+      background: var(--paper-2);
+      color: #234953;
+      font-size: .87em;
+    }
+    .thesis {
+      position: relative;
+      max-width: 720px;
+      margin: 0 0 35px;
+      padding: 25px 28px 25px 30px;
+      border-left: 4px solid var(--cyan);
+      background: var(--cyan-soft);
+    }
+    .thesis span { display: block; color: var(--cyan); font: 800 11px/1 var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+    .thesis p { margin: 11px 0 0; color: var(--ink); font: 600 23px/1.45 var(--serif); }
+    .invariant-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 720px;
+      margin: 42px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      overflow: hidden;
+      background: var(--line);
+    }
+    .invariant-strip article { min-height: 150px; padding: 20px; background: var(--sheet); }
+    .invariant-strip span { font: 800 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .invariant-strip article:nth-child(1) span { color: var(--cyan); }
+    .invariant-strip article:nth-child(2) span { color: var(--coral); }
+    .invariant-strip article:nth-child(3) span { color: var(--amber); }
+    .invariant-strip p { margin: 11px 0 0; color: #425159; font-size: 14px; line-height: 1.55; }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #276d69;
+      font: 800 12px/1.3 var(--sans);
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .claim-note {
+      max-width: 720px;
+      margin: 26px 0;
+      padding: 16px 18px;
+      border: 1px solid #e4bc8d;
+      border-radius: 9px;
+      background: var(--amber-soft);
+      color: #61431e;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+    .claim-note strong { color: #4d3216; }
+    .risk-note { border-color: #dfa99e; background: var(--coral-soft); color: #68372f; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 720px; margin: 28px 0; }
+    .concept-card {
+      min-height: 190px;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--sheet);
+      box-shadow: 0 7px 28px rgba(12,23,32,.035);
+    }
+    .concept-card .card-label { color: var(--cyan); font: 800 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .concept-card h3 { margin: 14px 0 8px; font-size: 23px; }
+    .concept-card p { margin: 0; color: #4c5c63; font-size: 14px; line-height: 1.62; }
+    .concept-card code { display: inline-block; margin-top: 15px; color: #28525a; font-size: 12px; }
+
+    .table-wrap { max-width: 720px; margin: 28px 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--sheet); }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    th, td { padding: 15px 17px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--paper-2); color: #4b5b62; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    td { color: #34454c; font-size: 14px; line-height: 1.55; }
+    tr:last-child td { border-bottom: 0; }
+
+    .trace-console { max-width: 720px; margin: 34px 0; border: 1px solid #334750; border-radius: 13px; overflow: hidden; background: var(--basalt); color: #e8eeee; box-shadow: 0 20px 50px rgba(12,23,32,.16); }
+    .trace-tabs { display: flex; gap: 4px; padding: 10px; border-bottom: 1px solid #2c4048; background: #101e27; }
+    .trace-tabs button { padding: 9px 13px; border: 0; border-radius: 7px; background: transparent; color: #93a8ad; font-size: 12px; font-weight: 850; }
+    .trace-tabs button[aria-selected="true"] { background: var(--cyan-bright); color: var(--basalt); }
+    .trace-body { padding: 24px; }
+    .trace-caption { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 18px; color: #9ab0b5; font-size: 12px; }
+    .trace-caption strong { color: #fff; font-size: 13px; }
+    .trace-stages { display: flex; align-items: stretch; gap: 8px; overflow-x: auto; padding: 4px 2px 14px; scrollbar-width: thin; }
+    .trace-stage {
+      position: relative;
+      flex: 0 0 126px;
+      min-height: 86px;
+      padding: 12px;
+      border: 1px solid #40545c;
+      border-radius: 8px;
+      background: #13252e;
+      color: #c4d1d4;
+      text-align: left;
+    }
+    .trace-stage::after { content: "→"; position: absolute; right: -9px; top: 34px; color: #6a8186; }
+    .trace-stage:last-child::after { display: none; }
+    .trace-stage:hover { border-color: var(--cyan-bright); }
+    .trace-stage.is-active { border-color: var(--amber-bright); background: #27302e; color: #fff; }
+    .trace-stage small { display: block; color: #759097; font: 700 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .trace-stage b { display: block; margin-top: 10px; font-size: 12px; line-height: 1.35; }
+    .trace-detail { min-height: 120px; padding: 18px; border: 1px solid #2d454e; border-radius: 9px; background: #0e1b23; }
+    .trace-detail span { color: var(--amber-bright); font: 800 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .trace-detail h4 { margin: 9px 0 6px; color: #fff; font: 650 19px/1.25 var(--serif); }
+    .trace-detail p { margin: 0; color: #9eb0b4; font-size: 13px; line-height: 1.55; }
+
+    .code-card { max-width: 720px; margin: 30px 0; overflow: hidden; border: 1px solid #31444d; border-radius: 11px; background: #0e1b23; color: #dbe4e5; }
+    .code-head, .code-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 15px; }
+    .code-head > span, .code-foot > span { min-width: 0; overflow-wrap: anywhere; }
+    .code-foot { flex-wrap: wrap; }
+    .code-head { border-bottom: 1px solid #2b3d45; color: #96a9ae; font: 700 11px/1.2 var(--mono); }
+    .code-foot { border-top: 1px solid #2b3d45; color: #8ba0a5; font-size: 11px; }
+    .code-foot .source-link { color: var(--cyan-bright); }
+    .copy-button { flex: 0 0 auto; padding: 6px 9px; border: 1px solid #465a62; border-radius: 6px; background: #132630; color: #dbe5e7; font-size: 11px; font-weight: 800; }
+    .copy-button:hover { border-color: var(--cyan-bright); }
+    pre { margin: 0; padding: 21px; overflow-x: auto; font: 12px/1.72 var(--mono); tab-size: 2; }
+    pre code { font: inherit; color: inherit; }
+    .kw { color: #85d7ff; } .fn { color: #f0c36b; } .str { color: #8ed5b4; } .cm { color: #718b92; }
+
+    .layer-lab { max-width: 720px; margin: 34px 0; padding: 26px; border: 1px solid var(--line); border-radius: 13px; background: var(--paper-2); }
+    .lab-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; }
+    .lab-head span { color: var(--cyan); font: 800 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .lab-head h3 { margin: 8px 0 0; font-size: 25px; }
+    .lab-head small { max-width: 215px; color: var(--muted); font-size: 11px; line-height: 1.4; text-align: right; }
+    .layer-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 23px 0 17px; }
+    .layer-controls button { min-height: 48px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--sheet); font-size: 12px; font-weight: 850; }
+    .layer-controls button[aria-pressed="true"] { border-color: var(--cyan); background: var(--cyan); color: #fff; }
+    .layer-stack { display: grid; gap: 8px; }
+    .layer-band { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 14px; min-height: 68px; padding: 12px 15px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.47); opacity: .38; transition: opacity .2s, transform .2s; }
+    .layer-band.is-loaded { opacity: 1; background: var(--sheet); transform: translateX(3px); }
+    .layer-band b { font: 800 13px/1 var(--mono); }
+    .layer-band p { margin: 0; color: #485961; font-size: 13px; line-height: 1.42; }
+    .layer-band small { color: var(--muted); font: 700 10px/1 var(--mono); white-space: nowrap; }
+    .lab-output { display: flex; justify-content: space-between; gap: 20px; margin-top: 17px; padding-top: 17px; border-top: 1px solid var(--line); }
+    .lab-output p { margin: 0; color: #53636a; font-size: 12px; line-height: 1.45; }
+    .lab-output b { color: var(--ink); font: 800 17px/1 var(--mono); white-space: nowrap; }
+
+    .flow-row { display: flex; align-items: stretch; gap: 8px; max-width: 720px; margin: 28px 0; overflow-x: auto; padding-bottom: 9px; }
+    .flow-node { position: relative; flex: 0 0 132px; min-height: 110px; padding: 15px; border: 1px solid var(--line); border-radius: 9px; background: var(--sheet); }
+    .flow-node::after { content: "→"; position: absolute; right: -10px; top: 44px; color: #879398; font-weight: 900; }
+    .flow-node:last-child::after { display: none; }
+    .flow-node span { color: var(--cyan); font: 800 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .flow-node b { display: block; margin-top: 12px; font-size: 13px; }
+    .flow-node small { display: block; margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .flow-node.is-async { border-style: dashed; background: #faf2e7; }
+    .flow-node.is-risk { border-color: #dca79d; background: #fff8f6; }
+
+    .tree-panel { max-width: 720px; margin: 30px 0; padding: 24px; border: 1px solid #344a52; border-radius: 12px; background: var(--basalt); color: #dce5e6; overflow-x: auto; }
+    .tree-panel .tree-caption { color: #89a1a6; font-size: 12px; }
+    .uri-tree { min-width: 570px; margin: 20px 0 0; font: 12px/1.8 var(--mono); }
+    .uri-tree ul { margin: 0; padding-left: 23px; list-style: none; border-left: 1px solid #344c55; }
+    .uri-tree > ul { padding-left: 0; border-left: 0; }
+    .uri-tree li { position: relative; }
+    .uri-tree li::before { content: ""; position: absolute; left: -23px; top: 13px; width: 16px; border-top: 1px solid #344c55; }
+    .uri-tree > ul > li::before { display: none; }
+    .uri-tree code { color: #e2e9ea; }
+    .type-pill { display: inline-block; margin-left: 7px; padding: 3px 6px; border-radius: 999px; font: 800 8px/1 var(--sans); letter-spacing: .07em; text-transform: uppercase; }
+    .type-resource { background: #184a4b; color: #88e6d8; }
+    .type-memory { background: #58401e; color: #f4c778; }
+    .type-skill { background: #4b2930; color: #f1ada6; }
+    .type-internal { background: #263942; color: #a6b9bd; }
+
+    .architecture { max-width: 720px; margin: 34px 0; padding: 19px; border: 1px solid var(--line); border-radius: 13px; background: var(--paper-2); }
+    .arch-layer { display: grid; grid-template-columns: 95px 1fr; align-items: stretch; gap: 10px; }
+    .arch-layer + .arch-layer { margin-top: 8px; }
+    .arch-label { display: grid; place-items: center; border-radius: 7px; background: var(--basalt); color: #c7d5d7; font: 800 10px/1.3 var(--mono); text-align: center; }
+    .arch-cells { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .arch-cell { min-height: 61px; display: grid; place-items: center; padding: 10px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--sheet); color: #35474e; font-size: 11px; font-weight: 800; text-align: center; }
+    .arch-layer:nth-child(2) .arch-cell { border-color: #9dcfc7; background: var(--cyan-soft); }
+    .arch-layer:nth-child(3) .arch-cell { border-color: #e1bd91; background: var(--amber-soft); }
+
+    .timeline { position: relative; max-width: 720px; margin: 34px 0; padding-left: 28px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+    .timeline article { position: relative; display: grid; grid-template-columns: 70px 1fr; gap: 15px; padding: 0 0 27px; }
+    .timeline article::before { content: ""; position: absolute; left: -27px; top: 7px; width: 11px; height: 11px; border: 2px solid var(--cyan); border-radius: 50%; background: var(--sheet); }
+    .timeline time { color: var(--cyan); font: 800 11px/1.5 var(--mono); }
+    .timeline h3 { margin: 0 0 5px; font-size: 20px; }
+    .timeline p { margin: 0; color: #53636a; font-size: 13px; line-height: 1.55; }
+
+    .checklist { max-width: 720px; margin: 30px 0; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); }
+    .checklist-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 19px; }
+    .checklist-head span { color: var(--cyan); font: 800 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .checklist-head h3 { margin: 8px 0 0; font-size: 25px; }
+    .check-count { color: var(--muted); font: 800 12px/1 var(--mono); white-space: nowrap; }
+    .check-item { display: grid; grid-template-columns: 24px 1fr; gap: 11px; align-items: start; padding: 13px 0; border-top: 1px solid var(--line); cursor: pointer; }
+    .check-item input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--cyan); }
+    .check-item strong { display: block; font-size: 14px; }
+    .check-item small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .check-actions { display: flex; gap: 8px; margin-top: 17px; }
+    .check-actions button { padding: 9px 12px; border: 1px solid var(--line); border-radius: 7px; background: var(--sheet); font-size: 12px; font-weight: 800; }
+
+    .sources-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; max-width: 720px; margin: 28px 0; }
+    .source-card { display: block; min-height: 120px; padding: 18px; border: 1px solid var(--line); border-radius: 9px; background: var(--sheet); text-decoration: none; }
+    .source-card:hover { border-color: var(--cyan); transform: translateY(-1px); }
+    .source-card span { color: var(--cyan); font: 800 9px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .source-card strong { display: block; margin-top: 10px; font: 650 17px/1.3 var(--serif); }
+    .source-card small { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+
+    .trace-lens {
+      position: sticky;
+      top: var(--top);
+      height: calc(100vh - var(--top));
+      overflow-y: auto;
+      border-left: 1px solid var(--line);
+      background: rgba(235, 230, 218, .74);
+      padding: 28px 20px;
+    }
+    .lens-kicker { color: var(--cyan); font: 800 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .lens-title { margin: 11px 0 24px; font: 650 24px/1.14 var(--serif); }
+    .lens-block { padding: 17px 0; border-top: 1px solid var(--line); }
+    .lens-block span { font: 800 9px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .lens-block:nth-of-type(1) span { color: var(--cyan); }
+    .lens-block:nth-of-type(2) span { color: var(--coral); }
+    .lens-block:nth-of-type(3) span { color: var(--amber); }
+    .lens-block p { margin: 9px 0 0; color: #536168; font-size: 12px; line-height: 1.55; }
+    .lens-uri { margin-top: 22px; padding: 13px; border-radius: 8px; background: var(--basalt); color: #9dc2c4; font: 10px/1.5 var(--mono); overflow-wrap: anywhere; }
+
+    .mobile-drawer { position: fixed; z-index: 300; inset: 0; display: none; }
+    .mobile-drawer.is-open { display: block; }
+    .drawer-backdrop { position: absolute; inset: 0; border: 0; background: rgba(7,15,20,.58); }
+    .drawer-panel { position: absolute; top: 0; bottom: 0; left: 0; width: min(88vw, 340px); overflow-y: auto; background: var(--paper); box-shadow: 20px 0 70px rgba(7,15,20,.25); }
+    .drawer-head { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 17px 18px; border-bottom: 1px solid var(--line); background: rgba(243,240,232,.95); }
+    .drawer-head strong { font-size: 14px; }
+    .drawer-head button { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: var(--sheet); font-size: 18px; }
+    .drawer-nav { padding: 10px 12px 40px; }
+
+    .footer { padding: 45px 68px 55px; border-top: 1px solid var(--line); background: var(--basalt); color: #afbec1; }
+    .footer strong { color: #fff; }
+    .footer p { max-width: 680px; margin: 9px 0 0; font-size: 12px; line-height: 1.6; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 1220px) {
+      :root { --lens: 0px; }
+      .topbar { grid-template-columns: var(--rail) minmax(0, 1fr) 120px; }
+      .page-grid { grid-template-columns: var(--rail) minmax(0, 880px); }
+      .trace-lens { display: none; }
+    }
+    @media (max-width: 900px) {
+      :root { --rail: 0px; --top: 62px; }
+      .topbar { grid-template-columns: minmax(0, 1fr) auto; }
+      .brand { border-right: 0; padding-left: 16px; }
+      .brand-copy small { display: none; }
+      .top-chapter { display: none; }
+      .top-actions { border-left: 0; padding-right: 13px; }
+      .menu-button { display: block; }
+      .page-grid { display: block; padding-top: var(--top); }
+      .atlas-rail { display: none; }
+      main { width: 100%; box-shadow: none; }
+      .hero { min-height: auto; padding: 68px 38px 58px; }
+      .chapter { padding: 72px 38px 78px; }
+      .footer { padding-inline: 38px; }
+    }
+    @media (max-width: 620px) {
+      .brand-mark { width: 34px; height: 34px; flex-basis: 34px; }
+      .top-progress { display: none; }
+      .hero { padding: 56px 23px 50px; }
+      .hero h1 { font-size: clamp(49px, 16vw, 70px); }
+      .hero-deck { font-size: 18px; }
+      .loop-map { grid-template-columns: repeat(2, 1fr); }
+      .chapter { padding: 64px 23px 70px; }
+      .chapter h2 { font-size: 39px; }
+      .chapter-lede { font-size: 18px; }
+      .prose p, .prose li { font-size: 16.5px; }
+      .card-grid, .sources-list { grid-template-columns: 1fr; }
+      .invariant-strip { grid-template-columns: 1fr; }
+      .invariant-strip article { min-height: 0; }
+      .layer-lab, .trace-body, .checklist { padding: 19px; }
+      .lab-head { align-items: start; flex-direction: column; }
+      .lab-head small { max-width: none; text-align: left; }
+      .layer-controls { grid-template-columns: 1fr; }
+      .layer-band { grid-template-columns: 48px 1fr; }
+      .layer-band small { grid-column: 2; }
+      .lab-output { flex-direction: column; gap: 9px; }
+      .arch-layer { grid-template-columns: 1fr; }
+      .arch-label { min-height: 36px; }
+      .arch-cells { grid-template-columns: repeat(2, 1fr); }
+      .timeline article { grid-template-columns: 55px 1fr; }
+      .footer { padding-inline: 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+    @media print {
+      .topbar, .progress-line, .atlas-rail, .trace-lens, .mobile-drawer, .copy-button, .check-actions { display: none !important; }
+      body { background: #fff; }
+      .page-grid { display: block; padding: 0; }
+      main { width: 100%; box-shadow: none; }
+      .hero { min-height: 0; color: #111; background: #fff; padding: 50px 0; }
+      .hero h1 em, .eyebrow { color: #111; }
+      .hero-deck, .hero-meta span { color: #333; }
+      .hero-meta span { border-color: #999; }
+      .hero-actions, .hero::after { display: none; }
+      .loop-map { color: #111; background: #ddd; }
+      .loop-step { background: #fff; }
+      .loop-step b, .loop-step small { color: #111; }
+      .chapter { padding: 52px 0; break-before: page; }
+      .code-card, .tree-panel, .trace-console { break-inside: avoid; }
+      a { text-decoration: none; }
+    }
+  </style>
+  <link rel="canonical" href="https://stuff.zaynjarvis.com/openviking-context-atlas/" />
+  <meta property="og:url" content="https://stuff.zaynjarvis.com/openviking-context-atlas/" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to the field guide</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="OpenViking field guide home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>OpenViking</strong><small>Context field guide</small></span>
+    </a>
+    <div class="top-chapter"><b>00</b><span>Context has a place</span></div>
+    <div class="top-actions">
+      <span class="top-progress">0%</span>
+      <button class="menu-button" type="button" data-action="open-menu" aria-haspopup="dialog" aria-expanded="false">Chapters</button>
+    </div>
+  </header>
+  <div class="progress-line" aria-hidden="true"></div>
+
+  <div class="page-grid">
+    <aside class="atlas-rail" aria-label="Field guide chapters">
+      <div class="rail-intro"><span>Atlas route</span><p>One context asset, traced from source to retrieval to durable memory.</p></div>
+      <nav class="atlas-nav" data-nav>
+        <a href="#top" class="is-active"><span class="nav-no">00</span><span>Context has a place</span></a>
+        <a href="#context-stack"><span class="nav-no">01</span><span>The context stack</span></a>
+        <a href="#address-space"><span class="nav-no">02</span><span>Give context an address</span></a>
+        <a href="#progressive-depth"><span class="nav-no">03</span><span>Progressive depth</span></a>
+        <a href="#write-path"><span class="nav-no">04</span><span>Write: compile the source</span></a>
+        <a href="#read-path"><span class="nav-no">05</span><span>Read: retrieval is navigation</span></a>
+        <a href="#memory-path"><span class="nav-no">06</span><span>Remember: commit the session</span></a>
+        <a href="#runtime-map"><span class="nav-no">07</span><span>The runtime map</span></a>
+        <a href="#production"><span class="nav-no">08</span><span>Production boundaries</span></a>
+        <a href="#lineage"><span class="nav-no">09</span><span>The field around it</span></a>
+        <a href="#build"><span class="nav-no">10</span><span>Build with judgment</span></a>
+        <a href="#sources"><span class="nav-no">↗</span><span>Sources &amp; audit</span></a>
+      </nav>
+    </aside>
+
+    <main id="main-content">
+      <section class="hero" id="top" data-title="Context has a place" data-no="00" data-uri="viking://" data-invariant="The model context is a temporary view; the context system is the durable substrate." data-risk="More stored text can create more noise, latency, and stale state—not more intelligence." data-diagnostic="Ask where each useful fact lives, who owns it, what resolution is loaded, and how its next update is audited.">
+        <p class="eyebrow">A source-backed field guide</p>
+        <h1>Context has<br><em>a place.</em></h1>
+        <p class="hero-deck">A larger context window is not a memory system. OpenViking’s stronger idea is to make what an agent knows <strong>addressable, layered, retrievable, and able to evolve</strong>—without hiding the path from source to prompt.</p>
+        <div class="hero-meta">
+          <span>Reviewed at 1a01a30</span>
+          <span>v0.4.9 + 4 commits</span>
+          <span>13 Jul 2026</span>
+          <span>~26 min</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button-primary" href="#context-stack">Begin the trace ↓</a>
+          <a class="button-ghost" href="#runtime-map">Jump to implementation</a>
+        </div>
+        <div class="loop-map" aria-label="The end-to-end context loop">
+          <div class="loop-step"><span>01</span><b>Ingest</b><small>Accept files, URLs, code, media</small></div>
+          <div class="loop-step"><span>02</span><b>Organize</b><small>Build a durable URI tree</small></div>
+          <div class="loop-step"><span>03</span><b>Compile</b><small>Derive L0/L1 and vectors</small></div>
+          <div class="loop-step"><span>04</span><b>Retrieve</b><small>Find promising branches</small></div>
+          <div class="loop-step"><span>05</span><b>Load</b><small>Read only useful depth</small></div>
+          <div class="loop-step"><span>06</span><b>Use</b><small>Assemble model context</small></div>
+          <div class="loop-step"><span>07</span><b>Commit</b><small>Archive the interaction</small></div>
+          <div class="loop-step"><span>08</span><b>Remember</b><small>Patch durable state</small></div>
+        </div>
+      </section>
+
+      <section class="chapter" id="context-stack" data-title="The context stack" data-no="01" data-uri="inference://temporary-view" data-invariant="Context engineering selects the smallest high-signal working set for the next inference." data-risk="Treating RAG, memory, and context assembly as synonyms hides different write and failure paths." data-diagnostic="For every token entering the model, name its source, selection policy, lifetime, and update owner.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 01 · ORIENTATION</span>
+          <h2>A long context window is not a memory system.</h2>
+          <p class="chapter-lede">The window is where the model thinks now. A context system decides what can be known, where it lives, what should enter that window, and what survives afterward.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>Context engineering is the parent discipline. Retrieval is one read path. Memory adds a write path and a lifecycle.</p>
+        </div>
+
+        <div class="prose">
+          <p>An agent loop produces a growing universe of possible context: instructions, tools, repository files, customer facts, message history, intermediate results, and lessons from prior runs. Putting all of it into the next call is not neutral. Attention has a budget, stale details compete with current evidence, and a relevant fact can be present yet effectively invisible.</p>
+          <p>Anthropic’s useful formulation is to optimize the utility of the tokens used for each inference. That reframes the problem from “How large is the window?” to “What is the smallest, highest-signal working set that makes the desired behavior likely?” <a class="source-link" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Context engineering ↗</a></p>
+        </div>
+
+        <div class="card-grid">
+          <article class="concept-card"><span class="card-label">Inference surface</span><h3>Prompt &amp; context window</h3><p>The temporary material visible to the model for one call: instructions, messages, tool descriptions, and retrieved evidence.</p><code>ephemeral · token-bounded</code></article>
+          <article class="concept-card"><span class="card-label">Read mechanism</span><h3>Retrieval-augmented generation</h3><p>A retriever selects non-parametric evidence for generation. It answers “what evidence should I fetch?”—not the whole lifecycle.</p><code>retrieve → condition → generate</code></article>
+          <article class="concept-card"><span class="card-label">Persistent state</span><h3>Agent memory</h3><p>Interaction-derived state that can survive, be recalled, revised, merged, or forgotten. Persistence alone does not make its contents true.</p><code>write · update · recall · delete</code></article>
+          <article class="concept-card"><span class="card-label">Control plane</span><h3>Context database</h3><p>An address space and lifecycle for heterogeneous context assets, plus deterministic and semantic ways to locate and inspect them.</p><code>assets · scope · depth · policy</code></article>
+        </div>
+
+        <div class="prose">
+          <h3>The systems question is larger than top-k</h3>
+          <p>The original RAG architecture joined a generator to explicit non-parametric memory through retrieval. That remains foundational. OpenViking does not eliminate it; it asks what must exist around it: stable addresses, typed assets, hierarchy, progressive representations, session state, write policy, ownership, and an audit trail. <a class="source-link" href="https://papers.nips.cc/paper_files/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html" target="_blank" rel="noopener">RAG, NeurIPS 2020 ↗</a></p>
+          <p>A clean separation helps: <strong>retrieval</strong> proposes candidates, <strong>context assembly</strong> decides what representation to load under a budget, and <strong>memory management</strong> decides what interaction-derived state to preserve or change. One product may perform all three, but they should still be evaluated independently.</p>
+        </div>
+
+        <div class="claim-note"><strong>A precise advocate claim:</strong> OpenViking is interesting because it connects the read, manage, and write loops behind an inspectable address space—not because vectors or summaries are new by themselves.</div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>The context window is a temporary projection, not the durable knowledge substrate.</p></article>
+          <article><span>Failure pattern</span><p>“Add memory” becomes “append more text,” and later calls receive a noisy historical dump.</p></article>
+          <article><span>Diagnostic</span><p>Trace every token to a source, selection rule, lifetime, and update owner.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="address-space" data-title="Give context an address" data-no="02" data-uri="viking://{scope}/{path}" data-invariant="A URI names a durable context asset independently of whether it is currently in the model window." data-risk="A directory tree can be mistaken for an ontology or for access control." data-diagnostic="Check asset type, canonical owner scope, representation level, and authorization separately.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 02 · DATA MODEL</span>
+          <h2>Give context an address.</h2>
+          <p class="chapter-lede">Anonymous chunks can be similar. Addressed context can also be browsed, scoped, cited, updated, moved, inspected, and deliberately loaded.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p><code>viking://</code> is not decoration. It gives context a canonical, navigable location.</p>
+        </div>
+
+        <div class="tree-panel">
+          <div class="tree-caption">A simplified public namespace · addresses shown, physical storage hidden</div>
+          <div class="uri-tree" aria-label="Simplified Viking URI tree">
+            <ul>
+              <li><code>viking://</code>
+                <ul>
+                  <li><code>resources/openviking/</code><span class="type-pill type-resource">Resource</span>
+                    <ul><li><code>docs/architecture.md</code></li><li><code>openviking/retrieve/</code></li></ul>
+                  </li>
+                  <li><code>user/{user_id}/</code>
+                    <ul>
+                      <li><code>memories/preferences/</code><span class="type-pill type-memory">Memory</span></li>
+                      <li><code>memories/experiences/</code><span class="type-pill type-memory">Memory</span></li>
+                      <li><code>sessions/{session_id}/</code><span class="type-pill type-internal">Session</span></li>
+                      <li><code>skills/code-review/</code><span class="type-pill type-skill">Skill</span></li>
+                      <li><code>peers/{peer_id}/</code><span class="type-pill type-internal">Peer scope</span></li>
+                    </ul>
+                  </li>
+                  <li><code>agent/skills/</code><span class="type-pill type-skill">Shared skill</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <article class="concept-card"><span class="card-label">What you provide</span><h3>Resource</h3><p>Objective or project knowledge: documents, code, media, rules, and reference material. Usually added intentionally and changed externally.</p><code>viking://resources/…</code></article>
+          <article class="concept-card"><span class="card-label">What interaction teaches</span><h3>Memory</h3><p>Durable user- or execution-relevant state derived from sessions: events, preferences, entities, experiences, tools, and more.</p><code>viking://user/…/memories/…</code></article>
+          <article class="concept-card"><span class="card-label">How the agent acts</span><h3>Skill</h3><p>Declarable capability or workflow context. Definitions are relatively stable; usage experience can become memory.</p><code>viking://user/…/skills/…</code></article>
+          <article class="concept-card"><span class="card-label">Not public content types</span><h3>Session &amp; internals</h3><p>Sessions, queues, temporary parsing state, and upload state support the lifecycle but are not a fourth public context family.</p><code>messages · history · queues</code></article>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>openviking/core/context.py · the two independent enums</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code><span class="kw">class</span> <span class="fn">ContextType</span>(str, Enum):
+    SKILL = <span class="str">"skill"</span>
+    MEMORY = <span class="str">"memory"</span>
+    RESOURCE = <span class="str">"resource"</span>
+
+<span class="kw">class</span> <span class="fn">ContextLevel</span>(int, Enum):
+    ABSTRACT = 0   <span class="cm"># L0</span>
+    OVERVIEW = 1   <span class="cm"># L1</span>
+    DETAIL = 2     <span class="cm"># L2</span></code></pre>
+          <div class="code-foot"><span>Verbatim excerpt · reviewed commit</span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/core/context.py#L26-L39" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+
+        <div class="prose">
+          <h3>Four axes, not one taxonomy</h3>
+          <p>Asset type and representation depth are only two axes. Ownership scope and cognitive role answer different questions. Keeping them independent prevents the common mistake of reading L0/L1/L2 as short-, medium-, and long-term memory.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Axis</th><th>Question</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Asset semantics</strong></td><td>What kind of thing is this?</td><td>Resource, Memory, Skill</td></tr>
+              <tr><td><strong>Representation depth</strong></td><td>How much is loaded?</td><td>L0 abstract, L1 overview, L2 detail</td></tr>
+              <tr><td><strong>Scope &amp; lifecycle</strong></td><td>Who owns it, and for how long?</td><td>Account-shared resources, current user, peer, shared agent skill, session</td></tr>
+              <tr><td><strong>Cognitive role</strong></td><td>How will the agent use it?</td><td>Working, episodic, semantic, procedural</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <h3>A filesystem is a navigation model, not an ontology</h3>
+          <p>Paths preserve neighborhood, naming, and deterministic location. They are especially useful for just-in-time exploration: an agent can inspect a directory, read its overview, then descend. Moving an asset changes its URI and requires relation and index maintenance; the address is canonical location, not immutable object identity. A tree also cannot naturally express every many-to-many relationship, so links, metadata, or a graph remain useful for cross-cutting semantics.</p>
+          <p>Likewise, a namespace is not authorization by itself. Current code canonicalizes a user root and constrains visible roots, while storage queries also inject tenant filters. Ownership policy—not the string prefix alone—protects isolation. <a class="source-link" href="https://docs.openviking.ai/en/concepts/04-viking-uri" target="_blank" rel="noopener">Viking URI ↗</a></p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>The URI identifies an asset even when only a summary—or nothing—is in the current prompt.</p></article>
+          <article><span>Failure pattern</span><p>Teams assume a directory is a complete ontology or that a URI prefix is sufficient access control.</p></article>
+          <article><span>Diagnostic</span><p>Inspect type, representation, canonical owner, and authorization as separate fields.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="progressive-depth" data-title="Progressive depth" data-no="03" data-uri="viking://resources/project/{L0|L1|L2}" data-invariant="L0, L1, and L2 are different resolutions of an asset, not different memory lifetimes." data-risk="A generated summary can omit the exact fact needed for a precise answer." data-diagnostic="Use summaries to decide where to look; read L2 before making precision-sensitive claims.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 03 · REPRESENTATION</span>
+          <h2>Do not pay full detail before relevance is known.</h2>
+          <p class="chapter-lede">OpenViking materializes multiple semantic resolutions so an agent can scan cheaply, navigate with context, and open the source only when precision warrants it.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>L0 says “is this neighborhood promising?” L1 says “where inside should I go?” L2 answers from the source.</p>
+        </div>
+
+        <div class="layer-lab" data-layer-lab>
+          <div class="lab-head"><div><span>Simplified teaching model</span><h3>Progressive disclosure lab</h3></div><small>Counts illustrate one hypothetical asset. They are not measured OpenViking costs or contractual limits.</small></div>
+          <div class="layer-controls" role="group" aria-label="Choose context depth">
+            <button type="button" data-depth="0" aria-pressed="true">Scan · L0 only</button>
+            <button type="button" data-depth="1" aria-pressed="false">Navigate · through L1</button>
+            <button type="button" data-depth="2" aria-pressed="false">Verify · through L2</button>
+          </div>
+          <div class="layer-stack">
+            <div class="layer-band is-loaded" data-layer="0"><b>L0</b><p>“OpenViking retrieval uses typed targets and optional recursive directory search.”</p><small>~46 tokens</small></div>
+            <div class="layer-band" data-layer="1"><b>L1</b><p>Module map, main classes, entry points, and directions to the exact implementation files.</p><small>+264 tokens</small></div>
+            <div class="layer-band" data-layer="2"><b>L2</b><p>Source files, tests, comments, configuration, and every line required to verify behavior.</p><small>+1,930 tokens</small></div>
+          </div>
+          <div class="lab-output"><p data-layer-message>Enough to rank a neighborhood, not enough to explain the algorithm.</p><b data-layer-total>~46 tokens</b></div>
+        </div>
+
+        <div class="prose">
+          <p>The official model describes L0 as a short abstract used for quick filtering, L1 as a navigational overview, and L2 as original detail. Directory semantics are generated bottom-up: child information helps describe its parent. This makes navigation metadata useful context in its own right. <a class="source-link" href="https://docs.openviking.ai/en/concepts/03-context-layers" target="_blank" rel="noopener">Context layers ↗</a></p>
+          <p>The design resonates with hierarchical retrieval research such as RAPTOR, which also retrieves across multiple abstraction levels. The mechanism is different: RAPTOR builds a semantic tree through clustering and recursive summarization; OpenViking generally works over a resource or directory tree and writes explicit semantic sidecars. Similar intuition does not make them the same system. <a class="source-link" href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/8a2acd174940dbca361a6398a4f9df91-Abstract-Conference.html" target="_blank" rel="noopener">RAPTOR, ICLR 2024 ↗</a></p>
+        </div>
+
+        <div class="claim-note"><strong>Version note:</strong> documentation alternates between roughly 1k and roughly 2k tokens when describing L1. Treat these as design targets, not a durable API contract. The artifact’s lab uses its own clearly labeled example counts.</div>
+
+        <div class="prose">
+          <h3>The summary is a map, not evidence of every street</h3>
+          <p>Every abstraction can hide a boundary condition, qualifier, or exact value. The safe pattern is progressive: use L0 to shortlist, L1 to navigate, and L2 to support the final precision-sensitive claim. The wrong pattern is to cite a generated overview as if it were the source.</p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Layers express resolution. The same asset can be encountered at L0, L1, or L2.</p></article>
+          <article><span>Failure pattern</span><p>A concise summary looks authoritative and silently drops the one exception that matters.</p></article>
+          <article><span>Diagnostic</span><p>Use summaries for routing; open the source for exact claims and irreversible actions.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="write-path" data-title="Write: compile the source" data-no="04" data-uri="input → AGFS → semantic views → vector index" data-invariant="Durable content is written before fallible semantic materialization and indexing finish." data-risk="An accepted resource can exist in storage while its summaries or vectors are not search-ready." data-diagnostic="Track source persistence and semantic readiness as different states; use wait or task status when freshness matters.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 04 · INGESTION</span>
+          <h2>Write once. Compile several views.</h2>
+          <p class="chapter-lede">The ingestion path behaves like a compiler: preserve the source tree first, then derive summaries and search records asynchronously.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>OpenViking separates what must not be lost from what can be rebuilt.</p>
+        </div>
+
+        <div class="flow-row" aria-label="Resource ingestion flow">
+          <div class="flow-node"><span>Request</span><b>Add resource</b><small>URL, file, directory, code, media</small></div>
+          <div class="flow-node"><span>Structure</span><b>Parser + TreeBuilder</b><small>Media parsers may invoke a VLM</small></div>
+          <div class="flow-node"><span>Source truth</span><b>Persist to AGFS</b><small>URI tree becomes durable</small></div>
+          <div class="flow-node is-async"><span>Async</span><b>SemanticQueue</b><small>Bottom-up L0/L1 generation</small></div>
+          <div class="flow-node is-async"><span>Async</span><b>EmbeddingQueue</b><small>Materialize index records</small></div>
+        </div>
+
+        <div class="prose">
+          <p><code>ResourceService.add_resource()</code> validates the target and starts processing. Parsers convert the source into a temporary structured tree. Under a destination lock, the resource processor persists files and rewrites references, then hands semantic work to the queue. The semantic processor generates directory views bottom-up; a separate embedding queue writes L0, L1, and L2 search records.</p>
+          <p>This separation is an operational choice, not only a diagram. Model calls and vector services can be slow or unavailable. Keeping source content durable before derived views complete lets the system recover and reindex. It also creates eventual consistency: <strong>accepted is not the same as searchable</strong>.</p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>Minimal embedded quickstart · current public API</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code><span class="kw">import</span> openviking <span class="kw">as</span> ov
+
+client = ov.OpenViking(path=<span class="str">"./openviking-data"</span>)
+client.initialize()
+
+added = client.add_resource(
+    path=<span class="str">"https://github.com/volcengine/OpenViking"</span>,
+    wait=<span class="kw">True</span>,  <span class="cm"># request-scoped completion barrier</span>
+)
+<span class="kw">if</span> <span class="fn">any</span>(stage[<span class="str">"error_count"</span>]
+       <span class="kw">for</span> stage <span class="kw">in</span> added[<span class="str">"queue_status"</span>].values()):
+    <span class="kw">raise</span> RuntimeError(added[<span class="str">"queue_status"</span>])
+hits = client.find(<span class="str">"How does hierarchical retrieval work?"</span>,
+                   target_uri=added[<span class="str">"root_uri"</span>])</code></pre>
+          <div class="code-foot"><span>Adapted from the repository quickstart</span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/docs/en/getting-started/02-quickstart.md" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+
+        <div class="prose">
+          <h3>The storage invariant</h3>
+          <p>OpenViking’s transaction guide says the filesystem is the source of truth and the vector database is a derived index. A missing index entry can be rebuilt; lost source content cannot. That is why the architecture prefers a temporarily missed result over an inconsistent one. <a class="source-link" href="https://docs.openviking.ai/en/concepts/09-transaction" target="_blank" rel="noopener">Transactions ↗</a></p>
+          <p>The index is richer than “one vector per chunk.” Current records carry URI, context type, level, dense and optional sparse data, ownership, timestamps, usage metadata, and optional full text. The code can feed different text to embeddings and lexical retrieval, preserving raw text for BM25 while using summary-oriented input for semantic recall.</p>
+        </div>
+
+        <div class="claim-note risk-note"><strong>Failure boundary:</strong> enqueue or setup failures may appear as resource warnings; failures after enqueue appear in request or queue status. In either case, a durable tree may already exist while a derived semantic stage has failed. <code>wait=True</code> is a completion barrier only when the caller also inspects every queue group’s <code>error_count</code>.</div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>AGFS content is source truth; summaries and vector records are materialized views.</p></article>
+          <article><span>Failure pattern</span><p>The API returns success, then an immediate search misses a resource still moving through queues.</p></article>
+          <article><span>Diagnostic</span><p>Observe persistence and semantic readiness separately; wait or poll when freshness is required.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="read-path" data-title="Read: retrieval is navigation" data-no="05" data-uri="find | search → TypedQuery → retrieve → MatchedContext" data-invariant="The recursive directory algorithm is the THINKING path; without a configured reranker the default is QUICK flat tenant search." data-risk="A marketing diagram can overstate the path actually taken in a given configuration." data-diagnostic="Record mode, targets, planner output, reranker use, traversed branches, scores, and final loaded URIs.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 05 · RETRIEVAL</span>
+          <h2>Retrieval is navigation—when the runtime is equipped to navigate.</h2>
+          <p class="chapter-lede">The source contains both a fast vector path and a recursive directory path. Which one runs depends on configuration, query type, and whether reranking is available.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p><code>find</code> is one direct question. <code>search</code> can plan from session context. The retriever then chooses QUICK or THINKING.</p>
+        </div>
+
+        <div class="trace-console" data-trace-console>
+          <div class="trace-tabs" role="tablist" aria-label="Implementation pipelines">
+            <button id="pipeline-ingest" type="button" role="tab" data-pipeline="ingest" aria-controls="pipeline-panel" aria-selected="false" tabindex="-1">Ingest</button>
+            <button id="pipeline-retrieve" type="button" role="tab" data-pipeline="retrieve" aria-controls="pipeline-panel" aria-selected="true">Retrieve</button>
+            <button id="pipeline-remember" type="button" role="tab" data-pipeline="remember" aria-controls="pipeline-panel" aria-selected="false" tabindex="-1">Remember</button>
+          </div>
+          <div class="trace-body" id="pipeline-panel" role="tabpanel" aria-labelledby="pipeline-retrieve">
+            <div class="trace-caption"><strong data-trace-title>Retrieve · context-aware search</strong><span>Faithful implementation walkthrough</span></div>
+            <div class="trace-stages" data-trace-stages aria-label="Pipeline stages"></div>
+            <div class="trace-detail" data-trace-detail aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Entry</th><th>Planning input</th><th>Best use</th><th>Important correction</th></tr></thead>
+            <tbody>
+              <tr><td><code>find()</code></td><td>One query plus explicit/default target roots</td><td>Direct, stateless lookup</td><td>Still uses <code>HierarchicalRetriever</code>; the runtime mode decides flat versus recursive behavior.</td></tr>
+              <tr><td><code>search()</code></td><td>Can include archive overview, current messages, and target abstract</td><td>Conversational or ambiguous lookup</td><td>Session material is optional. Without it, search falls back to a direct typed query.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <h3>What THINKING actually does</h3>
+          <ol>
+            <li>Embed the query once and resolve policy-approved target roots.</li>
+            <li>Globally search L0/L1 records for promising starting points.</li>
+            <li>Rerank directory abstracts when a reranker is configured.</li>
+            <li>Use a priority queue to expand immediate children in bounded parallel batches.</li>
+            <li>Blend child relevance with the parent score, deduplicate by URI, and recurse only through directory-level results.</li>
+            <li>Stop after repeated top-k convergence or search stagnation, then return typed matches.</li>
+          </ol>
+          <p>This is not the only path. QUICK performs one tenant-scoped vector search. The retriever defaults to QUICK when no reranker is available, THINKING when one is, and QUICK/L2 for image queries.</p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>openviking/retrieve/hierarchical_retriever.py · mode selection</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code><span class="kw">if</span> mode <span class="kw">is</span> <span class="kw">None</span>:
+    mode = (RetrieverMode.QUICK
+            <span class="kw">if not</span> self._rerank_client
+            <span class="kw">else</span> RetrieverMode.THINKING)
+<span class="kw">if</span> image_query:
+    mode = RetrieverMode.QUICK
+    <span class="kw">if</span> level <span class="kw">is</span> <span class="kw">None</span>:
+        level = [2]</code></pre>
+          <div class="code-foot"><span>Verbatim excerpt · reviewed commit</span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/retrieve/hierarchical_retriever.py#L119-L124" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+
+        <div class="prose">
+          <h3>Retrieval is still not assembled context</h3>
+          <p>A matched context can carry URI, type, level, abstract, score, and other metadata. The integration still decides whether to use the abstract, open an overview, read full content, cite it, and how much budget to allocate. A high score is an invitation to inspect—not permission to overfill the prompt.</p>
+        </div>
+
+        <div class="claim-note risk-note"><strong>Source correction:</strong> the current retriever converts matched contexts with an empty <code>relations</code> list. Documentation that suggests relation expansion in the main retrieval result is ahead of this reviewed implementation path.</div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Recursive traversal is the configured THINKING path, not an unconditional property of every query.</p></article>
+          <article><span>Failure pattern</span><p>A team believes hierarchy is active while its deployment is running flat QUICK retrieval.</p></article>
+          <article><span>Diagnostic</span><p>Capture mode, planner, targets, reranker, traversed branches, scores, and loaded URIs in one trace.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="memory-path" data-title="Remember: commit the session" data-no="06" data-uri="viking://user/{user}/sessions/{session}/history/" data-invariant="Commit archives durable evidence first, then compiles memory in a background phase." data-risk="A completed archive can coexist with partial or failed semantic and memory outputs." data-diagnostic="Poll the commit task, inspect the archive and memory_diff, and never equate task acceptance with searchable memory.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 06 · SESSION MEMORY</span>
+          <h2>A transcript becomes memory only after policy.</h2>
+          <p class="chapter-lede">OpenViking’s commit path is not “save the chat.” It snapshots evidence, derives summaries, consults existing memory, and applies structured changes to durable state.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>Memory is a compiler output. The session archive is its provenance.</p>
+        </div>
+
+        <div class="flow-row" aria-label="Session commit flow">
+          <div class="flow-node"><span>Live</span><b>Messages &amp; tools</b><small>Current interaction evidence</small></div>
+          <div class="flow-node"><span>Inline · locked</span><b>Archive first</b><small>Split retained tail, persist history</small></div>
+          <div class="flow-node is-async"><span>Background</span><b>Summarize</b><small>Generate archive semantic views</small></div>
+          <div class="flow-node is-async"><span>Background</span><b>Extract &amp; resolve</b><small>Read/search existing memory</small></div>
+          <div class="flow-node is-async"><span>Audit</span><b>Patch + diff</b><small>Write changes, index, mark done</small></div>
+        </div>
+
+        <div class="prose">
+          <p>Phase 1 holds an exact session-path lock. It snapshots the messages to archive, keeps the configured recent tail live, creates a tracked task, and returns. Phase 2 runs in the background: hydrate large tool results, generate archive summaries, extract long-term and execution-derived memory, apply structured operations, write <code>memory_diff.json</code>, and place the completion marker last.</p>
+          <p>The durable-first boundary matters. A crash after archival does not erase the evidence. A pending redo record can retry long-term-memory extraction after an abrupt interruption; it is not a full replay of Phase 2. The phase is not atomic: summary, memory, and execution tasks can succeed or fail independently, and successful sibling outputs are not rolled back.</p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>openviking/session/session.py · the two-phase contract</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code><span class="str">"""Async commit session: archive immediately,
+extract memories in background.
+
+Phase 1: split messages, persist the archive,
+         retain the requested live tail under a path lock.
+Phase 2: run memory extraction in a background task.
+
+Returns a task_id for tracking Phase 2 progress.
+"""</span></code></pre>
+          <div class="code-foot"><span>Faithful condensation of the source docstring</span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/session/session.py#L1085-L1108" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+
+        <div class="prose">
+          <h3>Current memory is schema-driven</h3>
+          <p>The v3 compressor loads memory types from YAML, constructs a context provider over the archive and existing memory, and runs a bounded extraction loop that can search and read before proposing additions, patches, links, or deletes. Mergeable updates can be batched; append-only operations can be applied immediately.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Explanatory role</th><th>Enabled schemas in the reviewed snapshot</th><th>Caveat</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Working evidence</strong></td><td>Live messages, completed archive views</td><td>The actual model working set is assembled by the integration.</td></tr>
+              <tr><td><strong>Episodic</strong></td><td><code>events</code>, <code>cases</code>, <code>trajectories</code></td><td>An extracted summary is a lossy representation of the episode.</td></tr>
+              <tr><td><strong>Semantic / personal</strong></td><td><code>entities</code>, <code>profile</code>, <code>preferences</code></td><td>Operational schemas, not claims of biological equivalence.</td></tr>
+              <tr><td><strong>Procedural</strong></td><td><code>experiences</code>, <code>tools</code>, <code>skills</code></td><td>Executable procedures require stronger safety than prose guidance.</td></tr>
+              <tr><td><strong>Identity / constitutional</strong></td><td><code>identity</code>, <code>soul</code></td><td>High-impact state needs especially explicit ownership and review.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="claim-note"><strong>Code beats a stale category table:</strong> the reviewed bundle contains eleven enabled schemas. The official session page still shows an older fixed eight-category pipeline, including <code>patterns</code>, which has no bundled schema in this snapshot. Treat types as a versioned registry, not timeless product copy.</div>
+
+        <div class="code-card">
+          <div class="code-head"><span>Example audit output · memory_diff.json</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code>{
+  <span class="str">"archive_uri"</span>: <span class="str">"viking://user/alice/sessions/s-42/history/archive_003"</span>,
+  <span class="str">"operations"</span>: {
+    <span class="str">"adds"</span>: [{<span class="str">"uri"</span>: <span class="str">"…/events/release.md"</span>}],
+    <span class="str">"updates"</span>: [{
+      <span class="str">"uri"</span>: <span class="str">"…/preferences/coding.md"</span>,
+      <span class="str">"before"</span>: <span class="str">"Prefer terse status updates."</span>,
+      <span class="str">"after"</span>: <span class="str">"Prefer decision-first status updates."</span>
+    }],
+    <span class="str">"deletes"</span>: []
+  }
+}</code></pre>
+          <div class="code-foot"><span>Illustrative shape; values are fictional</span><a class="source-link" href="https://docs.openviking.ai/en/concepts/08-session#memory-diff" target="_blank" rel="noopener">documented format ↗</a></div>
+        </div>
+
+        <div class="prose">
+          <h3>Use is feedback, not truth</h3>
+          <p><code>session.used()</code> records which URIs helped the current run. After successful Phase 2 processing, OpenViking links the session to those assets and increments their <code>active_count</code>. THINKING retrieval may blend that hotness signal with semantic relevance when <code>hotness_alpha</code> is enabled; QUICK does not. This closes a useful “retrieve → use → remember → retrieve” loop—but popularity remains a ranking signal, never evidence that the content is correct.</p>
+
+          <h3>Compression, consolidation, and reflection are different</h3>
+          <ul>
+            <li><strong>Compression</strong> reduces representation size while trying to preserve important state.</li>
+            <li><strong>Consolidation</strong> turns many observations into more stable summaries, entity state, or patterns.</li>
+            <li><strong>Reflection</strong> generates a higher-level lesson or inference from experience.</li>
+          </ul>
+          <p>OpenViking’s commit path performs application-layer consolidation. “Self-evolving” means external state changes and conditions later inference. It does <strong>not</strong> mean the base model’s weights changed, the lesson is verified truth, or the core <code>Session</code> will auto-commit at a token threshold. In this snapshot, integrations trigger commit explicitly.</p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Raw evidence is archived before background memory compilation can fail.</p></article>
+          <article><span>Failure pattern</span><p>Task acceptance is shown as “memory saved,” even though extraction remains pending or partial.</p></article>
+          <article><span>Diagnostic</span><p>Poll task state; inspect archive, completion marker, and memory diff; test the next recall.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="runtime-map" data-title="The runtime map" data-no="07" data-uri="Client → Service → engines → storage" data-invariant="Transports delegate to a shared service composition root, keeping business behavior below REST, CLI, and MCP." data-risk="Calling the filesystem metaphor the implementation can hide queues, model providers, indexes, locks, and tenant policy." data-diagnostic="Trace a public call across transport, service, engine, source storage, derived index, and background work.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 07 · CORE IMPLEMENTATION</span>
+          <h2>The filesystem is the interface. The runtime is a service graph.</h2>
+          <p class="chapter-lede">At the center, <code>OpenVikingService</code> wires business services to storage, queues, models, processors, identity, and operational controls.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>The architecture earns depth by hiding machinery behind a small vocabulary: add, browse, find, search, read, session, commit.</p>
+        </div>
+
+        <div class="architecture" aria-label="OpenViking runtime architecture">
+          <div class="arch-layer"><div class="arch-label">ENTRY</div><div class="arch-cells"><div class="arch-cell">Embedded Python</div><div class="arch-cell">HTTP SDK / REST</div><div class="arch-cell">Rust CLI</div><div class="arch-cell">MCP / integrations</div></div></div>
+          <div class="arch-layer"><div class="arch-label">SERVICE</div><div class="arch-cells"><div class="arch-cell">FSService</div><div class="arch-cell">SearchService</div><div class="arch-cell">ResourceService</div><div class="arch-cell">SessionService</div></div></div>
+          <div class="arch-layer"><div class="arch-label">ENGINES</div><div class="arch-cells"><div class="arch-cell">VikingFS</div><div class="arch-cell">Retrieve + rerank</div><div class="arch-cell">Parse + semantic DAG</div><div class="arch-cell">Memory compiler</div></div></div>
+          <div class="arch-layer"><div class="arch-label">FABRIC</div><div class="arch-cells"><div class="arch-cell">AGFS content</div><div class="arch-cell">Vector index</div><div class="arch-cell">QueueManager</div><div class="arch-cell">Locks + redo</div></div></div>
+        </div>
+
+        <div class="prose">
+          <p>The composition root first initializes configuration, process and path locks, AGFS bindings, queues, the vector manager, and an embedder. During asynchronous initialization it creates the shared context collection, builds VikingFS with retrieval and rerank configuration, initializes canonical directories, then attaches resource, skill, memory, privacy, watch, and debug components.</p>
+          <p>Business services receive the same underlying VikingFS and processors. That is why embedded and server deployments can expose similar semantics instead of duplicating logic in each transport. The service layer is not merely architectural ceremony: it is the seam between public API behavior and the stateful runtime.</p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>openviking/service/core.py · public service composition</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code>self._fs_service = FSService()
+self._relation_service = RelationService()
+self._pack_service = PackService()
+self._search_service = SearchService()
+self._resource_service = ResourceService()
+self._session_service = SessionService()
+self._debug_service = DebugService()</code></pre>
+          <div class="code-foot"><span>Verbatim excerpt · one link service omitted for width</span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/service/core.py#L95-L103" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Layer</th><th>Owns</th><th>Should not own</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Transport / client</strong></td><td>Serialization, connection, user ergonomics</td><td>Retrieval ranking or memory policy</td></tr>
+              <tr><td><strong>Service</strong></td><td>Validation, public operation semantics, orchestration</td><td>Physical storage formats</td></tr>
+              <tr><td><strong>Engine</strong></td><td>URI filesystem, retrieval, parsing, memory compilation</td><td>Caller-specific presentation</td></tr>
+              <tr><td><strong>Fabric</strong></td><td>Durability, derived index, queues, locks, recovery</td><td>Product-level context meaning</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <h3>A useful “context operating system” analogy—with limits</h3>
+          <p>The system has symbolic addresses, multiple representations, policy-scoped visibility, background compilation, and paging-like progressive reads. That makes “context operating system” a productive mental model. It is still an application service, not a kernel, a literal disk filesystem, or a replacement for the agent harness that assembles each model call.</p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Public transports converge on a shared service and engine graph.</p></article>
+          <article><span>Failure pattern</span><p>The filesystem metaphor hides operational dependencies and eventual-consistency boundaries.</p></article>
+          <article><span>Diagnostic</span><p>Trace one call through transport, service, engine, storage, index, and queued work.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="production" data-title="Production boundaries" data-no="08" data-uri="source truth + derived views + ownership policy" data-invariant="Reliability requires separate guarantees for source durability, derived-view freshness, memory quality, and tenant isolation." data-risk="A successful demo can conceal stale indexes, partial commits, poisoned memory, or cross-scope leakage." data-diagnostic="Test the lifecycle in layers: write, materialize, retrieve, answer, update, delete, isolate, and recover.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 08 · OPERATIONS</span>
+          <h2>The database earns its name at the failure boundaries.</h2>
+          <p class="chapter-lede">Production quality is not “the server starts.” It is knowing what survives, what can lag, what can be rebuilt, who can see it, and how a bad memory is found and removed.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>Source durability, semantic freshness, memory correctness, and authorization are four different promises.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="concept-card"><span class="card-label">Consistency</span><h3>Path locks + redo</h3><p>Core writes acquire path locks. A pending redo record can retry long-term-memory extraction after interruption; it is not full Phase 2 replay.</p><code>protect source · retry extraction</code></article>
+          <article class="concept-card"><span class="card-label">Freshness</span><h3>Queues + task state</h3><p>Semantic and embedding work is decoupled. A caller needs explicit readiness when immediate recall is part of the contract.</p><code>accepted ≠ indexed</code></article>
+          <article class="concept-card"><span class="card-label">Isolation</span><h3>Identity + visible roots</h3><p>Canonical user and peer scopes combine with access checks and tenant filters. Namespaces assist policy; they do not replace it.</p><code>owner · actor peer · role</code></article>
+          <article class="concept-card"><span class="card-label">Governance</span><h3>Diffs + deletion + reindex</h3><p>Durable state should be inspectable, correctable, and removable. A derived index must follow source changes or be rebuilt.</p><code>audit · repair · forget</code></article>
+        </div>
+
+        <div class="prose">
+          <h3>Six concrete risks</h3>
+          <ol>
+            <li><strong>Eventual consistency:</strong> source content exists before summaries and vectors are ready.</li>
+            <li><strong>Model-dependent materialization:</strong> L0/L1 quality and memory extraction inherit model errors, cost, latency, and drift.</li>
+            <li><strong>Memory pollution:</strong> a plausible extracted lesson can be false, overgeneralized, scoped to the wrong peer, or stale.</li>
+            <li><strong>Partial background success:</strong> commit Phase 2 is recoverable but not transactionally all-or-nothing.</li>
+            <li><strong>Context injection:</strong> stored resources and memories can contain instructions that should never outrank trusted policy.</li>
+            <li><strong>Version drift:</strong> docs, schemas, tools, and defaults can diverge; production behavior must be pinned and observed.</li>
+          </ol>
+        </div>
+
+        <div class="claim-note risk-note"><strong>Security boundary:</strong> a context database can make untrusted text easier to retrieve. It cannot decide that retrieved instructions are safe to follow. Preserve provenance, separate data from policy, enforce instruction hierarchy in the harness, and test poisoned-memory scenarios.</div>
+
+        <div class="prose">
+          <h3>Evaluate the lifecycle, not only the final answer</h3>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Layer</th><th>Measure</th><th>Useful ablation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Capture</strong></td><td>Extraction precision/recall, false memory, dedup and conflict correctness, readiness time</td><td>Raw archive vs extracted memory</td></tr>
+              <tr><td><strong>Retrieval</strong></td><td>Recall@k, rank quality, branch accuracy, irrelevant-token ratio, provenance coverage</td><td>QUICK vs THINKING; planner and reranker on/off</td></tr>
+              <tr><td><strong>Answer</strong></td><td>Correctness, faithfulness, citation, temporal reasoning, abstention</td><td>Same model and returned-token budget</td></tr>
+              <tr><td><strong>Agent outcome</strong></td><td>Task success, repeat-task improvement, transfer, contamination</td><td>Memory enabled vs isolated baseline</td></tr>
+              <tr><td><strong>Governance</strong></td><td>Deletion completeness, stale state, tenant leakage, poisoning resistance</td><td>Adversarial scope and update tests</td></tr>
+              <tr><td><strong>Systems</strong></td><td>Model calls, tokens, p50/p95 latency, storage growth, retries, repair time</td><td>Layer policy and index backend</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <p>The repository publishes version-specific LoCoMo, agent-memory, and knowledge-base results. They are useful project-reported evidence, not an independent guarantee of superiority for every agent, model, or workload. A fair claim pins the version, baseline, metric, token budget, and evaluator. <a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/README.md#evaluation-highlights" target="_blank" rel="noopener">Evaluation tables ↗</a></p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Durability, freshness, correctness, and isolation must each have an explicit signal.</p></article>
+          <article><span>Failure pattern</span><p>A green health check masks a stale index, partial commit, or wrong-scope memory.</p></article>
+          <article><span>Diagnostic</span><p>Test write, materialize, retrieve, update, delete, isolate, crash, and recover as separate stages.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="lineage" data-title="The field around it" data-no="09" data-uri="RAG → hierarchy → memory → context systems" data-invariant="OpenViking combines established ideas into a database-shaped lifecycle; it should not claim neighboring mechanisms it does not implement." data-risk="Loose analogies turn every hierarchy into RAPTOR, every link into GraphRAG, and every persistent text into agentic memory." data-diagnostic="Compare systems by persistent unit, organization, read policy, write/update policy, provenance, and primary failure mode.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 09 · INTELLECTUAL LINEAGE</span>
+          <h2>OpenViking belongs to a field, not a vacuum.</h2>
+          <p class="chapter-lede">Its strongest case is a synthesis: retrieval, progressive abstraction, virtual context, reflection, durable state, filesystem navigation, and database operations brought into one inspectable control plane.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>Credit the lineage precisely. The new value is the shape of the whole loop.</p>
+        </div>
+
+        <div class="timeline">
+          <article><time>2020</time><div><h3>RAG</h3><p>Couples generation to explicit non-parametric memory through retrieval, foregrounding updateability and provenance.</p></div></article>
+          <article><time>2023</time><div><h3>Generative Agents · CoALA · MemGPT · Reflexion</h3><p>Memory streams and reflection, cognitive memory/action taxonomies, virtual context tiers, and textual feedback across trials.</p></div></article>
+          <article><time>2024</time><div><h3>RAPTOR · GraphRAG</h3><p>Develops two different structural moves: retrieval across recursively summarized abstractions, and graph/community views for local-to-global questions.</p></div></article>
+          <article><time>2025</time><div><h3>Context engineering</h3><p>Frames every inference as selection under a finite attention budget and promotes just-in-time exploration through stable identifiers.</p></div></article>
+          <article><time>2026</time><div><h3>VikingMem · OpenViking</h3><p>Memory-base research and an open-source context database push write, manage, read, and operations into a unified system.</p></div></article>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Approach</th><th>Persistent unit</th><th>Primary move</th><th>Keep distinct from OpenViking</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Classic RAG</strong></td><td>Passages in an external corpus</td><td>Retrieve evidence for generation</td><td>Does not by itself define sessions, updates, typed assets, or a context filesystem.</td></tr>
+              <tr><td><strong>RAPTOR</strong></td><td>Chunks plus recursively clustered summaries</td><td>Retrieve across semantic abstraction levels</td><td>Its generated semantic tree is not OpenViking’s directory/resource tree.</td></tr>
+              <tr><td><strong><a href="https://www.microsoft.com/en-us/research/publication/from-local-to-global-a-graph-rag-approach-to-query-focused-summarization/" target="_blank" rel="noopener">GraphRAG ↗</a></strong></td><td>Entities, relations, text units, community reports</td><td>Graph and community reasoning</td><td>OpenViking links do not make its core retrieval a knowledge graph.</td></tr>
+              <tr><td><strong>MemGPT</strong></td><td>Context-resident and external memory tiers</td><td>Agent-controlled virtual context paging</td><td>L0/L1/L2 are resolutions of an asset, not hot/warm/cold residency tiers.</td></tr>
+              <tr><td><strong>Generative Agents / Reflexion</strong></td><td>Experience records, reflections, verbal feedback</td><td>Condition future behavior on consolidated experience</td><td>Reflection is generated state, not verified truth or a weight update.</td></tr>
+              <tr><td><strong>OpenViking</strong></td><td>Addressed resources, memories, skills, sessions, semantic views</td><td>Unify write, manage, read, scope, and operations</td><td>A context database—not a model, ontology, or universal memory policy.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <h3>The cognitive analogy is useful if it stays an analogy</h3>
+          <p>CoALA’s working, episodic, semantic, and procedural vocabulary helps describe how an agent may use stored material. OpenViking’s live session resembles working evidence; events, cases, and trajectories can serve episodic roles; entities and preferences can serve semantic roles; tools and skills can serve procedural roles. These are explanatory mappings across independent taxonomies—not biological claims. <a class="source-link" href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener">CoALA ↗</a></p>
+          <p>MemGPT’s operating-system analogy explains why limited model context benefits from external tiers and explicit movement. Anthropic’s context-engineering guidance explains why lightweight paths and progressive exploration are valuable. OpenViking’s contribution is to give those instincts a database-shaped, inspectable substrate. <a class="source-link" href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noopener">MemGPT ↗</a></p>
+        </div>
+
+        <div class="claim-note"><strong>Paper boundary:</strong> the OpenViking repository says it open-sources a subset of the VikingMem paper’s capabilities. Do not automatically attribute the paper’s event/entity evolution or temporal weighting mechanisms to every OpenViking code path. <a class="source-link" href="https://arxiv.org/abs/2605.29640" target="_blank" rel="noopener">VikingMem ↗</a></div>
+
+        <div class="prose">
+          <h3>Why this synthesis is worth advocating</h3>
+          <p>An agent can keep a URI instead of a whole document, inspect a neighborhood before opening a file, retrieve semantically without surrendering deterministic navigation, preserve raw interaction evidence before extracting a lesson, audit what memory changed, and rebuild search views from source truth. None of those moves is magic. Together they form a practical answer to the central context-engineering problem: <strong>put the right evidence, at the right depth, into the right call—and preserve a trail back out.</strong></p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>The value is the composed lifecycle, not a claim to have invented every component technique.</p></article>
+          <article><span>Failure pattern</span><p>Neighboring labels are used as synonyms, making comparisons impressive but technically false.</p></article>
+          <article><span>Diagnostic</span><p>Compare unit, hierarchy, read policy, write policy, provenance, and failure mode.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="build" data-title="Build with judgment" data-no="10" data-uri="your agent → explicit context policy" data-invariant="A successful integration specifies capture, scope, loading, commit, conflict, privacy, and evaluation policy—not only an API key." data-risk="Automatic recall and commit can create silent coupling and memory pollution across users, peers, or tasks." data-diagnostic="Write the context policy before enabling automation, then test one complete trace and one failure trace.">
+        <header class="chapter-head">
+          <span class="chapter-no">CHAPTER 10 · FIELD PRACTICE</span>
+          <h2>Build a context policy, not just a connector.</h2>
+          <p class="chapter-lede">The integration is finished when the team can explain what is stored, who sees it, how it enters the prompt, when it changes, and how failures are detected.</p>
+        </header>
+
+        <div class="thesis">
+          <span>The point</span>
+          <p>Start with one end-to-end trace. Automate recall and commit only after the boundaries are observable.</p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-head"><span>Embedded end-to-end skeleton · adapted from an integration test</span><button class="copy-button" type="button" data-copy>Copy</button></div>
+          <pre><code><span class="kw">import</span> asyncio
+<span class="kw">from</span> openviking <span class="kw">import</span> AsyncOpenViking
+<span class="kw">from</span> openviking.message <span class="kw">import</span> TextPart
+
+client = AsyncOpenViking(path=<span class="str">"./openviking-data"</span>)
+<span class="kw">await</span> client.initialize()
+added = <span class="kw">await</span> client.add_resource(<span class="str">"./handbook.md"</span>, wait=<span class="kw">True</span>)
+<span class="kw">if</span> <span class="fn">any</span>(stage[<span class="str">"error_count"</span>]
+       <span class="kw">for</span> stage <span class="kw">in</span> added[<span class="str">"queue_status"</span>].values()):
+    <span class="kw">raise</span> RuntimeError(added[<span class="str">"queue_status"</span>])
+
+session = client.session(session_id=<span class="str">"field-guide-demo"</span>)
+session.add_message(<span class="str">"user"</span>, [TextPart(<span class="str">"How should this run?"</span>)])
+hits = <span class="kw">await</span> client.search(<span class="str">"deployment policy"</span>, session=session)
+<span class="kw">if</span> hits.resources:
+    session.used(contexts=[hits.resources[0].uri])
+
+session.add_message(<span class="str">"assistant"</span>, [TextPart(<span class="str">"…answer…"</span>)])
+commit = session.commit()  <span class="cm"># accepted result contains task_id</span>
+<span class="kw">while</span> <span class="kw">True</span>:
+    task = <span class="kw">await</span> client.get_task(commit[<span class="str">"task_id"</span>])
+    <span class="kw">if</span> task <span class="kw">and</span> task[<span class="str">"status"</span>] <span class="kw">in</span> {<span class="str">"completed"</span>, <span class="str">"failed"</span>}:
+        <span class="kw">break</span>
+    <span class="kw">await</span> asyncio.sleep(<span class="num">0.2</span>)
+<span class="kw">if</span> task[<span class="str">"status"</span>] != <span class="str">"completed"</span>:
+    <span class="kw">raise</span> RuntimeError(task)</code></pre>
+          <div class="code-foot"><span>Production code also needs a polling timeout</span><span><a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/tests/integration/test_full_workflow.py#L88-L120" target="_blank" rel="noopener">workflow spine ↗</a> · <a class="source-link" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/async_client.py#L249-L252" target="_blank" rel="noopener">task API ↗</a></span></div>
+        </div>
+
+        <div class="prose">
+          <h3>The happy path is only half the design</h3>
+          <p>Also exercise one summary failure, one delayed index, one empty retrieval, one conflicting preference, one wrong-peer query, one commit interrupted before <code>.done</code>, and one deletion followed by reindex. A context system becomes trustworthy through these failure traces, not through a single fluent answer.</p>
+        </div>
+
+        <div class="checklist" data-checklist>
+          <div class="checklist-head"><div><span>Local field worksheet</span><h3>Your context policy</h3></div><b class="check-count" data-check-count role="status" aria-live="polite">0 / 8 decided</b></div>
+          <label class="check-item"><input type="checkbox" data-check="assets"><span><strong>Asset boundary</strong><small>We know what becomes Resource, Memory, or Skill—and what must never be stored.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="scope"><span><strong>Ownership and isolation</strong><small>Account, user, peer, and shared-agent visibility are explicit and adversarially tested.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="depth"><span><strong>Loading depth</strong><small>L0/L1/L2 selection has a token budget and a rule for opening source detail.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="retrieve"><span><strong>Retrieval mode</strong><small>We know when QUICK or THINKING runs and record planner, reranker, paths, and scores.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="commit"><span><strong>Commit trigger</strong><small>After-turn, threshold, compaction, shutdown, and explicit commits have deliberate semantics.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="merge"><span><strong>Conflict policy</strong><small>Duplicate, contradiction, merge, delete, provenance, and human correction are defined.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="privacy"><span><strong>Sensitive-data boundary</strong><small>Retention, encryption, deletion, prompt injection, and tenant leakage have controls.</small></span></label>
+          <label class="check-item"><input type="checkbox" data-check="eval"><span><strong>Lifecycle evaluation</strong><small>Capture, retrieval, answer, agent outcome, governance, and systems metrics are separated.</small></span></label>
+          <div class="check-actions"><button type="button" data-action="copy-policy">Copy policy template</button><button type="button" data-action="reset-policy">Reset</button></div>
+        </div>
+
+        <div class="prose">
+          <h3>The smallest useful next action</h3>
+          <p>Pick one real recurring agent task. Ingest only its authoritative resources. Run one search with telemetry, load the minimum useful depth, record the used URIs, commit one session, inspect the memory diff, then repeat the task. If the second run improves for the right reason—and unrelated tasks do not regress—you have the beginning of a memory system rather than a memory demo.</p>
+        </div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Automation follows an explicit capture, scope, loading, update, privacy, and evaluation policy.</p></article>
+          <article><span>Failure pattern</span><p>Recall and commit are enabled globally; contamination appears only after many sessions.</p></article>
+          <article><span>Diagnostic</span><p>Run one complete happy trace, one failure trace, and one unrelated-task contamination test.</p></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="sources" data-title="Sources & audit" data-no="↗" data-uri="evidence://code + docs + primary research" data-invariant="Implementation claims are pinned to a reviewed commit; field claims link to primary sources." data-risk="Living documentation and main-branch links can silently drift away from the behavior being described." data-diagnostic="Pin code, date the review, label project-reported results, and distinguish source fact from editorial inference.">
+        <header class="chapter-head">
+          <span class="chapter-no">SOURCE NOTE · REVIEWED 2026-07-13</span>
+          <h2>Evidence before enthusiasm.</h2>
+          <p class="chapter-lede">This guide was traced against commit <code>1a01a30d8ae5c2e6b37ca270c633007866b158b8</code>, four commits after tag <code>v0.4.9</code>. It uses public repository, documentation, and primary research links.</p>
+        </header>
+
+        <div class="prose">
+          <p>OpenViking is a living project. The code links below are pinned; documentation links describe the current public model and may continue to evolve. Where code and docs differed materially, the guide names the difference. Benchmark statements are explicitly treated as project-reported and were not independently reproduced for this artifact.</p>
+        </div>
+
+        <h3>OpenViking sources</h3>
+        <div class="sources-list">
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/01-architecture" target="_blank" rel="noopener"><span>Official docs</span><strong>Architecture overview</strong><small>Services, storage boundary, major flows, deployment modes.</small></a>
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/02-context-types" target="_blank" rel="noopener"><span>Official docs</span><strong>Context types</strong><small>Resource, Memory, Skill and their intended semantics.</small></a>
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/03-context-layers" target="_blank" rel="noopener"><span>Official docs</span><strong>L0 / L1 / L2</strong><small>Progressive disclosure and bottom-up semantic views.</small></a>
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/07-retrieval" target="_blank" rel="noopener"><span>Official docs</span><strong>Retrieval</strong><small>find, search, typed results, and intended hierarchy.</small></a>
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/08-session" target="_blank" rel="noopener"><span>Official docs</span><strong>Sessions &amp; memory</strong><small>Commit flow, archive shape, memory diff, documented categories.</small></a>
+          <a class="source-card" href="https://docs.openviking.ai/en/concepts/09-transaction" target="_blank" rel="noopener"><span>Official docs</span><strong>Transactions</strong><small>Path locks, redo, filesystem source truth, derived index.</small></a>
+          <a class="source-card" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/retrieve/hierarchical_retriever.py" target="_blank" rel="noopener"><span>Pinned code</span><strong>HierarchicalRetriever</strong><small>QUICK/THINKING selection, recursive expansion, convergence.</small></a>
+          <a class="source-card" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/session/session.py" target="_blank" rel="noopener"><span>Pinned code</span><strong>Session commit</strong><small>Durable-first archive, background compilation, task tracking.</small></a>
+          <a class="source-card" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/session/compressor_v3.py" target="_blank" rel="noopener"><span>Pinned code</span><strong>Memory compiler v3</strong><small>Schema registry, isolation, extraction, structured updates.</small></a>
+          <a class="source-card" href="https://github.com/volcengine/OpenViking/blob/1a01a30d8ae5c2e6b37ca270c633007866b158b8/openviking/service/core.py" target="_blank" rel="noopener"><span>Pinned code</span><strong>Service composition</strong><small>Runtime wiring across services, storage, queues, and models.</small></a>
+        </div>
+
+        <h3>Primary field sources</h3>
+        <div class="sources-list">
+          <a class="source-card" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener"><span>Context engineering · 2025</span><strong>Effective context engineering for AI agents</strong><small>Finite attention budget, just-in-time context, progressive discovery.</small></a>
+          <a class="source-card" href="https://papers.nips.cc/paper_files/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html" target="_blank" rel="noopener"><span>NeurIPS · 2020</span><strong>Retrieval-Augmented Generation</strong><small>Parametric generation plus explicit non-parametric memory.</small></a>
+          <a class="source-card" href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/8a2acd174940dbca361a6398a4f9df91-Abstract-Conference.html" target="_blank" rel="noopener"><span>ICLR · 2024</span><strong>RAPTOR</strong><small>Tree-organized retrieval across recursively summarized abstractions.</small></a>
+          <a class="source-card" href="https://www.microsoft.com/en-us/research/publication/from-local-to-global-a-graph-rag-approach-to-query-focused-summarization/" target="_blank" rel="noopener"><span>Research · 2024</span><strong>From Local to Global: GraphRAG</strong><small>Entity graphs and community summaries for query-focused corpus understanding.</small></a>
+          <a class="source-card" href="https://arxiv.org/abs/2310.08560" target="_blank" rel="noopener"><span>Research · 2023</span><strong>MemGPT</strong><small>Virtual context management inspired by hierarchical memory systems.</small></a>
+          <a class="source-card" href="https://research.google/pubs/generative-agents-interactive-simulacra-of-human-behavior/" target="_blank" rel="noopener"><span>UIST · 2023</span><strong>Generative Agents</strong><small>Memory stream, retrieval, reflection, and planning.</small></a>
+          <a class="source-card" href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/1b44b878bb782e6954cd888628510e90-Abstract-Conference.html" target="_blank" rel="noopener"><span>NeurIPS · 2023</span><strong>Reflexion</strong><small>Verbal feedback in episodic memory without weight updates.</small></a>
+          <a class="source-card" href="https://arxiv.org/abs/2309.02427" target="_blank" rel="noopener"><span>TMLR · 2024</span><strong>CoALA</strong><small>Working, episodic, semantic, and procedural memory in language agents.</small></a>
+          <a class="source-card" href="https://arxiv.org/abs/2605.29640" target="_blank" rel="noopener"><span>VLDB · 2026</span><strong>VikingMem</strong><small>Memory-base research related to, but not identical with, OpenViking.</small></a>
+        </div>
+
+        <div class="claim-note"><strong>Editorial position:</strong> the most inspiring claim is also the most testable one. OpenViking makes context a place an agent can navigate and a system an engineer can inspect. The source trail above is part of the product argument, not an appendix to it.</div>
+
+        <div class="invariant-strip" aria-label="Chapter diagnostic">
+          <article><span>Invariant</span><p>Implementation facts are pinned; research analogies and product claims are labeled.</p></article>
+          <article><span>Failure pattern</span><p>A living docs page is treated as historical proof for behavior at an earlier commit.</p></article>
+          <article><span>Diagnostic</span><p>Record commit, date, config, source links, and any code-versus-doc correction.</p></article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>OpenViking: Context Has a Place</strong>
+        <p>An independent, source-backed educational artifact. OpenViking is an AGPL-3.0 open-source project from Volcengine. Product claims are separated from reviewed implementation facts and research analogies.</p>
+      </footer>
+    </main>
+
+    <aside class="trace-lens" aria-label="Current chapter diagnostic">
+      <span class="lens-kicker">Trace lens</span>
+      <h2 class="lens-title">Context has a place</h2>
+      <div class="lens-block"><span>Invariant</span><p data-lens="invariant">The model context is a temporary view; the context system is the durable substrate.</p></div>
+      <div class="lens-block"><span>Failure pattern</span><p data-lens="risk">More stored text can create more noise, latency, and stale state—not more intelligence.</p></div>
+      <div class="lens-block"><span>Diagnostic</span><p data-lens="diagnostic">Ask where each useful fact lives, who owns it, what resolution is loaded, and how its next update is audited.</p></div>
+      <div class="lens-uri" data-lens="uri">viking://</div>
+    </aside>
+  </div>
+
+  <div class="mobile-drawer" data-drawer aria-hidden="true">
+    <button class="drawer-backdrop" type="button" data-action="close-menu" aria-label="Close chapters"></button>
+    <section class="drawer-panel" role="dialog" aria-modal="true" aria-label="Field guide chapters">
+      <header class="drawer-head"><strong>Atlas route</strong><button type="button" data-action="close-menu" aria-label="Close chapters">×</button></header>
+      <nav class="drawer-nav" data-mobile-nav></nav>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+      /* Reading progress + chapter trace lens */
+      const sections = $$('main section[id]');
+      const chapterNumber = $('.top-chapter b');
+      const chapterTitle = $('.top-chapter span');
+      const progressLabel = $('.top-progress');
+      const progressLine = $('.progress-line');
+      const lensTitle = $('.lens-title');
+      const lensFields = Object.fromEntries($$('[data-lens]').map((node) => [node.dataset.lens, node]));
+      let currentSection = sections[0];
+      let ticking = false;
+
+      function activateSection(section) {
+        if (!section || section === currentSection && section.dataset.active === 'true') return;
+        sections.forEach((item) => delete item.dataset.active);
+        section.dataset.active = 'true';
+        currentSection = section;
+        const id = section.id;
+        const title = section.dataset.title || '';
+        const number = section.dataset.no || '';
+        $$('[data-nav] a, [data-mobile-nav] a').forEach((link) => {
+          const active = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+        chapterNumber.textContent = number;
+        chapterTitle.textContent = title;
+        lensTitle.textContent = title;
+        ['invariant', 'risk', 'diagnostic', 'uri'].forEach((key) => {
+          if (lensFields[key]) lensFields[key].textContent = section.dataset[key] || '';
+        });
+      }
+
+      function updateReadingState() {
+        const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const percent = Math.min(100, Math.max(0, Math.round((window.scrollY / scrollable) * 100)));
+        progressLabel.textContent = `${percent}%`;
+        progressLine.style.width = `${percent}%`;
+
+        const marker = window.innerHeight * 0.3;
+        let candidate = sections[0];
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top <= marker) candidate = section;
+          else break;
+        }
+        activateSection(candidate);
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(updateReadingState);
+        }
+      }, { passive: true });
+      window.addEventListener('resize', updateReadingState);
+      activateSection(sections[0]);
+      updateReadingState();
+
+      /* Mobile chapter drawer */
+      const drawer = $('[data-drawer]');
+      const openMenuButton = $('[data-action="open-menu"]');
+      const mobileNav = $('[data-mobile-nav]');
+      let focusBeforeDrawer = null;
+      mobileNav.innerHTML = $('[data-nav]').innerHTML;
+      mobileNav.classList.add('atlas-nav');
+
+      function setDrawer(open) {
+        drawer.classList.toggle('is-open', open);
+        drawer.setAttribute('aria-hidden', String(!open));
+        openMenuButton.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+        if (open) {
+          $$('a', mobileNav).forEach((link) => link.classList.toggle('is-active', link.getAttribute('href') === `#${currentSection.id}`));
+          focusBeforeDrawer = document.activeElement;
+          $('[data-action="close-menu"]', $('.drawer-panel')).focus();
+        } else if (focusBeforeDrawer) {
+          focusBeforeDrawer.focus();
+        }
+      }
+
+      openMenuButton.addEventListener('click', () => setDrawer(true));
+      $$('[data-action="close-menu"]').forEach((button) => button.addEventListener('click', () => setDrawer(false)));
+      $$('a', mobileNav).forEach((link) => link.addEventListener('click', () => setDrawer(false)));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && drawer.classList.contains('is-open')) setDrawer(false);
+        if (event.key === 'Tab' && drawer.classList.contains('is-open')) {
+          const focusable = $$('a[href], button:not([disabled])', $('.drawer-panel'));
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      /* Progressive context-depth lab */
+      const layerCopy = {
+        0: { total: '~46 tokens', message: 'Enough to rank a neighborhood, not enough to explain the algorithm.' },
+        1: { total: '~310 tokens', message: 'Enough to choose the right module and source path; exact behavior still needs L2.' },
+        2: { total: '~2,240 tokens', message: 'Full evidence loaded for precision-sensitive verification.' }
+      };
+      const layerButtons = $$('[data-depth]');
+      const layerBands = $$('[data-layer]');
+      function selectDepth(depth) {
+        layerButtons.forEach((button) => button.setAttribute('aria-pressed', String(Number(button.dataset.depth) === depth)));
+        layerBands.forEach((band) => band.classList.toggle('is-loaded', Number(band.dataset.layer) <= depth));
+        $('[data-layer-message]').textContent = layerCopy[depth].message;
+        $('[data-layer-total]').textContent = layerCopy[depth].total;
+      }
+      layerButtons.forEach((button) => button.addEventListener('click', () => selectDepth(Number(button.dataset.depth))));
+
+      /* Source-faithful implementation trace */
+      const pipelines = {
+        ingest: {
+          title: 'Ingest · source to derived context',
+          stages: [
+            ['Client', 'add_resource()', 'Validates the source, destination, and wait contract before handing work to the resource service.'],
+            ['Resource service', 'validate + dispatch', 'Resolves the target URI, starts parsing, and coordinates the durable write path.'],
+            ['Resource processor', 'persist source', 'Writes the source and structure into AGFS under a destination lock. This filesystem state is source truth.'],
+            ['Semantic queue', 'compile L0 / L1', 'Builds bottom-up abstracts and overviews asynchronously after durable content exists.'],
+            ['Embedding queue', 'index records', 'Embeds derived L0, L1, and L2 records into the rebuildable vector index. wait=True completes request-scoped queues; callers must still inspect every error_count.']
+          ]
+        },
+        retrieve: {
+          title: 'Retrieve · context-aware search',
+          stages: [
+            ['Search service', 'find() or search()', 'Resolves query and targets. search() may add session evidence; without it the service falls back to a direct typed query.'],
+            ['Intent analyzer', 'plan when useful', 'Turns conversational context into retrieval intent only when that extra context is available and relevant.'],
+            ['Retriever', 'choose mode', 'Uses QUICK for one flat scoped vector search, or THINKING for reranked recursive directory exploration.'],
+            ['Vector index', 'policy-scoped recall', 'Searches only approved roots with tenant constraints. Similarity proposes candidates; it does not grant access.'],
+            ['Rerank + recurse', 'THINKING only', 'Seeds from global L0/L1 recall, then expands immediate children through a bounded priority queue until convergence.'],
+            ['MatchedContext', 'typed result', 'Returns URI, score, level, and asset type. The caller still decides which detail to load into the model context.']
+          ]
+        },
+        remember: {
+          title: 'Remember · session to durable update',
+          stages: [
+            ['Session', 'commit()', 'Takes an explicit snapshot of current interaction state and begins the durable-first commit path.'],
+            ['Path lock', 'archive first', 'Archives the message slice and retained tail under an exact path lock; usage records are snapshotted afterward for Phase 2 linking.'],
+            ['Task tracker', 'return task id', 'Acknowledges the background compilation task. Archive durability and memory readiness are separate states.'],
+            ['Extract loop', 'read + propose', 'One bounded loop can browse evidence, then propose operations across the allowed schema registry. Long-term and execution-memory pipelines are separate Phase 2 tasks.'],
+            ['Memory updater', 'patch / append / delete', 'Applies structured updates to current memory files with category-specific prompts and update semantics.'],
+            ['Diff + index', 'audit + readiness', 'Records memory_diff.json, refreshes derived indexes, and marks completion. A pending redo can retry long-term extraction, not replay all of Phase 2.']
+          ]
+        }
+      };
+      const traceTitle = $('[data-trace-title]');
+      const traceStages = $('[data-trace-stages]');
+      const traceDetail = $('[data-trace-detail]');
+      const tracePanel = $('#pipeline-panel');
+      const pipelineTabs = $$('[data-pipeline]');
+
+      function showStage(stage, button) {
+        $$('.trace-stage', traceStages).forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        traceDetail.replaceChildren();
+        const label = document.createElement('span');
+        const heading = document.createElement('h4');
+        const copy = document.createElement('p');
+        label.textContent = stage[0];
+        heading.textContent = stage[1];
+        copy.textContent = stage[2];
+        traceDetail.append(label, heading, copy);
+      }
+
+      function renderPipeline(key) {
+        const pipeline = pipelines[key];
+        traceTitle.textContent = pipeline.title;
+        pipelineTabs.forEach((tab) => {
+          const selected = tab.dataset.pipeline === key;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected) tracePanel.setAttribute('aria-labelledby', tab.id);
+        });
+        traceStages.replaceChildren();
+        pipeline.stages.forEach((stage, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `trace-stage${index === 0 ? ' is-active' : ''}`;
+          button.setAttribute('aria-pressed', String(index === 0));
+          const label = document.createElement('small');
+          const heading = document.createElement('b');
+          label.textContent = stage[0];
+          heading.textContent = stage[1];
+          button.append(label, heading);
+          button.addEventListener('click', () => showStage(stage, button));
+          traceStages.append(button);
+        });
+        showStage(pipeline.stages[0], $('.trace-stage', traceStages));
+      }
+      pipelineTabs.forEach((tab) => tab.addEventListener('click', () => renderPipeline(tab.dataset.pipeline)));
+      $('.trace-tabs').addEventListener('keydown', (event) => {
+        const activeIndex = pipelineTabs.indexOf(document.activeElement);
+        if (activeIndex < 0 || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = activeIndex;
+        if (event.key === 'ArrowLeft') nextIndex = (activeIndex - 1 + pipelineTabs.length) % pipelineTabs.length;
+        if (event.key === 'ArrowRight') nextIndex = (activeIndex + 1) % pipelineTabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = pipelineTabs.length - 1;
+        pipelineTabs[nextIndex].focus();
+        renderPipeline(pipelineTabs[nextIndex].dataset.pipeline);
+      });
+      renderPipeline('retrieve');
+
+      /* Clipboard helpers */
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.append(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+      }
+      $$('[data-copy]').forEach((button) => button.addEventListener('click', async () => {
+        const code = $('code', button.closest('.code-card'));
+        const original = button.textContent;
+        try {
+          await copyText(code.textContent.trim());
+          button.textContent = 'Copied';
+        } catch (_) {
+          button.textContent = 'Select code';
+        }
+        window.setTimeout(() => { button.textContent = original; }, 1500);
+      }));
+
+      /* Local-only context policy worksheet */
+      const storageKey = 'openviking-context-atlas-policy-v1';
+      const checks = $$('[data-check]');
+      const count = $('[data-check-count]');
+      function readPolicy() {
+        try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); }
+        catch (_) { return {}; }
+      }
+      function renderPolicy() {
+        const state = readPolicy();
+        checks.forEach((check) => { check.checked = Boolean(state[check.dataset.check]); });
+        updatePolicyCount();
+      }
+      function updatePolicyCount() {
+        count.textContent = `${checks.filter((check) => check.checked).length} / ${checks.length} decided`;
+      }
+      function persistPolicy() {
+        const state = Object.fromEntries(checks.map((check) => [check.dataset.check, check.checked]));
+        try { localStorage.setItem(storageKey, JSON.stringify(state)); }
+        catch (_) { /* The worksheet still works for this page view. */ }
+        updatePolicyCount();
+      }
+      checks.forEach((check) => check.addEventListener('change', persistPolicy));
+      $('[data-action="reset-policy"]').addEventListener('click', () => {
+        try { localStorage.removeItem(storageKey); }
+        catch (_) { checks.forEach((check) => { check.checked = false; }); }
+        checks.forEach((check) => { check.checked = false; });
+        updatePolicyCount();
+      });
+      $('[data-action="copy-policy"]').addEventListener('click', async (event) => {
+        const lines = checks.map((check) => {
+          const label = $('span', check.closest('label')).innerText.replace(/\s+/g, ' ').trim();
+          return `- [${check.checked ? 'x' : ' '}] ${label}`;
+        });
+        const button = event.currentTarget;
+        const original = button.textContent;
+        try {
+          await copyText(`# OpenViking context policy\n\n${lines.join('\n')}`);
+          button.textContent = 'Policy copied';
+        } catch (_) {
+          button.textContent = 'Copy unavailable';
+        }
+        window.setTimeout(() => { button.textContent = original; }, 1500);
+      });
+      renderPolicy();
+    })();
+  </script>
+</body>
+</html>

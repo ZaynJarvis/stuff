@@ -66,6 +66,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "openviking-context-atlas",
+      "title": "OpenViking: Context Has a Place",
+      "summary": "A source-backed visual field guide to how OpenViking turns resources, memories, and skills into a navigable context system for AI agents.",
+      "category": "AI agents",
+      "kind": "Technical field guide",
+      "published": "2026-07-13",
+      "format": "Interactive HTML",
+      "language": "English",
+      "pinned": false
     }
   ]
 }
