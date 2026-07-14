@@ -1,76 +1,288 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Useful plans, artifacts, and experiments by Zayn Jarvis." />
-  <meta name="theme-color" content="#f2f0e9" />
+  <meta name="description" content="Zayn Jarvis 的公开作品：客户调研、经营手册、沿源码画出的 AI 系统图解，以及人像打光图鉴。" />
+  <meta name="theme-color" content="#f1efe7" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Stuff by Zayn Jarvis" />
-  <meta property="og:description" content="Useful plans, artifacts, and experiments, kept in one place." />
+  <meta property="og:description" content="客户调研、经营手册、沿源码画出的 AI 系统图解，以及人像打光图鉴。" />
   <meta property="og:url" content="https://stuff.zaynjarvis.com/" />
   <link rel="canonical" href="https://stuff.zaynjarvis.com/" />
-  <title>Stuff · Zayn Jarvis</title>
+  <title>Stuff by Zayn Jarvis</title>
   <style>
-    :root { color-scheme: light; --ink: #171c1a; --muted: #5d6562; --paper: #f2f0e9; --card: #fbfaf6; --line: #c9c5ba; --accent: #c64d2d; --moss: #24483e; }
+    :root {
+      color-scheme: light;
+      --ink: #171c1a;
+      --muted: #5b625f;
+      --paper: #f1efe7;
+      --card: #fbfaf6;
+      --line: #c8c3b7;
+      --accent: #ad4328;
+      --moss: #24483e;
+      --white: #fffdf8;
+    }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: linear-gradient(rgba(23, 28, 26, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 28, 26, .035) 1px, transparent 1px), var(--paper); background-size: 40px 40px; font: 16px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 28, 26, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 28, 26, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 40px 40px;
+      font: 16px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
     a { color: inherit; }
-    :focus-visible { outline: 3px solid rgba(198, 77, 45, .45); outline-offset: 4px; }
-    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(23, 28, 26, .22); }
-    .wordmark { display: flex; align-items: center; gap: 12px; font-weight: 850; letter-spacing: -.02em; text-decoration: none; }
-    .mark { display: grid; place-items: center; width: 38px; height: 38px; color: white; background: var(--ink); font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; box-shadow: 5px 5px 0 var(--accent); }
-    .header-meta { color: var(--muted); font: 700 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-align: right; text-transform: uppercase; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(270px, .6fr); gap: 70px; align-items: end; padding: clamp(72px, 12vw, 150px) 0 76px; }
-    .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--accent); font: 800 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; text-transform: uppercase; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .shell { width: min(1220px, calc(100% - 48px)); margin: 0 auto; }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      gap: 24px;
+      border-bottom: 1px solid rgba(23, 28, 26, .25);
+    }
+    .wordmark { display: inline-flex; align-items: center; min-height: 44px; gap: 13px; color: inherit; font-weight: 850; text-decoration: none; }
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: white;
+      background: var(--ink);
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      box-shadow: 5px 5px 0 var(--accent);
+    }
+    .wordmark-copy { display: grid; gap: 1px; line-height: 1.1; }
+    .wordmark-copy strong { font-size: 15px; letter-spacing: -.02em; }
+    .wordmark-copy small { color: var(--muted); font-size: 11px; font-weight: 650; }
+    .header-links { display: flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 720; }
+    .header-links a { display: inline-flex; align-items: center; min-height: 44px; text-underline-offset: 4px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr);
+      gap: clamp(56px, 8vw, 108px);
+      align-items: end;
+      padding: clamp(64px, 8vw, 110px) 0 clamp(62px, 7vw, 92px);
+    }
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font: 800 11px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 11px; }
     .eyebrow::before { content: ""; width: 34px; height: 3px; background: currentColor; }
-    h1 { max-width: 860px; margin: 0; font: 700 clamp(54px, 9vw, 112px)/.88 Georgia, "Times New Roman", serif; letter-spacing: -.065em; }
-    .hero-note { margin: 0; padding: 22px 0 4px 24px; color: var(--muted); border-left: 3px solid var(--accent); font-size: 15px; }
-    .hero-note strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
-    main { padding-bottom: 100px; }
-    .library-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 24px 0 16px; border-top: 1px solid rgba(23, 28, 26, .22); }
-    .library-head h2 { margin: 0; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
-    .library-head span { color: var(--muted); font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .artifact-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
-    .artifact { border-bottom: 1px solid var(--line); }
-    .artifact-link { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1.35fr) minmax(180px, .65fr) 50px; gap: 26px; align-items: center; min-height: 210px; padding: 32px 18px 32px 0; text-decoration: none; transition: background-color 160ms ease, padding 160ms ease; }
-    .artifact-link::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: transparent; transition: background-color 160ms ease; }
-    .artifact-link:hover::before { background: rgba(251, 250, 246, .82); }
-    .artifact-link:hover { padding-left: 18px; }
-    .artifact-index { align-self: start; padding-top: 6px; color: var(--accent); font: 700 18px ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .artifact-type { margin-bottom: 11px; color: var(--moss); font: 800 10px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; text-transform: uppercase; }
-    .artifact-title { margin: 0 0 12px; font: 700 clamp(29px, 4vw, 47px)/1.02 Georgia, "Times New Roman", serif; letter-spacing: -.04em; }
-    .artifact-summary { max-width: 680px; margin: 0; color: var(--muted); font-size: 14px; }
-    .artifact-facts { display: grid; gap: 13px; margin: 0; }
-    .artifact-facts div { display: grid; grid-template-columns: 72px 1fr; gap: 10px; font-size: 12px; }
-    .artifact-facts dt { color: var(--muted); }
-    .artifact-facts dd { margin: 0; font-weight: 750; }
-    .arrow { display: grid; place-items: center; width: 44px; height: 44px; color: white; background: var(--ink); border-radius: 50%; font-size: 20px; transition: transform 160ms ease, background 160ms ease; }
-    .artifact-link:hover .arrow { background: var(--accent); transform: translate(4px, -2px); }
-    footer { display: flex; justify-content: space-between; gap: 20px; padding: 30px 0 50px; color: var(--muted); border-top: 1px solid rgba(23, 28, 26, .22); font-size: 12px; }
-    footer a { font-weight: 750; text-underline-offset: 3px; }
-    @media (max-width: 820px) { .hero { grid-template-columns: 1fr; gap: 38px; } .hero-note { max-width: 520px; } .artifact-link { grid-template-columns: 48px 1fr 44px; gap: 16px; } .artifact-facts { grid-column: 2; grid-row: 2; grid-template-columns: repeat(3, 1fr); } .arrow { grid-column: 3; grid-row: 1 / span 2; } }
-    @media (max-width: 560px) { .shell { width: min(100% - 24px, 1180px); } .header-meta { display: none; } .hero { padding: 70px 0 54px; } h1 { font-size: clamp(52px, 17vw, 78px); } .artifact-link { grid-template-columns: 1fr 42px; min-height: 0; padding: 28px 0; } .artifact-link:hover { padding-left: 0; } .artifact-index { grid-column: 1; } .artifact-copy { grid-column: 1 / -1; } .artifact-facts { grid-column: 1 / -1; grid-row: auto; grid-template-columns: 1fr; } .arrow { grid-column: 2; grid-row: 1; } footer { flex-direction: column; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font: 700 clamp(62px, 7.8vw, 108px)/.91 Georgia, "Noto Serif SC", "Songti SC", "Times New Roman", serif;
+      letter-spacing: -.06em;
+    }
+    .hero-lede { max-width: 690px; margin: 28px 0 0; color: var(--muted); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.72; }
+    .path-nav { border-top: 1px solid var(--ink); }
+    .path-label { margin: 0; padding: 0 0 14px; color: var(--muted); font-size: 12px; font-weight: 720; }
+    .path-link {
+      display: grid;
+      grid-template-columns: 34px 1fr 20px;
+      gap: 13px;
+      align-items: center;
+      min-height: 82px;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+    .path-link:hover { color: var(--accent); transform: translateX(4px); }
+    .path-count { color: var(--accent); font: 800 15px/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .path-link strong { display: block; font-size: 15px; }
+    .path-link small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .path-arrow { justify-self: end; font-size: 16px; }
+    main { padding-bottom: 90px; }
+    .shelf-section { padding: clamp(62px, 7vw, 92px) 0; border-top: 1px solid rgba(23, 28, 26, .28); }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr);
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font: 700 clamp(36px, 4.4vw, 60px)/1 Georgia, "Noto Serif SC", "Songti SC", "Times New Roman", serif;
+      letter-spacing: -.045em;
+    }
+    .section-head > p { max-width: 450px; margin: 0; color: var(--muted); font-size: 15px; }
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .artifact { min-width: 0; }
+    .artifact-link {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 310px;
+      height: 100%;
+      padding: clamp(26px, 3.2vw, 38px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(251, 250, 246, .82);
+      text-decoration: none;
+      box-shadow: 0 0 0 rgba(23, 28, 26, 0);
+      transition: transform 190ms ease, box-shadow 190ms ease, border-color 190ms ease;
+    }
+    .artifact-link::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 58px;
+      height: 4px;
+      background: var(--accent);
+      transform: scaleX(.45);
+      transform-origin: right;
+      transition: transform 190ms ease;
+    }
+    .artifact-link:hover {
+      transform: translateY(-4px);
+      border-color: rgba(23, 28, 26, .5);
+      box-shadow: 0 18px 34px rgba(23, 28, 26, .1);
+    }
+    .artifact-link:hover::after { transform: scaleX(1); }
+    .artifact-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+      color: var(--moss);
+      font: 800 10px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .artifact-topic { opacity: .72; }
+    .artifact-title {
+      max-width: 620px;
+      margin: 0 0 18px;
+      font: 700 clamp(28px, 3.4vw, 46px)/1.04 Georgia, "Noto Serif SC", "Songti SC", "Times New Roman", serif;
+      letter-spacing: -.04em;
+      overflow-wrap: anywhere;
+    }
+    .artifact-summary { max-width: 640px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.72; }
+    .artifact-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 34px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 780;
+    }
+    .artifact-open span { transition: transform 180ms ease; }
+    .artifact-link:hover .artifact-open span { transform: translate(3px, -3px); }
+    .artifact-pinned .artifact-link { color: var(--white); background: var(--ink); border-color: var(--ink); }
+    .artifact-pinned .artifact-link::after { background: #d95b39; }
+    .artifact-pinned .artifact-meta, .artifact-pinned .artifact-summary { color: rgba(255, 253, 248, .72); }
+    .artifact-pinned .artifact-open { color: var(--white); }
+    footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 28px 0 48px;
+      color: var(--muted);
+      border-top: 1px solid rgba(23, 28, 26, .25);
+      font-size: 12px;
+    }
+    footer a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 750; text-underline-offset: 3px; }
+    @media (min-width: 1080px) {
+      #build-business .artifact:first-child { grid-column: span 2; }
+      #build-business .artifact:first-child .artifact-link { min-height: 280px; }
+      #build-business .artifact:first-child .artifact-title { max-width: 820px; }
+    }
+    @media (min-width: 621px) {
+      .shelf-single .artifact { grid-column: 1 / -1; }
+      .shelf-single .artifact-link { min-height: 280px; }
+    }
+    @media (max-width: 820px) {
+      .shell { width: min(100% - 32px, 1220px); }
+      .hero { grid-template-columns: 1fr; gap: 48px; }
+      .path-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .path-label { grid-column: 1 / -1; }
+      .path-link { grid-template-columns: 28px 1fr; padding: 14px 12px 14px 0; border-top: 1px solid var(--line); }
+      .path-link:nth-of-type(even) { padding-left: 12px; border-left: 1px solid var(--line); }
+      .path-arrow { display: none; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 24px, 1220px); }
+      .site-header { min-height: 74px; }
+      .header-links a:first-child { display: none; }
+      .hero { gap: 36px; padding: 54px 0 58px; }
+      h1 { font-size: clamp(49px, 14.7vw, 62px); }
+      .hero-lede { margin-top: 22px; font-size: 16px; }
+      .path-nav { grid-template-columns: 1fr; }
+      .path-link, .path-link:nth-of-type(even) { grid-template-columns: 30px 1fr 18px; min-height: 72px; padding: 10px 0; border-left: 0; }
+      .path-link + .path-link { border-top: 0; }
+      .path-arrow { display: block; }
+      .shelf-section { padding: 56px 0; }
+      .section-head { margin-bottom: 24px; }
+      .section-head h2 { font-size: 38px; }
+      .artifact-grid { grid-template-columns: 1fr; gap: 14px; }
+      .artifact-link { min-height: 270px; padding: 26px 23px; }
+      .artifact-meta { margin-bottom: 24px; }
+      .artifact-title { font-size: clamp(29px, 9vw, 38px); }
+      .artifact-link:active { transform: scale(.992); }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      .path-link:hover, .artifact-link:hover, .artifact-link:active,
+      .artifact-link:hover .artifact-open span { transform: none !important; }
+    }
   </style>
 </head>
 <body>
   <div class="shell">
-    <header>
-      <a class="wordmark" href="/" aria-label="Stuff home"><span class="mark">STF</span><span>Stuff</span></a>
-      <div class="header-meta">Curated by Zayn Jarvis<br />Public working artifacts</div>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Stuff 首页">
+        <span class="mark">STF</span>
+        <span class="wordmark-copy"><strong>Stuff</strong><small>by Zayn Jarvis</small></span>
+      </a>
+      <nav class="header-links" aria-label="站点链接">
+        <a href="#find-customers">浏览 {{ARTIFACT_COUNT}} 份作品</a>
+        <a href="https://github.com/ZaynJarvis/stuff" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
     </header>
+
     <section class="hero" aria-labelledby="page-title">
-      <div><div class="eyebrow">A small public shelf</div><h1 id="page-title">Useful things, kept in one place.</h1></div>
-      <p class="hero-note"><strong>What belongs here</strong>Plans worth reviewing, tools worth reusing, and experiments worth keeping. Each item opens as its own page.</p>
+      <div>
+        <p class="eyebrow">公开作品</p>
+        <h1 id="page-title">把研究做成能用的东西。</h1>
+        <p class="hero-lede">这里有客户调研、经营手册和 AI 系统图解，也有一份用同一张照片比较十种人像光法的图鉴。</p>
+      </div>
+      <nav class="path-nav" aria-label="按目标浏览">
+        <p class="path-label">你现在要做什么？</p>
+{{SHELF_NAV}}
+      </nav>
     </section>
+
     <main>
-      <div class="library-head"><h2>01 / Library</h2><span>{{ARTIFACT_COUNT}}</span></div>
-      <ol class="artifact-list" aria-label="Published artifacts">{{ARTIFACT_LIST}}</ol>
+{{ARTIFACT_SECTIONS}}
     </main>
-    <footer><span>stuff.zaynjarvis.com</span><a href="https://github.com/ZaynJarvis/stuff" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a></footer>
+
+    <footer>
+      <a href="https://github.com/ZaynJarvis/stuff" target="_blank" rel="noopener noreferrer">查看源码 ↗</a>
+    </footer>
   </div>
 </body>
 </html>

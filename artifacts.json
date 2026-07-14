@@ -4,7 +4,7 @@
     {
       "slug": "sd-plan",
       "title": "HuaSheng Sales Development Plan",
-      "summary": "Sixteen trigger-led accounts, public business contacts, tailored English outreach drafts, and a 90-day go-to-market plan. Chinese review notes included.",
+      "summary": "A 90-day go-to-market plan built around 16 trigger-based accounts, with public business contacts, tailored English outreach drafts, and Chinese review notes.",
       "category": "Sales development",
       "kind": "Research draft",
       "published": "2026-07-11",
@@ -15,7 +15,7 @@
     {
       "slug": "openviking-explained",
       "title": "OpenViking, Explained",
-      "summary": "An interactive, source-pinned architecture board for OpenViking — the open-source context database for AI agents — with code-traced Write / Retrieve / Manage pipelines and a bilingual reading path.",
+      "summary": "OpenViking is an open-source context database for AI agents. This bilingual board traces its Write, Retrieve, and Manage paths back to source code.",
       "category": "Architecture",
       "kind": "Interactive explorer",
       "published": "2026-07-12",
@@ -26,7 +26,7 @@
     {
       "slug": "mom-test",
       "title": "别问妈妈 · The Mom Test 学习手册",
-      "summary": "把 The Mom Test 拆成 74 篇可连续阅读、检索和无限展开证据的双语学习短文。",
+      "summary": "74 篇双语短文，可连续阅读或检索。每篇都能继续展开相关证据。",
       "category": "创业与客户访谈",
       "kind": "互动学习手册",
       "published": "2026-07-12",
@@ -37,7 +37,7 @@
     {
       "slug": "obviously-awesome",
       "title": "让价值变得显而易见 · Obviously Awesome 定位手册",
-      "summary": "把 April Dunford 的定位方法拆成 53 篇可检索短文、完整来源覆盖图和可填写定位画布。",
+      "summary": "53 篇可检索短文，配有完整来源覆盖图和可填写的定位画布。",
       "category": "产品定位",
       "kind": "互动学习手册",
       "published": "2026-07-13",
@@ -48,7 +48,7 @@
     {
       "slug": "founding-sales",
       "title": "创始人销售作战手册 · Founding Sales",
-      "summary": "把早期 B2B 销售从创始人验证到团队复制拆成 105 篇短课、完整来源索引和销售容量工作台。",
+      "summary": "105 篇短课，从创始人验证讲到团队复制。另有完整来源索引和销售容量工作台。",
       "category": "创始人销售",
       "kind": "互动学习手册",
       "published": "2026-07-13",
@@ -59,7 +59,7 @@
     {
       "slug": "zhen-benshi",
       "title": "真本事 · 从会工作到会赚钱",
-      "summary": "把个人价值、职业选择、沟通、杠杆与第一次收费重构成 91 篇可读、可查、可实操的中文短课。",
+      "summary": "91 篇中文短课，讲个人价值、职业选择、沟通、杠杆和第一次收费。可阅读、检索，也能跟着实操。",
       "category": "职业与个人商业",
       "kind": "互动学习手册",
       "published": "2026-07-13",
@@ -70,7 +70,7 @@
     {
       "slug": "openviking-context-atlas",
       "title": "OpenViking: Context Has a Place",
-      "summary": "A source-backed visual field guide to how OpenViking turns resources, memories, and skills into a navigable context system for AI agents.",
+      "summary": "A visual, source-backed guide to how OpenViking organizes resources, memories, and skills as context for AI agents.",
       "category": "AI agents",
       "kind": "Technical field guide",
       "published": "2026-07-13",
@@ -91,10 +91,10 @@
     },
     {
       "slug": "cube-construction-outreach-radar-2026",
-      "title": "Cube Construction｜50 个近期客户外联雷达",
-      "summary": "一份可筛选、可导出的新加坡商业装修潜客清单，包含 50 个近期账户、触发事件、公开联系人路径与下一步。",
-      "category": "Sales development",
-      "kind": "Research report",
+      "title": "Cube Construction · 近期客户外联雷达（50 个账户）",
+      "summary": "一份新加坡商业装修潜客清单，共 50 个近期账户，可筛选和导出。每条记录附有触发事件、公开联系人路径和下一步。",
+      "category": "销售拓展",
+      "kind": "调研报告",
       "published": "2026-07-14",
       "format": "Interactive HTML",
       "language": "中文 / English",
@@ -103,7 +103,7 @@
     {
       "slug": "portrait-lighting-atlas",
       "title": "一只小白，十种光｜系统打光图鉴",
-      "summary": "以同一张比熊犬照片对比 10 种经典人像打光，包含中英文名称、光位、适用场景与预期效果。",
+      "summary": "用同一张比熊犬照片比较 10 种经典人像光法，并标出中英文名称、光位、适用场景和预期效果。",
       "category": "摄影教学",
       "kind": "视觉图鉴",
       "published": "2026-07-15",
