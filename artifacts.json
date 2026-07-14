@@ -99,6 +99,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "portrait-lighting-atlas",
+      "title": "一只小白，十种光｜系统打光图鉴",
+      "summary": "以同一张比熊犬照片对比 10 种经典人像打光，包含中英文名称、光位、适用场景与预期效果。",
+      "category": "摄影教学",
+      "kind": "视觉图鉴",
+      "published": "2026-07-15",
+      "format": "Interactive HTML",
+      "language": "中文 / English",
+      "pinned": false
     }
   ]
 }
