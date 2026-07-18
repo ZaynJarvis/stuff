@@ -121,6 +121,17 @@
       "format": "Interactive HTML",
       "language": "中文",
       "pinned": false
+    },
+    {
+      "slug": "export-sales-operating-system",
+      "title": "Export Sales Needs an Operating System",
+      "summary": "A Day One strategy synthesis for an evidence-backed, agent-run overseas sales pipeline for Chinese manufacturers.",
+      "category": "Sales development",
+      "kind": "Strategy research deck",
+      "published": "2026-07-18",
+      "format": "Interactive HTML",
+      "language": "English",
+      "pinned": false
     }
   ]
 }
