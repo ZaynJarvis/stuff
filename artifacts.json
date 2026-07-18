@@ -110,6 +110,17 @@
       "format": "Interactive HTML",
       "language": "中文 / English",
       "pinned": false
+    },
+    {
+      "slug": "chi-le-ma",
+      "title": "吃了吗 · 新加坡社交美食排位 PoC",
+      "summary": "移动端社交美食排位 PWA PoC：32 家真实新加坡餐厅，不打分、只用好友间的「A ⟩ B」两两比较算出吃分榜单，含动态流、达人推荐、赞助位与 PK 投票。",
+      "category": "产品原型",
+      "kind": "互动产品原型",
+      "published": "2026-07-18",
+      "format": "Interactive HTML",
+      "language": "中文",
+      "pinned": false
     }
   ]
 }

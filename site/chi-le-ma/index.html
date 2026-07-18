@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#D8351F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+5ZCD5LqG5ZCXIGljb248L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5BIHJpY2UgYm93bCB3aXRoIGNob3BzdGlja3MgYW5kIHN0ZWFtIHNoYXBlZCBsaWtlIGEgcXVlc3Rpb24gbWFyay48L2Rlc2M+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iNjQiIHkxPSIzMiIgeDI9IjQ0OCIgeTI9IjQ4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOTJEMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUyIiBzdG9wLWNvbG9yPSIjRjA0QjIzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGOEExRiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYm93bCIgeDE9IjE1OCIgeTE9IjMxNCIgeDI9IjM1MCIgeTI9IjQ0MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkY4RTciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkZFMkE4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBSb3VuZGVkIGFwcCB0aWxlIC0tPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQ4OCIgaGVpZ2h0PSI0ODgiIHJ4PSIxMTIiIGZpbGw9InVybCgjYmcpIi8+CiAgPHBhdGggZD0iTTU0IDE3NkM3NyA5MSAxMzMgNDggMjE4IDMyQzE0MCAyOSA3OCAzOSA0NyA3MEMyMSA5NiAxNCAxMzYgMTMgMTkyQzI1IDE4NyAzOSAxODIgNTQgMTc2WiIgZmlsbD0iI0ZGQjM0QiIgb3BhY2l0eT0iMC4xOCIvPgoKICA8IS0tIENob3BzdGlja3MgLS0+CiAgPHBhdGggZD0iTTM3MCA3NUwzMDQgMzIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM2RTFGMTYiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC4yOCIvPgogIDxwYXRoIGQ9Ik00MTUgMTAxTDMzNyAzMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZFMUYxNiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjI4Ii8+CiAgPHBhdGggZD0iTTM2NCA2OEwyOTggMzE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ5OEMiIHN0cm9rZS13aWR0aD0iMTUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00MDkgOTRMMzMxIDMyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGMEM2IiBzdHJva2Utd2lkdGg9IjE1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgPCEtLSBRdWVzdGlvbi1tYXJrIHN0ZWFtIC0tPgogIDxwYXRoIGQ9Ik0yMTAgMTMwQzIxMCA4OCAyNDUgNjAgMjg4IDYzQzMzNCA2NiAzNjQgOTkgMzU1IDEzOUMzNDggMTY4IDMyNiAxODAgMzA0IDE5NEMyODMgMjA3IDI3NCAyMjMgMjc2IDI0NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGNEQ2IiBzdHJva2Utd2lkdGg9IjI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIyNzgiIGN5PSIyODUiIHI9IjE1IiBmaWxsPSIjRkZGNEQ2Ii8+CiAgPHBhdGggZD0iTTE4MCAxNjhDMTYwIDE5MSAxNjIgMjIwIDE4MSAyNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRjRENiIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjkiLz4KCiAgPCEtLSBSaWNlIGFuZCBib3dsIC0tPgogIDxwYXRoIGQ9Ik0xMTYgMzQwQzEyMiAzMDQgMTQ4IDI4MyAxODMgMjg2QzIwMSAyNTUgMjQzIDI0NSAyNzMgMjcxQzMwOCAyNTcgMzQ3IDI3NyAzNTkgMzA5QzM3NyAzMDkgMzkyIDMyMCAzOTcgMzQwWiIgZmlsbD0iI0ZGRjdFMyIvPgogIDxwYXRoIGQ9Ik04MiAzMzdDODIgMzI2IDkxIDMxNyAxMDIgMzE3SDQxMEM0MjEgMzE3IDQzMCAzMjYgNDMwIDMzN1YzNTBIODJaIiBmaWxsPSIjRkZGN0UzIi8+CiAgPHBhdGggZD0iTTkxIDM0OEg0MjFDNDE0IDQyMSAzNTUgNDYzIDI1NiA0NjNDMTU3IDQ2MyA5OCA0MjEgOTEgMzQ4WiIgZmlsbD0idXJsKCNib3dsKSIvPgogIDxwYXRoIGQ9Ik05MSAzNDhINDIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNTJBMjAiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xOTAgNDIyQzIyNiA0MzkgMjg2IDQzOSAzMjIgNDIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMjZBMkIiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0yMTYgNDYwSDI5NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZFQkMyIiBzdHJva2Utd2lkdGg9IjE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+">
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%20%22%E5%90%83%E4%BA%86%E5%90%97%22%2C%20%22short_name%22%3A%20%22%E5%90%83%E4%BA%86%E5%90%97%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22theme_color%22%3A%20%22%23D8351F%22%2C%20%22background_color%22%3A%20%22%23F7F3EC%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/svg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI%2BCiAgPHRpdGxlIGlkPSJ0aXRsZSI%2B5ZCD5LqG5ZCXIGljb248L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5BIHJpY2UgYm93bCB3aXRoIGNob3BzdGlja3MgYW5kIHN0ZWFtIHNoYXBlZCBsaWtlIGEgcXVlc3Rpb24gbWFyay48L2Rlc2M%2BCiAgPGRlZnM%2BCiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iNjQiIHkxPSIzMiIgeDI9IjQ0OCIgeTI9IjQ4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOTJEMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUyIiBzdG9wLWNvbG9yPSIjRjA0QjIzIi8%2BCiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGOEExRiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYm93bCIgeDE9IjE1OCIgeTE9IjMxNCIgeDI9IjM1MCIgeTI9IjQ0MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkY4RTciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkZFMkE4Ii8%2BCiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBSb3VuZGVkIGFwcCB0aWxlIC0tPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQ4OCIgaGVpZ2h0PSI0ODgiIHJ4PSIxMTIiIGZpbGw9InVybCgjYmcpIi8%2BCiAgPHBhdGggZD0iTTU0IDE3NkM3NyA5MSAxMzMgNDggMjE4IDMyQzE0MCAyOSA3OCAzOSA0NyA3MEMyMSA5NiAxNCAxMzYgMTMgMTkyQzI1IDE4NyAzOSAxODIgNTQgMTc2WiIgZmlsbD0iI0ZGQjM0QiIgb3BhY2l0eT0iMC4xOCIvPgoKICA8IS0tIENob3BzdGlja3MgLS0%2BCiAgPHBhdGggZD0iTTM3MCA3NUwzMDQgMzIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM2RTFGMTYiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC4yOCIvPgogIDxwYXRoIGQ9Ik00MTUgMTAxTDMzNyAzMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZFMUYxNiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjI4Ii8%2BCiAgPHBhdGggZD0iTTM2NCA2OEwyOTggMzE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ5OEMiIHN0cm9rZS13aWR0aD0iMTUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00MDkgOTRMMzMxIDMyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGMEM2IiBzdHJva2Utd2lkdGg9IjE1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgPCEtLSBRdWVzdGlvbi1tYXJrIHN0ZWFtIC0tPgogIDxwYXRoIGQ9Ik0yMTAgMTMwQzIxMCA4OCAyNDUgNjAgMjg4IDYzQzMzNCA2NiAzNjQgOTkgMzU1IDEzOUMzNDggMTY4IDMyNiAxODAgMzA0IDE5NEMyODMgMjA3IDI3NCAyMjMgMjc2IDI0NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGNEQ2IiBzdHJva2Utd2lkdGg9IjI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIyNzgiIGN5PSIyODUiIHI9IjE1IiBmaWxsPSIjRkZGNEQ2Ii8%2BCiAgPHBhdGggZD0iTTE4MCAxNjhDMTYwIDE5MSAxNjIgMjIwIDE4MSAyNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRjRENiIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjkiLz4KCiAgPCEtLSBSaWNlIGFuZCBib3dsIC0tPgogIDxwYXRoIGQ9Ik0xMTYgMzQwQzEyMiAzMDQgMTQ4IDI4MyAxODMgMjg2QzIwMSAyNTUgMjQzIDI0NSAyNzMgMjcxQzMwOCAyNTcgMzQ3IDI3NyAzNTkgMzA5QzM3NyAzMDkgMzkyIDMyMCAzOTcgMzQwWiIgZmlsbD0iI0ZGRjdFMyIvPgogIDxwYXRoIGQ9Ik04MiAzMzdDODIgMzI2IDkxIDMxNyAxMDIgMzE3SDQxMEM0MjEgMzE3IDQzMCAzMjYgNDMwIDMzN1YzNTBIODJaIiBmaWxsPSIjRkZGN0UzIi8%2BCiAgPHBhdGggZD0iTTkxIDM0OEg0MjFDNDE0IDQyMSAzNTUgNDYzIDI1NiA0NjNDMTU3IDQ2MyA5OCA0MjEgOTEgMzQ4WiIgZmlsbD0idXJsKCNib3dsKSIvPgogIDxwYXRoIGQ9Ik05MSAzNDhINDIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNTJBMjAiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xOTAgNDIyQzIyNiA0MzkgMjg2IDQzOSAzMjIgNDIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMjZBMkIiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0yMTYgNDYwSDI5NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZFQkMyIiBzdHJva2Utd2lkdGg9IjE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc%2B%22%2C%20%22sizes%22%3A%20%22any%22%2C%20%22type%22%3A%20%22image/svg%2Bxml%22%2C%20%22purpose%22%3A%20%22any%22%7D%5D%7D">
+<title>吃了吗 — 新加坡吃货排位</title>
+<style>
+:root{
+  --chili:#D8351F; --chili-dark:#A82712; --pandan:#1E7A52; --satay:#E8A33D;
+  --bg:#F7F3EC; --card:#FFFFFF; --ink:#201A16; --ink2:#8A7F74; --line:#EDE6DB;
+  --shadow:0 1px 2px rgba(32,26,22,.06), 0 4px 16px rgba(32,26,22,.06);
+}
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{
+  font-family:-apple-system,"SF Pro SC","PingFang SC","Noto Sans SC","Helvetica Neue","Microsoft YaHei",sans-serif;
+  background:#E9E2D6; color:var(--ink); height:100%;
+  display:flex; justify-content:center;
+}
+button{font:inherit; border:0; background:none; color:inherit; cursor:pointer}
+img{display:block}
+:focus-visible{outline:3px solid var(--satay); outline-offset:2px; border-radius:6px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important; transition-duration:.01ms!important}
+}
+
+/* ---------- phone shell ---------- */
+#app{
+  width:100%; max-width:430px; height:100dvh; background:var(--bg);
+  position:relative; overflow:hidden; display:flex; flex-direction:column;
+}
+@media (min-width:431px){ #app{height:min(100dvh,900px); margin:auto 0; border-radius:28px; box-shadow:0 24px 80px rgba(32,26,22,.35); } body{align-items:center} }
+
+/* ---------- top bar ---------- */
+#topbar{
+  display:flex; align-items:center; gap:10px; padding:12px 16px 10px;
+  background:var(--bg); border-bottom:1px solid var(--line); flex:none;
+}
+#topbar .logo{width:34px; height:34px; border-radius:9px; overflow:hidden; flex:none}
+#topbar .logo svg,#topbar .logo img{width:100%; height:100%}
+#topbar .word{font-size:19px; font-weight:800; letter-spacing:.5px}
+#topbar .tag{font-size:11px; color:var(--ink2); margin-top:1px}
+#topbar .me{margin-left:auto; width:32px; height:32px; border-radius:50%; background:#FFE9D6; display:grid; place-items:center; font-size:17px; border:1.5px solid var(--satay)}
+
+/* ---------- pages ---------- */
+#pages{flex:1; overflow:hidden; position:relative}
+.page{position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-bottom:16px; display:none}
+.page.active{display:block}
+
+/* ---------- tab bar ---------- */
+#tabbar{
+  flex:none; display:flex; background:var(--card); border-top:1px solid var(--line);
+  padding:6px 8px calc(8px + env(safe-area-inset-bottom));
+}
+#tabbar button{
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:2px;
+  font-size:10.5px; color:var(--ink2); padding:4px 0; border-radius:12px; font-weight:600;
+}
+#tabbar button .ic{font-size:20px; line-height:1; filter:grayscale(1) opacity(.55)}
+#tabbar button.active{color:var(--chili)}
+#tabbar button.active .ic{filter:none}
+
+/* ---------- shared card ---------- */
+.card{background:var(--card); border-radius:16px; margin:12px 12px 0; box-shadow:var(--shadow); overflow:hidden}
+.section-h{display:flex; align-items:baseline; gap:8px; margin:18px 16px 2px; }
+.section-h b{font-size:15px}
+.section-h span{font-size:11px; color:var(--ink2)}
+
+/* ---------- feed ---------- */
+.fhead{display:flex; align-items:center; gap:10px; padding:12px 14px 0}
+.fava{width:38px; height:38px; border-radius:50%; background:#FFF3E4; display:grid; place-items:center; font-size:20px; flex:none; border:1px solid var(--line)}
+.fwho{flex:1; min-width:0}
+.fwho b{font-size:14px}
+.fwho .sub{font-size:11px; color:var(--ink2); margin-top:1px}
+.badge-inf{display:inline-block; font-size:9.5px; color:#fff; background:var(--satay); border-radius:4px; padding:1px 4px; margin-left:4px; vertical-align:1px; font-weight:700}
+.badge-ad{display:inline-block; font-size:9.5px; color:var(--ink2); border:1px solid var(--line); border-radius:4px; padding:1px 4px; font-weight:600}
+.follow{font-size:12px; font-weight:700; color:var(--chili); border:1.5px solid var(--chili); border-radius:99px; padding:3px 12px; flex:none}
+.follow.on{color:var(--ink2); border-color:var(--line)}
+.ftime{font-size:11px; color:var(--ink2)}
+
+.versus{display:flex; align-items:stretch; gap:0; margin:12px 14px 0; border-radius:12px; overflow:hidden; position:relative; border:1px solid var(--line)}
+.vside{flex:1; min-width:0; position:relative}
+.vside img{width:100%; height:96px; object-fit:cover}
+.vside .vname{position:absolute; left:0; right:0; bottom:0; padding:14px 8px 6px; font-size:12px; font-weight:700; color:#fff;
+  background:linear-gradient(transparent, rgba(0,0,0,.72)); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.vside.lose img{filter:grayscale(.85) brightness(.8)}
+.vside.win::after{content:"WIN"; position:absolute; top:6px; left:6px; background:var(--chili); color:#fff; font-size:9px; font-weight:800; letter-spacing:.5px; padding:2px 6px; border-radius:4px}
+.vs-seam{position:absolute; left:50%; top:0; bottom:0; width:34px; transform:translateX(-50%); display:grid; place-items:center; pointer-events:none}
+.vs-seam::before{content:""; position:absolute; inset:-8px auto -8px 50%; width:3px; background:var(--bg); transform:rotate(9deg)}
+.vs-seam b{position:relative; background:var(--bg); border-radius:50%; width:30px; height:30px; display:grid; place-items:center; font-size:11px; font-style:italic; color:var(--chili); font-weight:900; box-shadow:var(--shadow)}
+.gt{color:var(--chili); font-weight:900; padding:0 2px}
+.freason{margin:10px 14px 0; font-size:14px; line-height:1.55}
+.fmeta{display:flex; gap:16px; padding:10px 14px 12px; color:var(--ink2); font-size:12px}
+.fmeta button{color:var(--ink2); display:flex; gap:4px; align-items:center}
+.fmeta button.liked{color:var(--chili); font-weight:700}
+
+.reco{border-left:4px solid var(--pandan)}
+.reco .why{margin:8px 14px 0; font-size:12.5px; color:var(--pandan); background:#EDF6F1; border-radius:8px; padding:8px 10px; line-height:1.5}
+.adcard{border-left:4px solid var(--satay)}
+.adimg{width:100%; height:132px; object-fit:cover; margin-top:10px}
+.adline{display:flex; align-items:center; gap:8px; padding:10px 14px 12px}
+.adline .cta{margin-left:auto; background:var(--chili); color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:99px}
+
+/* ---------- rankings ---------- */
+.chips{display:flex; gap:8px; overflow-x:auto; padding:12px 12px 2px; scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none; font-size:12.5px; font-weight:600; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:99px; padding:6px 13px}
+.chip.on{color:#fff; background:var(--ink); border-color:var(--ink)}
+.rrow{display:flex; align-items:center; gap:10px; padding:10px 12px; width:100%; text-align:left; border-bottom:1px solid var(--line)}
+.rrow:last-child{border-bottom:0}
+.rnum{width:26px; text-align:center; font-size:15px; font-weight:800; font-variant-numeric:tabular-nums; color:var(--ink2); flex:none}
+.rnum.top{color:var(--chili); font-size:17px}
+.rimg{width:52px; height:52px; border-radius:10px; object-fit:cover; flex:none; background:var(--line)}
+.rinfo{flex:1; min-width:0}
+.rinfo b{font-size:14px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.rinfo .sub{font-size:11px; color:var(--ink2); margin-top:2px}
+.rlikes{font-size:11px; margin-top:3px; color:var(--ink2)}
+.rlikes .avs{letter-spacing:-3px; margin-right:5px; font-size:12px}
+.relo{text-align:right; flex:none}
+.relo b{font-size:14px; color:var(--chili); font-variant-numeric:tabular-nums; display:block}
+.relo span{font-size:10px; color:var(--ink2)}
+.uparrow{color:var(--pandan)}
+
+/* ---------- PK ---------- */
+#pk-page{display:none; flex-direction:column}
+#pk-page.active{display:flex}
+.pk-head{text-align:center; padding:18px 20px 6px}
+.pk-head h2{font-size:21px; font-weight:800}
+.pk-head p{font-size:12.5px; color:var(--ink2); margin-top:4px}
+.pk-arena{flex:1; display:flex; flex-direction:column; margin:10px 16px; position:relative; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); min-height:0}
+.pk-side{flex:1; position:relative; overflow:hidden; text-align:left; min-height:0}
+.pk-side img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .25s}
+.pk-side:active img{transform:scale(1.04)}
+.pk-info{position:absolute; left:0; right:0; bottom:0; padding:40px 16px 14px; color:#fff; background:linear-gradient(transparent, rgba(10,5,2,.82))}
+.pk-info b{font-size:18px; display:block}
+.pk-info span{font-size:12px; opacity:.85}
+.pk-vs{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3; width:52px; height:52px; border-radius:50%; background:var(--bg); display:grid; place-items:center; font-style:italic; font-weight:900; font-size:16px; color:var(--chili); box-shadow:0 0 0 5px rgba(216,53,31,.18), var(--shadow); pointer-events:none}
+.pk-seam{position:absolute; left:-6%; right:-6%; top:50%; height:4px; background:var(--bg); transform:rotate(-3deg); z-index:2; pointer-events:none}
+.pk-skip{margin:2px auto 14px; font-size:13px; color:var(--ink2); font-weight:600; padding:8px 22px; border-radius:99px; border:1px dashed var(--ink2)}
+.pk-won{animation:pkwin .5s}
+@keyframes pkwin{0%{filter:none}30%{filter:brightness(1.35) saturate(1.4)}100%{filter:none}}
+.pk-float{position:absolute; z-index:5; font-weight:900; color:#fff; background:var(--chili); padding:6px 12px; border-radius:99px; font-size:14px; animation:rise .8s forwards; pointer-events:none}
+@keyframes rise{from{opacity:1; transform:translateY(0)}to{opacity:0; transform:translateY(-46px)}}
+.pk-count{text-align:center; font-size:11.5px; color:var(--ink2); padding-bottom:10px}
+
+/* ---------- profile ---------- */
+.me-hero{display:flex; align-items:center; gap:14px; padding:20px 18px 4px}
+.me-hero .big{width:60px; height:60px; border-radius:50%; background:#FFE9D6; border:2px solid var(--satay); display:grid; place-items:center; font-size:30px}
+.me-hero b{font-size:18px}
+.me-hero .sub{font-size:12px; color:var(--ink2); margin-top:3px}
+.stats{display:flex; margin:14px 12px 0; background:var(--card); border-radius:16px; box-shadow:var(--shadow)}
+.stats div{flex:1; text-align:center; padding:12px 0}
+.stats b{font-size:18px; display:block; font-variant-numeric:tabular-nums}
+.stats span{font-size:11px; color:var(--ink2)}
+.frow{display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line)}
+.frow:last-child{border-bottom:0}
+.frow .fava{width:34px; height:34px; font-size:18px}
+.frow b{font-size:13.5px}
+.frow .sub{font-size:11px; color:var(--ink2)}
+.empty{text-align:center; color:var(--ink2); font-size:13px; padding:26px 20px; line-height:1.7}
+.empty .go{display:inline-block; margin-top:8px; color:#fff; background:var(--chili); font-weight:700; border-radius:99px; padding:8px 20px; font-size:13px}
+
+/* ---------- detail sheet ---------- */
+#sheet-back{position:absolute; inset:0; background:rgba(20,12,8,.45); z-index:20; opacity:0; pointer-events:none; transition:opacity .25s}
+#sheet-back.show{opacity:1; pointer-events:auto}
+#sheet{position:absolute; left:0; right:0; bottom:0; z-index:21; background:var(--bg); border-radius:22px 22px 0 0; transform:translateY(102%); transition:transform .3s cubic-bezier(.3,.8,.3,1); max-height:86%; overflow-y:auto}
+#sheet.show{transform:none}
+#sheet .grab{width:40px; height:4px; border-radius:2px; background:var(--line); margin:8px auto}
+#sheet .shimg{width:100%; height:180px; object-fit:cover}
+.shbody{padding:14px 16px 26px}
+.shbody h3{font-size:20px; font-weight:800}
+.shbody .zh{font-size:13px; color:var(--ink2); margin-top:2px}
+.shrow{display:flex; gap:8px; align-items:center; font-size:13px; margin-top:10px; color:var(--ink); line-height:1.5}
+.shrow .k{flex:none; font-size:11px; color:var(--ink2); width:52px}
+.shtags{display:flex; gap:6px; margin-top:12px; flex-wrap:wrap}
+.shtag{font-size:11.5px; background:#F3EBDD; border-radius:6px; padding:4px 8px; color:#7A6A50; font-weight:600}
+.maplink{display:inline-flex; align-items:center; gap:5px; margin-top:14px; color:var(--pandan); font-weight:700; font-size:13.5px; text-decoration:none}
+.shjudge{margin-top:16px; border-top:1px dashed var(--line); padding-top:12px}
+.shjudge .jline{font-size:13px; margin-top:8px; line-height:1.55}
+.shjudge .jline .who{font-weight:700}
+.shjudge .jline .rsn{color:var(--ink2); font-size:12px; display:block; margin-left:2px}
+
+/* ---------- splash ---------- */
+#splash{position:absolute; inset:0; z-index:50; background:linear-gradient(160deg,#D8351F,#A82712 70%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; color:#fff; transition:opacity .45s, visibility .45s}
+#splash.gone{opacity:0; visibility:hidden}
+#splash .slogo{width:128px; height:128px; border-radius:30px; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.35); background:#fff}
+#splash .slogo svg,#splash .slogo img{width:100%; height:100%}
+#splash h1{font-size:34px; font-weight:900; letter-spacing:2px}
+#splash p{font-size:14px; opacity:.9}
+#splash .enter{margin-top:14px; background:#fff; color:var(--chili); font-weight:800; font-size:15px; padding:12px 44px; border-radius:99px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#splash .fine{position:absolute; bottom:calc(18px + env(safe-area-inset-bottom)); font-size:10.5px; opacity:.65}
+</style>
+  <link rel="canonical" href="https://stuff.zaynjarvis.com/chi-le-ma/" />
+  <meta property="og:url" content="https://stuff.zaynjarvis.com/chi-le-ma/" />
+  
+</head>
+<body>
+<div id="app">
+  <div id="splash">
+    <div class="slogo" id="splash-logo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+5ZCD5LqG5ZCXIGljb248L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5BIHJpY2UgYm93bCB3aXRoIGNob3BzdGlja3MgYW5kIHN0ZWFtIHNoYXBlZCBsaWtlIGEgcXVlc3Rpb24gbWFyay48L2Rlc2M+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iNjQiIHkxPSIzMiIgeDI9IjQ0OCIgeTI9IjQ4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOTJEMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUyIiBzdG9wLWNvbG9yPSIjRjA0QjIzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGOEExRiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYm93bCIgeDE9IjE1OCIgeTE9IjMxNCIgeDI9IjM1MCIgeTI9IjQ0MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkY4RTciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkZFMkE4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBSb3VuZGVkIGFwcCB0aWxlIC0tPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQ4OCIgaGVpZ2h0PSI0ODgiIHJ4PSIxMTIiIGZpbGw9InVybCgjYmcpIi8+CiAgPHBhdGggZD0iTTU0IDE3NkM3NyA5MSAxMzMgNDggMjE4IDMyQzE0MCAyOSA3OCAzOSA0NyA3MEMyMSA5NiAxNCAxMzYgMTMgMTkyQzI1IDE4NyAzOSAxODIgNTQgMTc2WiIgZmlsbD0iI0ZGQjM0QiIgb3BhY2l0eT0iMC4xOCIvPgoKICA8IS0tIENob3BzdGlja3MgLS0+CiAgPHBhdGggZD0iTTM3MCA3NUwzMDQgMzIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM2RTFGMTYiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC4yOCIvPgogIDxwYXRoIGQ9Ik00MTUgMTAxTDMzNyAzMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZFMUYxNiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjI4Ii8+CiAgPHBhdGggZD0iTTM2NCA2OEwyOTggMzE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ5OEMiIHN0cm9rZS13aWR0aD0iMTUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00MDkgOTRMMzMxIDMyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGMEM2IiBzdHJva2Utd2lkdGg9IjE1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgPCEtLSBRdWVzdGlvbi1tYXJrIHN0ZWFtIC0tPgogIDxwYXRoIGQ9Ik0yMTAgMTMwQzIxMCA4OCAyNDUgNjAgMjg4IDYzQzMzNCA2NiAzNjQgOTkgMzU1IDEzOUMzNDggMTY4IDMyNiAxODAgMzA0IDE5NEMyODMgMjA3IDI3NCAyMjMgMjc2IDI0NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGNEQ2IiBzdHJva2Utd2lkdGg9IjI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIyNzgiIGN5PSIyODUiIHI9IjE1IiBmaWxsPSIjRkZGNEQ2Ii8+CiAgPHBhdGggZD0iTTE4MCAxNjhDMTYwIDE5MSAxNjIgMjIwIDE4MSAyNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRjRENiIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjkiLz4KCiAgPCEtLSBSaWNlIGFuZCBib3dsIC0tPgogIDxwYXRoIGQ9Ik0xMTYgMzQwQzEyMiAzMDQgMTQ4IDI4MyAxODMgMjg2QzIwMSAyNTUgMjQzIDI0NSAyNzMgMjcxQzMwOCAyNTcgMzQ3IDI3NyAzNTkgMzA5QzM3NyAzMDkgMzkyIDMyMCAzOTcgMzQwWiIgZmlsbD0iI0ZGRjdFMyIvPgogIDxwYXRoIGQ9Ik04MiAzMzdDODIgMzI2IDkxIDMxNyAxMDIgMzE3SDQxMEM0MjEgMzE3IDQzMCAzMjYgNDMwIDMzN1YzNTBIODJaIiBmaWxsPSIjRkZGN0UzIi8+CiAgPHBhdGggZD0iTTkxIDM0OEg0MjFDNDE0IDQyMSAzNTUgNDYzIDI1NiA0NjNDMTU3IDQ2MyA5OCA0MjEgOTEgMzQ4WiIgZmlsbD0idXJsKCNib3dsKSIvPgogIDxwYXRoIGQ9Ik05MSAzNDhINDIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNTJBMjAiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xOTAgNDIyQzIyNiA0MzkgMjg2IDQzOSAzMjIgNDIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMjZBMkIiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0yMTYgNDYwSDI5NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZFQkMyIiBzdHJva2Utd2lkdGg9IjE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+" alt="吃了吗 logo"></div>
+    <h1>吃了吗</h1>
+    <p>不打分，只比较 —— A ⟩ B，好吃自然见分晓</p>
+    <button class="enter" id="enter">开始吃</button>
+    <div class="fine">高保真 PoC · 新加坡 · 数据为演示种子数据</div>
+  </div>
+
+  <div id="topbar">
+    <div class="logo" id="top-logo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+5ZCD5LqG5ZCXIGljb248L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5BIHJpY2UgYm93bCB3aXRoIGNob3BzdGlja3MgYW5kIHN0ZWFtIHNoYXBlZCBsaWtlIGEgcXVlc3Rpb24gbWFyay48L2Rlc2M+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iNjQiIHkxPSIzMiIgeDI9IjQ0OCIgeTI9IjQ4MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNEOTJEMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUyIiBzdG9wLWNvbG9yPSIjRjA0QjIzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0ZGOEExRiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYm93bCIgeDE9IjE1OCIgeTE9IjMxNCIgeDI9IjM1MCIgeTI9IjQ0MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkY4RTciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkZFMkE4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBSb3VuZGVkIGFwcCB0aWxlIC0tPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjQ4OCIgaGVpZ2h0PSI0ODgiIHJ4PSIxMTIiIGZpbGw9InVybCgjYmcpIi8+CiAgPHBhdGggZD0iTTU0IDE3NkM3NyA5MSAxMzMgNDggMjE4IDMyQzE0MCAyOSA3OCAzOSA0NyA3MEMyMSA5NiAxNCAxMzYgMTMgMTkyQzI1IDE4NyAzOSAxODIgNTQgMTc2WiIgZmlsbD0iI0ZGQjM0QiIgb3BhY2l0eT0iMC4xOCIvPgoKICA8IS0tIENob3BzdGlja3MgLS0+CiAgPHBhdGggZD0iTTM3MCA3NUwzMDQgMzIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM2RTFGMTYiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC4yOCIvPgogIDxwYXRoIGQ9Ik00MTUgMTAxTDMzNyAzMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZFMUYxNiIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjI4Ii8+CiAgPHBhdGggZD0iTTM2NCA2OEwyOTggMzE3IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ5OEMiIHN0cm9rZS13aWR0aD0iMTUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00MDkgOTRMMzMxIDMyMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGMEM2IiBzdHJva2Utd2lkdGg9IjE1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgPCEtLSBRdWVzdGlvbi1tYXJrIHN0ZWFtIC0tPgogIDxwYXRoIGQ9Ik0yMTAgMTMwQzIxMCA4OCAyNDUgNjAgMjg4IDYzQzMzNCA2NiAzNjQgOTkgMzU1IDEzOUMzNDggMTY4IDMyNiAxODAgMzA0IDE5NEMyODMgMjA3IDI3NCAyMjMgMjc2IDI0NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGNEQ2IiBzdHJva2Utd2lkdGg9IjI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSIyNzgiIGN5PSIyODUiIHI9IjE1IiBmaWxsPSIjRkZGNEQ2Ii8+CiAgPHBhdGggZD0iTTE4MCAxNjhDMTYwIDE5MSAxNjIgMjIwIDE4MSAyNDIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRjRENiIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjkiLz4KCiAgPCEtLSBSaWNlIGFuZCBib3dsIC0tPgogIDxwYXRoIGQ9Ik0xMTYgMzQwQzEyMiAzMDQgMTQ4IDI4MyAxODMgMjg2QzIwMSAyNTUgMjQzIDI0NSAyNzMgMjcxQzMwOCAyNTcgMzQ3IDI3NyAzNTkgMzA5QzM3NyAzMDkgMzkyIDMyMCAzOTcgMzQwWiIgZmlsbD0iI0ZGRjdFMyIvPgogIDxwYXRoIGQ9Ik04MiAzMzdDODIgMzI2IDkxIDMxNyAxMDIgMzE3SDQxMEM0MjEgMzE3IDQzMCAzMjYgNDMwIDMzN1YzNTBIODJaIiBmaWxsPSIjRkZGN0UzIi8+CiAgPHBhdGggZD0iTTkxIDM0OEg0MjFDNDE0IDQyMSAzNTUgNDYzIDI1NiA0NjNDMTU3IDQ2MyA5OCA0MjEgOTEgMzQ4WiIgZmlsbD0idXJsKCNib3dsKSIvPgogIDxwYXRoIGQ9Ik05MSAzNDhINDIxIiBmaWxsPSJub25lIiBzdHJva2U9IiNDNTJBMjAiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0xOTAgNDIyQzIyNiA0MzkgMjg2IDQzOSAzMjIgNDIyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMjZBMkIiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0yMTYgNDYwSDI5NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZFQkMyIiBzdHJva2Utd2lkdGg9IjE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+" alt=""></div>
+    <div>
+      <div class="word">吃了吗</div>
+      <div class="tag">新加坡 · 好友吃货排位</div>
+    </div>
+    <div class="me" title="我">🙋</div>
+  </div>
+
+  <div id="pages">
+    <div class="page active" id="feed-page" role="tabpanel" aria-label="首页动态"></div>
+    <div class="page" id="rank-page" role="tabpanel" aria-label="榜单"></div>
+    <div class="page" id="pk-page" role="tabpanel" aria-label="比一比"></div>
+    <div class="page" id="me-page" role="tabpanel" aria-label="我的"></div>
+  </div>
+
+  <div id="tabbar" role="tablist">
+    <button data-tab="feed" class="active" aria-label="首页"><span class="ic">🏠</span>首页</button>
+    <button data-tab="rank" aria-label="榜单"><span class="ic">🏆</span>榜单</button>
+    <button data-tab="pk" aria-label="比一比"><span class="ic">⚔️</span>比一比</button>
+    <button data-tab="me" aria-label="我的"><span class="ic">🙋</span>我的</button>
+  </div>
+
+  <div id="sheet-back"></div>
+  <div id="sheet"></div>
+</div>
+
+<script>
+const DATA = {"images":[{"key":"chicken_rice","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hainanese_chicken_rice.jpg/960px-Hainanese_chicken_rice.jpg","credit":"Wikimedia Commons"},{"key":"laksa","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Laksa_Noodles.jpg/960px-Laksa_Noodles.jpg","credit":"Wikimedia Commons"},{"key":"bak_kut_teh","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Song_Fa_Bak_Kut_Teh%2C_New_Bridge_Rd%2C_Singapore_%282023%29_06.jpg/960px-Song_Fa_Bak_Kut_Teh%2C_New_Bridge_Rd%2C_Singapore_%282023%29_06.jpg","credit":"Wikimedia Commons"},{"key":"chilli_crab","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chilli_crab-01.jpg/960px-Chilli_crab-01.jpg","credit":"Wikimedia Commons"},{"key":"satay","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Chicken_satay_on_banana_leaf_in_Java.jpg/960px-Chicken_satay_on_banana_leaf_in_Java.jpg","credit":"Wikimedia Commons"},{"key":"prata","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Roti_Prata_Curry_Large.JPG/960px-Roti_Prata_Curry_Large.JPG","credit":"Wikimedia Commons"},{"key":"dim_sum","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Dim_Sum_Breakfast.jpg/960px-Dim_Sum_Breakfast.jpg","credit":"Wikimedia Commons"},{"key":"dumplings","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Dumplings_at_Chinese_restaurant_in_Tokyo_Midtown.jpg/960px-Dumplings_at_Chinese_restaurant_in_Tokyo_Midtown.jpg","credit":"Wikimedia Commons"},{"key":"fine_dining","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Seven-course_tasting_menu_at_Monstera_Bistro%2C_Ljubljana_%2848701367492%29.jpg/960px-Seven-course_tasting_menu_at_Monstera_Bistro%2C_Ljubljana_%2848701367492%29.jpg","credit":"Wikimedia Commons"},{"key":"cafe_brunch","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg/960px-Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg","credit":"Wikimedia Commons"},{"key":"indian","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Indian_Thali_2024.jpg/960px-Indian_Thali_2024.jpg","credit":"Wikimedia Commons"},{"key":"malay_nasi","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Nasi_lemak_on_banana_leaf.jpg/960px-Nasi_lemak_on_banana_leaf.jpg","credit":"Wikimedia Commons"},{"key":"peranakan","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Nyonya_kuih%2C_Ipoh%2C_Malaysia.jpg/960px-Nyonya_kuih%2C_Ipoh%2C_Malaysia.jpg","credit":"Wikimedia Commons"},{"key":"noodles","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Wok_Fried_Soft_Noodles.jpg/960px-Wok_Fried_Soft_Noodles.jpg","credit":"Wikimedia Commons"},{"key":"bbq_grill","url":"https://upload.wikimedia.org/wikipedia/commons/d/d1/Korean_barbecue_-_dipping_grilled_pork_shoulder_in_meljeot.jpg","credit":"Wikimedia Commons"},{"key":"seafood","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Plateau_de_fruits_de_mer_001.jpg/960px-Plateau_de_fruits_de_mer_001.jpg","credit":"Wikimedia Commons"},{"key":"dessert_kaya","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Kaya_toast_on_a_plate.jpg/960px-Kaya_toast_on_a_plate.jpg","credit":"Wikimedia Commons"},{"key":"japanese","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sushi_platter%2C_Nikko%2C_Japan.jpg/960px-Sushi_platter%2C_Nikko%2C_Japan.jpg","credit":"Wikimedia Commons"},{"key":"western_burger","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cheeseburger_with_fries_-_Massachusetts.jpg/960px-Cheeseburger_with_fries_-_Massachusetts.jpg","credit":"Wikimedia Commons"},{"key":"hotpot","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hai_Di_Lao_Hot_Pot_Food.jpg/960px-Hai_Di_Lao_Hot_Pot_Food.jpg","credit":"Wikimedia Commons"}],"restaurants":[{"name":"Tian Tian Hainanese Chicken Rice","name_zh":"天天海南鸡饭","cuisine":"海南鸡饭","area":"Maxwell / CBD","address":"1 Kadayanallur Street, #01-10/11 Maxwell Food Centre","lat":1.28,"lng":103.845,"price":1,"signature_dish":"白斩鸡饭","blurb":"Maxwell熟食中心的镇场之宝，滑嫩鸡肉配油香鸡饭，午市不排半小时队根本吃不到。","img_key":"chicken_rice","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hainanese_chicken_rice.jpg/960px-Hainanese_chicken_rice.jpg"},{"name":"328 Katong Laksa","name_zh":"328加东叻沙","cuisine":"叻沙","area":"Katong","address":"51 East Coast Road","lat":1.307,"lng":103.905,"price":1,"signature_dish":"加东叻沙","blurb":"加东叻沙的代名词，粗米粉剪成短段一勺入口，浓椰浆汤底辣得过瘾，连Gordon Ramsay都输过。","img_key":"laksa","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Laksa_Noodles.jpg/960px-Laksa_Noodles.jpg"},{"name":"Hill Street Tai Hwa Pork Noodle","name_zh":"大华猪肉粿条面","cuisine":"肉脞面","area":"Jalan Besar","address":"466 Crawford Lane, #01-12","lat":1.303,"lng":103.864,"price":1,"signature_dish":"干捞肉脞面","blurb":"米其林一星的肉脞面，猪油醋香扑鼻，排两小时也甘愿，lai早点来别过午。","img_key":"noodles","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Wok_Fried_Soft_Noodles.jpg/960px-Wok_Fried_Soft_Noodles.jpg"},{"name":"Song Fa Bak Kut Teh","name_zh":"松发肉骨茶","cuisine":"肉骨茶","area":"Clarke Quay","address":"11 New Bridge Road, #01-01","lat":1.288,"lng":103.847,"price":2,"signature_dish":"排骨肉骨茶","blurb":"胡椒味十足的潮州肉骨茶老字号，汤可免费续，配油条泡着吃才是local玩法。","img_key":"bak_kut_teh","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Song_Fa_Bak_Kut_Teh%2C_New_Bridge_Rd%2C_Singapore_%282023%29_06.jpg/960px-Song_Fa_Bak_Kut_Teh%2C_New_Bridge_Rd%2C_Singapore_%282023%29_06.jpg"},{"name":"Hong Heng Fried Sotong Prawn Mee","name_zh":"兴兴炒苏东虾面","cuisine":"福建炒虾面","area":"Tiong Bahru","address":"30 Seng Poh Road, #01-05 Tiong Bahru Market","lat":1.285,"lng":103.832,"price":1,"signature_dish":"福建炒虾面","blurb":"中峇鲁市场的Bib Gourmand摊，镬气福建面裹满虾汤精华，配自制参峇辣椒才叫shiok。","img_key":"noodles","img":"https://upload.wikimedia.org/wikipedia/commons/b/bf/%E7%89%9B%E8%82%89%E9%BA%B5_Chinese_Braised_Beef_Noodles_-_whole_bowl_visible.jpg"},{"name":"Haron Satay","name_zh":"哈隆沙爹","cuisine":"沙爹","area":"East Coast","address":"1220 East Coast Parkway, #01-14 East Coast Lagoon Food Village","lat":1.307,"lng":103.928,"price":1,"signature_dish":"鸡肉羊肉沙爹","blurb":"海边熟食村的炭烤沙爹传奇，一串一串数着吃，蘸浓花生酱配ketupat，海风一吹最对味。","img_key":"satay","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Chicken_satay_on_banana_leaf_in_Java.jpg/960px-Chicken_satay_on_banana_leaf_in_Java.jpg"},{"name":"Zam Zam Singapore","name_zh":"赞赞餐室","cuisine":"印度煎饼","area":"Kampong Glam","address":"697-699 North Bridge Road","lat":1.302,"lng":103.859,"price":1,"signature_dish":"羊肉马达巴 Murtabak","blurb":"苏丹回教堂对面的百年老店，师傅当街甩饼皮，招牌murtabak塞满咖喱羊肉，撑一整天。","img_key":"prata","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Roti_Prata_Curry_Large.JPG/960px-Roti_Prata_Curry_Large.JPG"},{"name":"Hjh Maimunah","name_zh":"玛依慕娜","cuisine":"马来椰浆饭","area":"Kampong Glam","address":"11 & 15 Jalan Pisang","lat":1.302,"lng":103.86,"price":2,"signature_dish":"巴东饭 Nasi Padang","blurb":"甘榜格南最出名的马来家常菜，几十道菜任点，招牌Ayam Bakar烤鸡香到走不动，米其林认证。","img_key":"malay_nasi","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Nasi_lemak_on_banana_leaf.jpg/960px-Nasi_lemak_on_banana_leaf.jpg"},{"name":"Ya Kun Kaya Toast","name_zh":"亚坤","cuisine":"咖椰烤面包","area":"CBD / Telok Ayer","address":"18 China Street, #01-01 Far East Square","lat":1.285,"lng":103.848,"price":1,"signature_dish":"咖椰烤面包配半熟蛋","blurb":"新加坡kopitiam早餐的图腾，脆薄烤面包夹牛油咖椰，配两颗半生熟蛋加黑咖啡，一天从这里开始。","img_key":"dessert_kaya","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Kaya_toast_on_a_plate.jpg/960px-Kaya_toast_on_a_plate.jpg"},{"name":"Liao Fan Hawker Chan","name_zh":"了凡香港油鸡饭面","cuisine":"油鸡饭","area":"Chinatown","address":"78 Smith Street, #02-126 Chinatown Complex","lat":1.282,"lng":103.844,"price":1,"signature_dish":"油鸡饭","blurb":"全球第一家摘米其林星的小贩摊，一碟油鸡饭卖几块钱，性价比封神，牛车水必朝圣。","img_key":"chicken_rice","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Hainanese_Chicken_Rice.jpg/960px-Hainanese_Chicken_Rice.jpg"},{"name":"Odette","name_zh":"Odette","cuisine":"精致法餐","area":"City Hall","address":"1 St Andrew's Road, #01-04 National Gallery Singapore","lat":1.29,"lng":103.852,"price":4,"signature_dish":"品尝套餐 Tasting Menu","blurb":"国家美术馆里的三星法餐圣殿，主厨Julien Royer的现代法式细腻到骨子里，纪念日预订要趁早。","img_key":"fine_dining","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Seven-course_tasting_menu_at_Monstera_Bistro%2C_Ljubljana_%2848701367492%29.jpg/960px-Seven-course_tasting_menu_at_Monstera_Bistro%2C_Ljubljana_%2848701367492%29.jpg"},{"name":"Les Amis","name_zh":"Les Amis","cuisine":"精致法餐","area":"Orchard","address":"1 Scotts Road, #01-16 Shaw Centre","lat":1.305,"lng":103.832,"price":4,"signature_dish":"当季法式品尝套餐","blurb":"乌节路上的三星老牌法餐厅，酒窖藏货惊人，本地fine dining的天花板级别。","img_key":"fine_dining","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Monteux_Noix_de_Saint-Jacques_de_la_C%C3%B4te_d%27Armor_et_ses_perles_de_ciboulette.JPG/960px-Monteux_Noix_de_Saint-Jacques_de_la_C%C3%B4te_d%27Armor_et_ses_perles_de_ciboulette.JPG"},{"name":"Burnt Ends","name_zh":"Burnt Ends","cuisine":"现代炭烤","area":"Dempsey","address":"Block 7 Dempsey Road, #01-04","lat":1.305,"lng":103.81,"price":4,"signature_dish":"炭烤和牛与Sanger猪肉汉堡","blurb":"搬到Dempsey后气势更足的米其林炭烤名店，四吨重砖炉现烤，开放吧台看火最过瘾，订位难如登天。","img_key":"bbq_grill","img":"https://upload.wikimedia.org/wikipedia/commons/d/d1/Korean_barbecue_-_dipping_grilled_pork_shoulder_in_meljeot.jpg"},{"name":"Candlenut","name_zh":"Candlenut 蜡烛果","cuisine":"精致娘惹菜","area":"Dempsey","address":"Block 17A Dempsey Road","lat":1.304,"lng":103.81,"price":3,"signature_dish":"叻沙龙虾 Buah Keluak","blurb":"全球第一家摘米其林星的娘惹餐厅，把峇峇娘惹家常味做出高级感，黑果料理是招牌狠角色。","img_key":"peranakan","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Nyonya_kuih%2C_Ipoh%2C_Malaysia.jpg/960px-Nyonya_kuih%2C_Ipoh%2C_Malaysia.jpg"},{"name":"JUMBO Seafood","name_zh":"珍宝海鲜","cuisine":"辣椒螃蟹海鲜","area":"East Coast","address":"1206 East Coast Parkway, #01-07/08 East Coast Seafood Centre","lat":1.306,"lng":103.927,"price":3,"signature_dish":"辣椒螃蟹","blurb":"游客本地人都爱的辣椒螃蟹殿堂，浓蛋花酱汁配炸馒头蘸到见底，海边吹风配啤酒最新加坡。","img_key":"chilli_crab","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chilli_crab-01.jpg/960px-Chilli_crab-01.jpg"},{"name":"Keng Eng Kee Seafood","name_zh":"强荣记海鲜","cuisine":"煮炒海鲜","area":"Bukit Merah","address":"Block 124 Bukit Merah Lane 1, #01-136","lat":1.285,"lng":103.818,"price":2,"signature_dish":"月光河 Moonlight Hor Fun","blurb":"组屋楼下的煮炒传奇，第三代掌勺镬气不减，招牌月光河和咖喱鱼头必点，local zi char的标杆。","img_key":"seafood","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Plateau_de_fruits_de_mer_001.jpg/960px-Plateau_de_fruits_de_mer_001.jpg"},{"name":"JB Ah Meng","name_zh":"JB阿明","cuisine":"煮炒海鲜","area":"Geylang","address":"534 Geylang Road","lat":1.314,"lng":103.889,"price":2,"signature_dish":"白胡椒蟹与三楼米粉","blurb":"芽笼深夜煮炒名场子，明星常客爱来，白胡椒蟹和San Lou米粉镬气冲天，宵夜就要这种。","img_key":"noodles","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Wok_Fried_Soft_Noodles.jpg/960px-Wok_Fried_Soft_Noodles.jpg"},{"name":"No Signboard Seafood","name_zh":"无招牌海鲜","cuisine":"海鲜","area":"Geylang","address":"414 Geylang Road","lat":1.313,"lng":103.885,"price":3,"signature_dish":"白胡椒螃蟹","blurb":"从芽笼小摊起家的海鲜老字号，白胡椒蟹是他家发扬光大的招牌，辣香呛口停不下来。","img_key":"seafood","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Plateau_de_fruits_de_mer_001.jpg/960px-Plateau_de_fruits_de_mer_001.jpg"},{"name":"Din Tai Fung","name_zh":"鼎泰丰","cuisine":"江浙点心","area":"Orchard","address":"290 Orchard Road, #B1-03 Paragon","lat":1.304,"lng":103.836,"price":2,"signature_dish":"小笼包","blurb":"十八摺小笼包咬开爆汤，配一碗酸辣汤和炒饭，商场里最稳的选择，排队也心甘。","img_key":"dumplings","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Dumplings_at_Chinese_restaurant_in_Tokyo_Midtown.jpg/960px-Dumplings_at_Chinese_restaurant_in_Tokyo_Midtown.jpg"},{"name":"Swee Choon Tim Sum","name_zh":"瑞春点心","cuisine":"点心","area":"Jalan Besar","address":"191 Jalan Besar","lat":1.31,"lng":103.857,"price":2,"signature_dish":"蛋黄流沙包与Mee Suah Kueh","blurb":"开到凌晨的老字号点心店，宵夜蒸笼一叠叠上桌，招牌炸面线粿和流沙包,深夜嘴馋救星。","img_key":"dim_sum","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Dim_Sum_Breakfast.jpg/960px-Dim_Sum_Breakfast.jpg"},{"name":"Muthu's Curry","name_zh":"慕图咖喱","cuisine":"南印度咖喱","area":"Little India","address":"138 Race Course Road, #01-01","lat":1.311,"lng":103.853,"price":2,"signature_dish":"咖喱鱼头","blurb":"小印度的咖喱鱼头元老，红咖喱炖得浓稠够辣，配香蕉叶白饭手抓着吃才地道。","img_key":"indian","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Indian_Thali_2024.jpg/960px-Indian_Thali_2024.jpg"},{"name":"The Banana Leaf Apolo","name_zh":"阿波罗蕉叶餐厅","cuisine":"南印度菜","area":"Little India","address":"54 Race Course Road","lat":1.31,"lng":103.852,"price":2,"signature_dish":"蕉叶咖喱鱼头饭","blurb":"小印度另一咖喱鱼头山头，菜上香蕉叶、手指沾咖喱，热闹又过瘾的南印度大餐。","img_key":"indian","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Indian_Thali_2024.jpg/960px-Indian_Thali_2024.jpg"},{"name":"Tiong Bahru Bakery","name_zh":"中峇鲁面包坊","cuisine":"咖啡烘焙 / 西点","area":"Tiong Bahru","address":"56 Eng Hoon Street, #01-70","lat":1.286,"lng":103.834,"price":2,"signature_dish":"焦糖可颂 Kouign-Amann","blurb":"文青最爱的中峇鲁烘焙店，招牌kouign-amann焦糖脆到掉渣，配一杯手冲坐一下午。","img_key":"cafe_brunch","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg/960px-Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg"},{"name":"Common Man Coffee Roasters","name_zh":"Common Man 咖啡烘焙","cuisine":"西式早午餐","area":"Robertson Quay","address":"22 Martin Road, #01-00","lat":1.292,"lng":103.838,"price":2,"signature_dish":"招牌早午餐盘","blurb":"罗伯逊码头的brunch老地标，自家烘焙咖啡够水准，周末排队吃benedict是local仪式感。","img_key":"cafe_brunch","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Brunch_bowls_at_Smuz_Cafe_Budapest.jpg/960px-Brunch_bowls_at_Smuz_Cafe_Budapest.jpg"},{"name":"True Blue Cuisine","name_zh":"真蓝娘惹菜","cuisine":"娘惹菜","area":"Bras Basah","address":"47/49 Armenian Street","lat":1.293,"lng":103.849,"price":3,"signature_dish":"黑果鸡 Ayam Buah Keluak","blurb":"土生华人博物馆旁的娘惹老宅餐厅，古董满屋气氛十足，黑果鸡和阿渣做得地道又用心。","img_key":"peranakan","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Fish_head_curry_peranakan_z.JPG/960px-Fish_head_curry_peranakan_z.JPG"},{"name":"Springleaf Prata Place","name_zh":"实龙林印度煎饼","cuisine":"印度煎饼","area":"Thomson","address":"1 Thong Soon Avenue","lat":1.376,"lng":103.833,"price":1,"signature_dish":"香蕉煎饼与Murtabak","blurb":"汤申一带的prata人气王，饼皮酥脆花样多,连榴莲香蕉口味都有，配咖喱汤扫光一整叠。","img_key":"prata","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Roti_Prata_Curry_Large.JPG/960px-Roti_Prata_Curry_Large.JPG"},{"name":"Man Man Japanese Unagi Restaurant","name_zh":"满满日式鳗鱼","cuisine":"日式鳗鱼饭","area":"Chinatown / Keong Saik","address":"1 Keong Saik Road, #01-01","lat":1.28,"lng":103.841,"price":3,"signature_dish":"现烤活鳗鱼饭 Hitsumabushi","blurb":"京生路上的鳗鱼名店，活鳗现杀现烤外脆内嫩，三吃鳗鱼饭必点,开门前就有人在排队。","img_key":"japanese","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sushi_platter%2C_Nikko%2C_Japan.jpg/960px-Sushi_platter%2C_Nikko%2C_Japan.jpg"},{"name":"Three Buns Quayside","name_zh":"Three Buns 汉堡","cuisine":"汉堡","area":"Robertson Quay","address":"60 Robertson Quay, #01-01","lat":1.291,"lng":103.836,"price":2,"signature_dish":"Baby Huey 芝士汉堡","blurb":"河边最会玩的汉堡店，肉饼多汁配自制酱料,配一杯cocktail,晚上气氛超chill。","img_key":"western_burger","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cheeseburger_with_fries_-_Massachusetts.jpg/960px-Cheeseburger_with_fries_-_Massachusetts.jpg"},{"name":"Beauty in the Pot","name_zh":"美滋锅","cuisine":"火锅","area":"Clarke Quay","address":"3C River Valley Road, #01-04 Clarke Quay","lat":1.29,"lng":103.847,"price":3,"signature_dish":"美颜胶原锅底","blurb":"新加坡人气火锅连锁,胶原蛋白锅底浓得能挂勺,四宫格加海鲜滑肉,冷气房里吃得满头汗。","img_key":"hotpot","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hai_Di_Lao_Hot_Pot_Food.jpg/960px-Hai_Di_Lao_Hot_Pot_Food.jpg"},{"name":"PS.Cafe Harding Road","name_zh":"PS.Cafe","cuisine":"西式早午餐","area":"Dempsey","address":"28B Harding Road","lat":1.306,"lng":103.813,"price":3,"signature_dish":"松露薯条与Sticky Date Pudding","blurb":"Dempsey绿林里的网红咖啡馆,落地窗采光美到犯规,松露薯条和brunch是打卡标配。","img_key":"cafe_brunch","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg/960px-Poppyseed_French_Toast%2C_Another_Broken_Egg_Cafe%2C_Pensacola.jpg"},{"name":"Warong Nasi Pariaman","name_zh":"巴利亚曼椰浆饭","cuisine":"马来椰浆饭","area":"Kampong Glam","address":"738 North Bridge Road","lat":1.302,"lng":103.86,"price":1,"signature_dish":"Nasi Padang 巴东饭配Beef Rendang","blurb":"甘榜格南六十年老字号nasi padang,牛肉rendang炖到入味,午餐晚点来招牌菜就卖光了。","img_key":"malay_nasi","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Nasi_lemak_on_banana_leaf.jpg/960px-Nasi_lemak_on_banana_leaf.jpg"},{"name":"Ippudo","name_zh":"一风堂","cuisine":"日式拉面","area":"Orchard","address":"333A Orchard Road, #04-K01 Mandarin Gallery","lat":1.303,"lng":103.835,"price":2,"signature_dish":"白丸元味豚骨拉面","blurb":"乌节路的日式豚骨拉面担当,汤头浓白叉烧入口即化,加一份煎饺就是满足的一餐。","img_key":"japanese","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sushi_food_in_Tokyo%2C_Japan.jpg/960px-Sushi_food_in_Tokyo%2C_Japan.jpg"}],"users":[{"id":"weilin","name":"Tan Wei Lin","handle":"@weilineats","emoji":"🍜","type":"friend","bio":"东海岸长大，laksa 和叻沙看谁敢比。周末必排队。"},{"id":"faizal","name":"Faizal Rahman","handle":"@faizmakan","emoji":"🍢","type":"friend","bio":"Halal makan hunter. Satay sambal 才是灵魂。"},{"id":"priya","name":"Priya Menon","handle":"@priyacurryqueen","emoji":"🍛","type":"friend","bio":"Little India 土著，fish head curry 我说了算。"},{"id":"jackson","name":"Jackson Lim","handle":"@jacksonhawker","emoji":"🦐","type":"friend","bio":"Zi char 大佬，一周吃五次大排档。镬气至上。"},{"id":"denise","name":"Denise Koh","handle":"@denisecafehops","emoji":"☕","type":"friend","bio":"Cafe hopper，flat white 和 brunch 收集狂。"},{"id":"marcus","name":"Marcus Weber","handle":"@marcuseatssg","emoji":"🍺","type":"friend","bio":"German expat, obsessed with local food and craft anything."},{"id":"huihui","name":"Ong Hui Hui","handle":"@huihuimakan","emoji":"🥟","type":"friend","bio":"点心和 supper 命根，凌晨两点最活跃。"},{"id":"missfoodie","name":"Clara Sim","handle":"@missfoodiesg","emoji":"📸","type":"influencer","bio":"SG food storyteller. Honest bites, no fluff. Collabs: DM.","followers":184000},{"id":"hungrygov","name":"Darren Toh","handle":"@thehungrygovernor","emoji":"🍽️","type":"influencer","bio":"Fine dining & hawker, same passport. Michelin to $3 mee.","followers":92000},{"id":"makankaki","name":"Nurul Aisyah","handle":"@makankakiqueen","emoji":"👑","type":"influencer","bio":"Your makan kaki. Halal-first, hype-free reviews.","followers":247000}],"judgments":[{"user_id":"weilin","winner":"328 Katong Laksa","loser":"Hong Heng Fried Sotong Prawn Mee","reason":"叻沙汤头浓到能挂勺，虾面汤头偏清输一截。","days_ago":3},{"user_id":"weilin","winner":"Tian Tian Hainanese Chicken Rice","loser":"Liao Fan Hawker Chan","reason":"天天的鸡油饭粒粒分明，油鸡饭那边饭偏湿。","days_ago":8},{"user_id":"weilin","winner":"Hill Street Tai Hwa Pork Noodle","loser":"Hong Heng Fried Sotong Prawn Mee","reason":"大华的黑醋辣椒够 kick，扁鱼香整碗提起来。","days_ago":12},{"user_id":"weilin","winner":"Song Fa Bak Kut Teh","loser":"JUMBO Seafood","reason":"不同赛道但我就是要比，胡椒汤暖胃赢过辣椒蟹。","days_ago":5},{"user_id":"weilin","winner":"328 Katong Laksa","loser":"Warong Nasi Pariaman","reason":"叻沙那口椰浆够 shiok，可惜今天想吃辣但还是选了叻沙。","days_ago":1},{"user_id":"faizal","winner":"Haron Satay","loser":"Zam Zam Singapore","reason":"East Coast 沙爹炭火气足，murtabak 再好也比不了那口 sambal。","days_ago":6},{"user_id":"faizal","winner":"Hjh Maimunah","loser":"Warong Nasi Pariaman","reason":"Maimunah 的 beef rendang 炖到化，nasi padang 选择也更多。","days_ago":9},{"user_id":"faizal","winner":"Zam Zam Singapore","loser":"Springleaf Prata Place","reason":"Zam Zam 的 mutton murtabak 料多爆汁，prata 再脆也是配角。","days_ago":14},{"user_id":"faizal","winner":"Warong Nasi Pariaman","loser":"Hjh Maimunah","reason":"Pariaman 的 ayam bakar 焦香更到位，排队短很多 worth it。","days_ago":2},{"user_id":"faizal","winner":"Haron Satay","loser":"Springleaf Prata Place","reason":"不同赛道硬比，沙爹那口花生酱赢过 prata dhal。","days_ago":18},{"user_id":"priya","winner":"Muthu's Curry","loser":"The Banana Leaf Apolo","reason":"Muthu 的 fish head curry 咖喱更浓稠，鱼肉也更新鲜。","days_ago":4},{"user_id":"priya","winner":"The Banana Leaf Apolo","loser":"Muthu's Curry","reason":"这次换 Apolo 赢，咖喱辣度更狠更过瘾，配 rice 一流。","days_ago":20},{"user_id":"priya","winner":"Springleaf Prata Place","loser":"Ya Kun Kaya Toast","reason":"早餐拿 prata 比 kaya toast，coin prata 脆到掉渣完胜。","days_ago":7},{"user_id":"priya","winner":"Muthu's Curry","loser":"Hjh Maimunah","reason":"同是印度马来餐，Muthu 的咖喱层次更足。","days_ago":11},{"user_id":"jackson","winner":"Keng Eng Kee Seafood","loser":"JB Ah Meng","reason":"KEK 的咸蛋鸡镬气足，sambar 猪排也更惊艳。","days_ago":3},{"user_id":"jackson","winner":"JB Ah Meng","loser":"No Signboard Seafood","reason":"Ah Meng 的 white beehoon 汤鲜到底，价钱还便宜一截。","days_ago":6},{"user_id":"jackson","winner":"JUMBO Seafood","loser":"No Signboard Seafood","reason":"辣椒蟹酱汁 JUMBO 更浓稠挂肉，No Signboard 偏甜。","days_ago":9},{"user_id":"jackson","winner":"Keng Eng Kee Seafood","loser":"JUMBO Seafood","reason":"zi char 性价比 KEK 完胜，同样预算多两道菜。","days_ago":15},{"user_id":"jackson","winner":"No Signboard Seafood","loser":"JB Ah Meng","reason":"白胡椒蟹这道 No Signboard 更霸道，扳回一城。","days_ago":22},{"user_id":"jackson","winner":"Hong Heng Fried Sotong Prawn Mee","loser":"Hill Street Tai Hwa Pork Noodle","reason":"Hong Heng 的 sotong 弹牙,虾汤够 umami,这次赢。","days_ago":19},{"user_id":"denise","winner":"Common Man Coffee Roasters","loser":"Tiong Bahru Bakery","reason":"CMCR 的 flat white 奶泡绵密,豆子更有果酸层次。","days_ago":2},{"user_id":"denise","winner":"PS.Cafe Harding Road","loser":"Common Man Coffee Roasters","reason":"PS.Cafe 环境 atas 一档,truffle fries 也上瘾,约会首选。","days_ago":5},{"user_id":"denise","winner":"Tiong Bahru Bakery","loser":"Ya Kun Kaya Toast","reason":"可颂对 kaya toast,TBB 的可颂层层酥脆更精致。","days_ago":10},{"user_id":"denise","winner":"Common Man Coffee Roasters","loser":"PS.Cafe Harding Road","reason":"论咖啡本身 CMCR 更专业,PS.Cafe 赢在氛围不是杯里。","days_ago":16},{"user_id":"denise","winner":"Three Buns Quayside","loser":"PS.Cafe Harding Road","reason":"想吃 burger 时 Three Buns 的肉汁完胜 cafe 轻食。","days_ago":8},{"user_id":"marcus","winner":"Burnt Ends","loser":"Three Buns Quayside","reason":"Burnt Ends smoky brisket is next level, worth the wait.","days_ago":4},{"user_id":"marcus","winner":"Song Fa Bak Kut Teh","loser":"Beauty in the Pot","reason":"Peppery pork rib soup beats hotpot for a rainy day, damn shiok.","days_ago":7},{"user_id":"marcus","winner":"Ippudo","loser":"Man Man Japanese Unagi Restaurant","reason":"Cross genre but tonkotsu broth wins over unagi for comfort.","days_ago":13},{"user_id":"marcus","winner":"Three Buns Quayside","loser":"Ippudo","reason":"Craving-wise the Baby Huey burger edges out ramen tonight.","days_ago":17},{"user_id":"marcus","winner":"Burnt Ends","loser":"Candlenut","reason":"Both atas but the wood-fire smokiness at Burnt Ends is unbeatable.","days_ago":25},{"user_id":"huihui","winner":"Swee Choon Tim Sum","loser":"Din Tai Fung","reason":"瑞春的 mee suah kueh 有镬气,凌晨还开,supper 王者。","days_ago":1},{"user_id":"huihui","winner":"Din Tai Fung","loser":"Swee Choon Tim Sum","reason":"论小笼包 DTF 的皮薄十八褶还是稳,汤汁不漏。","days_ago":14},{"user_id":"huihui","winner":"Beauty in the Pot","loser":"Song Fa Bak Kut Teh","reason":"深夜想喝汤,美滋锅的胶原蛋白汤底暖到心里。","days_ago":6},{"user_id":"huihui","winner":"Man Man Japanese Unagi Restaurant","loser":"Ippudo","reason":"现烤鳗鱼外脆内嫩,炭香扑鼻,比拉面更值得排。","days_ago":11},{"user_id":"huihui","winner":"Swee Choon Tim Sum","loser":"Beauty in the Pot","reason":"同样 supper 选项,瑞春人均便宜一半,料还够足。","days_ago":20},{"user_id":"huihui","winner":"Ya Kun Kaya Toast","loser":"Din Tai Fung","reason":"早餐这局 Ya Kun 的炭烤咖椰吐司配半熟蛋更对味。","days_ago":3},{"user_id":"missfoodie","winner":"Hill Street Tai Hwa Pork Noodle","loser":"Liao Fan Hawker Chan","reason":"米其林一星对一星,大华的猪肉面醋香平衡更胜一筹。","days_ago":4},{"user_id":"missfoodie","winner":"Tian Tian Hainanese Chicken Rice","loser":"Liao Fan Hawker Chan","reason":"鸡肉嫩滑度天天更稳定,饭香也更足,值得那条长龙。","days_ago":9},{"user_id":"missfoodie","winner":"328 Katong Laksa","loser":"Hong Heng Fried Sotong Prawn Mee","reason":"叻沙的椰浆与虾米平衡教科书级,汤底浓郁不腻。","days_ago":12},{"user_id":"missfoodie","winner":"Din Tai Fung","loser":"Swee Choon Tim Sum","reason":"稳定性是 DTF 的护城河,每颗小笼包水准如一。","days_ago":15},{"user_id":"missfoodie","winner":"Candlenut","loser":"True Blue Cuisine","reason":"同为娘惹菜,Candlenut 的 buah keluak 处理更精致现代。","days_ago":18},{"user_id":"missfoodie","winner":"Beauty in the Pot","loser":"Song Fa Bak Kut Teh","reason":"论汤底工程,美滋锅的双汤复杂度更高,体验更完整。","days_ago":21},{"user_id":"hungrygov","winner":"Odette","loser":"Les Amis","reason":"三星对三星,Odette 的酱汁精准度与摆盘意境略胜。","days_ago":5},{"user_id":"hungrygov","winner":"Les Amis","loser":"Odette","reason":"换个角度,Les Amis 的经典法餐功底更扎实,酒单也更深。","days_ago":24},{"user_id":"hungrygov","winner":"Burnt Ends","loser":"Odette","reason":"不同赛道硬比,想放松时 Burnt Ends 的柴火香更抓人。","days_ago":10},{"user_id":"hungrygov","winner":"Candlenut","loser":"True Blue Cuisine","reason":"米其林娘惹 Candlenut 的火候控制更现代精准。","days_ago":13},{"user_id":"hungrygov","winner":"True Blue Cuisine","loser":"Candlenut","reason":"要传统 Peranakan 风味,True Blue 的 ayam buah keluak 更地道。","days_ago":27},{"user_id":"hungrygov","winner":"Song Fa Bak Kut Teh","loser":"Keng Eng Kee Seafood","reason":"跨类别比,一碗胡椒肉骨茶的纯粹有时胜过满桌 zi char。","days_ago":16},{"user_id":"hungrygov","winner":"Les Amis","loser":"Burnt Ends","reason":"正式场合 Les Amis 的服务与酒配完整度还是天花板。","days_ago":28},{"user_id":"makankaki","winner":"Haron Satay","loser":"Zam Zam Singapore","reason":"East Coast 沙爹的炭香与花生酱配比是标杆,halal 必打卡。","days_ago":3},{"user_id":"makankaki","winner":"Hjh Maimunah","loser":"Warong Nasi Pariaman","reason":"Maimunah 的 nasi padang 菜色丰富,rendang 炖足火候更入味。","days_ago":7},{"user_id":"makankaki","winner":"Zam Zam Singapore","loser":"Springleaf Prata Place","reason":"Arab Street 老字号 murtabak 用料实在,一份两人吃饱。","days_ago":11},{"user_id":"makankaki","winner":"Muthu's Curry","loser":"The Banana Leaf Apolo","reason":"Muthu 的 fish head curry 咖喱底更浓,鱼头处理无腥味。","days_ago":14},{"user_id":"makankaki","winner":"Springleaf Prata Place","loser":"Ya Kun Kaya Toast","reason":"论早餐分量,Springleaf 的 prata 种类多又管饱,CP 值高。","days_ago":19},{"user_id":"makankaki","winner":"Warong Nasi Pariaman","loser":"Zam Zam Singapore","reason":"Pariaman 的 gulai 汁淋饭那口地道,老巴刹排队也值得。","days_ago":23},{"user_id":"makankaki","winner":"Hjh Maimunah","loser":"Muthu's Curry","reason":"跨菜系比,想吃马来饭时 Maimunah 的多样性更满足。","days_ago":26},{"user_id":"denise","winner":"PS.Cafe Harding Road","loser":"Tiong Bahru Bakery","reason":"周末 brunch 想坐得舒服,PS.Cafe 的花园位完胜面包店排队。","days_ago":13},{"user_id":"faizal","winner":"Springleaf Prata Place","loser":"Zam Zam Singapore","reason":"深夜想吃点脆的,Springleaf 的 cheese prata 拉丝更爽。","days_ago":21},{"user_id":"marcus","winner":"Beauty in the Pot","loser":"Ippudo","reason":"Group dinner hotpot beats solo ramen for the vibes, collagen soup shiok.","days_ago":9},{"user_id":"weilin","winner":"Liao Fan Hawker Chan","loser":"Tian Tian Hainanese Chicken Rice","reason":"这餐油鸡饭的酱油鸡皮更亮更入味,平价米其林翻盘。","days_ago":26}],"ads":[{"restaurant":"Song Fa Bak Kut Teh","tagline":"胡椒汤头暖胃,雨天来一碗才够 shiok","note":"工作日午市套餐 $12.80,含肉骨茶+油条+白饭,可免费续汤"},{"restaurant":"Beauty in the Pot","tagline":"胶原蛋白双汤锅底,越煮越浓的深夜治愈","note":"周一至周四 1-for-1 汤底,晚市 6pm 后堂食适用"}]};
+
+/* ---------- state ---------- */
+const LS_KEY = 'chilema-v1';
+const my = JSON.parse(localStorage.getItem(LS_KEY) || '{"votes":[],"likes":[],"follows":[]}');
+const save = () => localStorage.setItem(LS_KEY, JSON.stringify(my));
+
+const R = {};            // name -> restaurant
+DATA.restaurants.forEach(r => R[r.name] = r);
+const U = {};            // id -> user
+DATA.users.forEach(u => U[u.id] = u);
+const IMG = {};          // key -> url
+DATA.images.forEach(i => IMG[i.key] = i.url);
+const imgOf = r => r.img || IMG[r.img_key] || '';
+const img = (r,cls)=>'<img '+(cls?'class="'+cls+'" ':'')+'loading="lazy" src="'+imgOf(r)+'" alt="">';
+
+/* ---------- Elo (吃分) ---------- */
+function computeElo(){
+  const elo = {}, rec = {};
+  DATA.restaurants.forEach(r => { elo[r.name] = 1500; rec[r.name] = {w:0,l:0}; });
+  const all = [...DATA.judgments].sort((a,b)=>b.days_ago-a.days_ago)
+    .concat(my.votes.map(v=>({winner:v.w, loser:v.l})));
+  for(const j of all){
+    if(!(j.winner in elo) || !(j.loser in elo)) continue;
+    const ea = 1/(1+10**((elo[j.loser]-elo[j.winner])/400));
+    elo[j.winner] += 24*(1-ea); elo[j.loser] -= 24*(1-ea);
+    rec[j.winner].w++; rec[j.loser].l++;
+  }
+  return {elo, rec};
+}
+function fansOf(name){
+  const ids = new Set(DATA.judgments.filter(j=>j.winner===name).map(j=>j.user_id));
+  return [...ids].map(id=>U[id]).filter(Boolean);
+}
+
+/* ---------- helpers ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const timeAgo = d => d===0 ? '今天' : d===1 ? '昨天' : d<7 ? d+' 天前' : Math.floor(d/7)+' 周前';
+const priceStr = p => '$'.repeat(p);
+const userLabel = u => `<b>${esc(u.name)}</b>${u.type==='influencer' ? '<span class="badge-inf">达人</span>' : ''}`;
+
+/* ---------- feed ---------- */
+function judgeCard(j, i){
+  const u = U[j.user_id]; if(!u) return '';
+  const w = R[j.winner], l = R[j.loser]; if(!w||!l) return '';
+  const followed = my.follows.includes(u.id);
+  const liked = my.likes.includes(i);
+  return `<div class="card">
+    <div class="fhead">
+      <div class="fava">${u.emoji}</div>
+      <div class="fwho">${userLabel(u)}
+        <div class="sub">${esc(u.handle)}${u.followers ? ' · '+(u.followers/1000).toFixed(0)+'k 粉丝' : ''} · ${timeAgo(j.days_ago)}</div>
+      </div>
+      ${u.type==='influencer' ? `<button class="follow ${followed?'on':''}" data-follow="${u.id}">${followed?'已关注':'+ 关注'}</button>` : ''}
+    </div>
+    <div class="versus">
+      <button class="vside win" data-r="${esc(w.name)}">${img(w)}<span class="vname">${esc(w.name_zh||w.name)}</span></button>
+      <button class="vside lose" data-r="${esc(l.name)}">${img(l)}<span class="vname">${esc(l.name_zh||l.name)}</span></button>
+      <div class="vs-seam"><b>VS</b></div>
+    </div>
+    <div class="freason">${esc(w.name_zh||w.name)} <span class="gt">⟩</span> ${esc(l.name_zh||l.name)} —— ${esc(j.reason)}</div>
+    <div class="fmeta">
+      <button class="${liked?'liked':''}" data-like="${i}">${liked?'❤️':'🤍'} <span>${liked?'认同 · 1':'认同'}</span></button>
+      <button>💬 聊聊</button>
+      <button data-pk-from="${esc(w.name)}">⚔️ 我也来比</button>
+    </div>
+  </div>`;
+}
+function recoCard(name, why){
+  const r = R[name]; if(!r) return '';
+  return `<div class="card reco">
+    <div class="fhead"><div class="fava">🥢</div><div class="fwho"><b>为你推荐</b><div class="sub">基于你的好友圈的比较</div></div></div>
+    <div class="versus"><button class="vside" data-r="${esc(r.name)}" style="flex:1">${img(r)}<span class="vname">${esc(r.name_zh||r.name)} · ${esc(r.area)}</span></button></div>
+    <div class="why">💡 ${why}</div>
+    <div class="fmeta"><button data-r="${esc(r.name)}">📍 看详情</button><button data-pk-from="${esc(r.name)}">⚔️ 去比一比</button></div>
+  </div>`;
+}
+function adCard(a){
+  const r = R[a.restaurant]; if(!r) return '';
+  return `<div class="card adcard">
+    <div class="fhead"><div class="fava">📣</div><div class="fwho"><b>${esc(r.name_zh||r.name)}</b><div class="sub">${esc(r.area)}</div></div><span class="badge-ad">赞助</span></div>
+    ${img(r,"adimg")}
+    <div class="freason">${esc(a.tagline)}</div>
+    <div class="adline"><span class="ftime">${esc(a.note||'')}</span><button class="cta" data-r="${esc(r.name)}">去看看</button></div>
+  </div>`;
+}
+function renderFeed(){
+  const {elo} = computeElo();
+  const js = DATA.judgments.map((j,i)=>({j,i})).sort((a,b)=>a.j.days_ago-b.j.days_ago);
+  // recommendations: most-endorsed restaurants by distinct users
+  const byFans = DATA.restaurants.map(r=>({r, fans:fansOf(r.name)}))
+    .filter(x=>x.fans.length>=2).sort((a,b)=>b.fans.length-a.fans.length);
+  const recos = byFans.slice(0,2).map(x=>({name:x.r.name,
+    why:`${x.fans.slice(0,3).map(u=>u.name).join('、')} 等 ${x.fans.length} 位你关注的人都把它排在同类之上（吃分 ${Math.round(elo[x.r.name])}）`}));
+  let html = '';
+  js.forEach(({j,i}, idx)=>{
+    html += judgeCard(j, i);
+    if(idx===1 && DATA.ads[0]) html += adCard(DATA.ads[0]);
+    if(idx===4 && recos[0]) html += recoCard(recos[0].name, recos[0].why);
+    if(idx===9 && DATA.ads[1]) html += adCard(DATA.ads[1]);
+    if(idx===13 && recos[1]) html += recoCard(recos[1].name, recos[1].why);
+  });
+  document.getElementById('feed-page').innerHTML = html + '<div class="empty">🍽️ 到底啦 —— 去比一比，喂饱这条动态</div>';
+}
+
+/* ---------- rankings ---------- */
+let rankFilter = '全部';
+function renderRank(){
+  const {elo, rec} = computeElo();
+  const cats = ['全部', ...new Set(DATA.restaurants.map(r=>r.cuisine))];
+  const list = DATA.restaurants.filter(r=>rankFilter==='全部'||r.cuisine===rankFilter)
+    .sort((a,b)=>elo[b.name]-elo[a.name]);
+  const chips = `<div class="chips">${cats.map(c=>`<button class="chip ${c===rankFilter?'on':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('')}</div>`;
+  const rows = list.map((r,i)=>{
+    const fans = fansOf(r.name);
+    return `<button class="rrow" data-r="${esc(r.name)}">
+      <span class="rnum ${i<3?'top':''}">${i+1}</span>
+      ${img(r,"rimg")}
+      <span class="rinfo"><b>${esc(r.name_zh||r.name)}</b>
+        <span class="sub">${esc(r.cuisine)} · ${esc(r.area)} · ${priceStr(r.price)}</span>
+        <span class="rlikes">${fans.length?`<span class="avs">${fans.slice(0,4).map(u=>u.emoji).join('')}</span>${fans.length} 人觉得它更好吃`:'还没人比过它'}</span>
+      </span>
+      <span class="relo"><b>${Math.round(elo[r.name])}</b><span>吃分 · ${rec[r.name].w}胜${rec[r.name].l}负</span></span>
+    </button>`;
+  }).join('');
+  document.getElementById('rank-page').innerHTML =
+    `${chips}<div class="section-h"><b>${rankFilter==='全部'?'新加坡总榜':rankFilter+' 榜'}</b><span>由 ${DATA.judgments.length + my.votes.length} 次「A ⟩ B」比较算出，不打分</span></div><div class="card">${rows}</div>`;
+}
+
+/* ---------- PK ---------- */
+let pkPair = null, pkSeed = null;
+function pickPair(from){
+  const {rec} = computeElo();
+  const pool = DATA.restaurants;
+  let a = from ? R[from] : null;
+  if(!a) a = pool[Math.floor(Math.random()*pool.length)];
+  // prefer same-genre opponent
+  const peers = pool.filter(r=>r.name!==a.name && (r.img_key===a.img_key || r.cuisine===a.cuisine));
+  const others = pool.filter(r=>r.name!==a.name);
+  const diff = peers.filter(r=>imgOf(r)!==imgOf(a));
+  const cand = diff.length?diff:(peers.length?peers:others);
+  const b = cand[Math.floor(Math.random()*cand.length)];
+  pkPair = Math.random()<.5 ? [a,b] : [b,a];
+}
+function renderPK(from){
+  pickPair(from);
+  const [a,b] = pkPair;
+  document.getElementById('pk-page').innerHTML = `
+    <div class="pk-head"><h2>哪家更好吃？</h2><p>不用打分 —— 点一下你心里的赢家</p></div>
+    <div class="pk-arena">
+      <button class="pk-side" data-win="0">${img(a)}<span class="pk-info"><b>${esc(a.name_zh||a.name)}</b><span>${esc(a.cuisine)} · ${esc(a.area)} · ${esc(a.signature_dish)}</span></span></button>
+      <button class="pk-side" data-win="1">${img(b)}<span class="pk-info"><b>${esc(b.name_zh||b.name)}</b><span>${esc(b.cuisine)} · ${esc(b.area)} · ${esc(b.signature_dish)}</span></span></button>
+      <span class="pk-seam"></span><span class="pk-vs">VS</span>
+    </div>
+    <button class="pk-skip">都没吃过，换一对 ↻</button>
+    <div class="pk-count">你已比较 ${my.votes.length} 次 · 每次比较都会实时改写榜单</div>`;
+}
+function pkVote(winIdx, el){
+  const w = pkPair[winIdx], l = pkPair[1-winIdx];
+  my.votes.push({w:w.name, l:l.name, t:0}); save();
+  el.classList.add('pk-won');
+  const f = document.createElement('span');
+  f.className = 'pk-float'; f.textContent = '+吃分 ⟩';
+  f.style.left = '50%'; f.style.top = winIdx===0 ? '22%' : '62%'; f.style.transform='translateX(-50%)';
+  document.querySelector('.pk-arena').appendChild(f);
+  setTimeout(()=>{ renderPK(); renderRank(); renderMe(); }, 650);
+}
+
+/* ---------- profile ---------- */
+function renderMe(){
+  const wins = {};
+  my.votes.forEach(v=>{ wins[v.w]=(wins[v.w]||0)+1; });
+  const top = Object.entries(wins).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const friends = DATA.users;
+  document.getElementById('me-page').innerHTML = `
+    <div class="me-hero"><div class="big">🙋</div><div><b>我（游客）</b><div class="sub">吃了吗新人 · 比较 ${my.votes.length} 次 · 关注 ${my.follows.length} 位达人</div></div></div>
+    <div class="stats"><div><b>${my.votes.length}</b><span>我的比较</span></div><div><b>${new Set(my.votes.flatMap(v=>[v.w,v.l])).size}</b><span>吃过的店</span></div><div><b>${my.likes.length}</b><span>认同</span></div></div>
+    <div class="section-h"><b>我的心头好</b><span>由我的「A ⟩ B」算出</span></div>
+    <div class="card">${ top.length ? top.map(([n,c],i)=>{ const r=R[n]; if(!r) return ''; return `<button class="rrow" data-r="${esc(n)}"><span class="rnum ${i<3?'top':''}">${i+1}</span>${img(r,"rimg")}<span class="rinfo"><b>${esc(r.name_zh||r.name)}</b><span class="sub">我投了它 ${c} 次胜</span></span></button>`; }).join('') : `<div class="empty">你还没比过任何一家<br>好吃不好吃，比一下就知道<br><button class="go" data-goto="pk">去比一比 ⚔️</button></div>` }</div>
+    <div class="section-h"><b>我的吃货圈</b><span>${friends.length} 人</span></div>
+    <div class="card">${friends.map(u=>`<div class="frow"><div class="fava">${u.emoji}</div><div style="flex:1"><b>${esc(u.name)}</b>${u.type==='influencer'?'<span class="badge-inf">达人</span>':''}<div class="sub">${esc(u.bio)}</div></div>${u.type==='influencer'?`<button class="follow ${my.follows.includes(u.id)?'on':''}" data-follow="${u.id}">${my.follows.includes(u.id)?'已关注':'+ 关注'}</button>`:''}</div>`).join('')}</div>`;
+}
+
+/* ---------- detail sheet ---------- */
+function openSheet(name){
+  const r = R[name]; if(!r) return;
+  const {elo, rec} = computeElo();
+  const js = DATA.judgments.filter(j=>j.winner===name||j.loser===name).slice(0,6);
+  document.getElementById('sheet').innerHTML = `
+    <div class="grab"></div>
+    ${img(r,"shimg")}
+    <div class="shbody">
+      <h3>${esc(r.name_zh||r.name)}</h3>
+      <div class="zh">${esc(r.name)}</div>
+      <div class="shtags"><span class="shtag">${esc(r.cuisine)}</span><span class="shtag">${priceStr(r.price)}</span><span class="shtag">吃分 ${Math.round(elo[name])}</span><span class="shtag">${rec[name].w}胜${rec[name].l}负</span></div>
+      <div class="shrow"><span class="k">招牌</span>${esc(r.signature_dish)}</div>
+      <div class="shrow"><span class="k">一句话</span>${esc(r.blurb)}</div>
+      <div class="shrow"><span class="k">地址</span>${esc(r.address)}</div>
+      <a class="maplink" target="_blank" rel="noopener" href="https://maps.google.com/?q=${r.lat},${r.lng}">📍 在 Google Maps 打开（${esc(r.area)}）</a>
+      <div class="shjudge"><b style="font-size:14px">大家怎么比它</b>
+        ${ js.length ? js.map(j=>{ const u=U[j.user_id]; const win=j.winner===name; const other=R[win?j.loser:j.winner]; if(!u||!other) return ''; return `<div class="jline"><span class="who">${u.emoji} ${esc(u.name)}</span>：${win?`${esc(r.name_zh||r.name)} <span class="gt">⟩</span> ${esc(other.name_zh||other.name)}`:`${esc(other.name_zh||other.name)} <span class="gt">⟩</span> ${esc(r.name_zh||r.name)}`}<span class="rsn">“${esc(j.reason)}”</span></div>`; }).join('') : '<div class="jline">还没有人比过它 —— 你来开个头？</div>' }
+      </div>
+    </div>`;
+  document.getElementById('sheet-back').classList.add('show');
+  document.getElementById('sheet').classList.add('show');
+}
+function closeSheet(){
+  document.getElementById('sheet-back').classList.remove('show');
+  document.getElementById('sheet').classList.remove('show');
+}
+
+/* ---------- tabs & events ---------- */
+function goto(tab, pkFrom){
+  document.querySelectorAll('#tabbar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active', p.id===tab+'-page'));
+  if(tab==='pk') renderPK(pkFrom);
+}
+document.getElementById('tabbar').addEventListener('click', e=>{
+  const b = e.target.closest('button[data-tab]'); if(b) goto(b.dataset.tab);
+});
+document.getElementById('app').addEventListener('click', e=>{
+  const t = e.target;
+  const follow = t.closest('[data-follow]');
+  if(follow){
+    const id = follow.dataset.follow;
+    const i = my.follows.indexOf(id);
+    i>=0 ? my.follows.splice(i,1) : my.follows.push(id);
+    save(); renderFeed(); renderMe(); return;
+  }
+  const like = t.closest('[data-like]');
+  if(like){
+    const i = +like.dataset.like;
+    const k = my.likes.indexOf(i);
+    k>=0 ? my.likes.splice(k,1) : my.likes.push(i);
+    save(); renderFeed(); return;
+  }
+  const pkFrom = t.closest('[data-pk-from]');
+  if(pkFrom){ goto('pk', pkFrom.dataset.pkFrom); return; }
+  const gotoBtn = t.closest('[data-goto]');
+  if(gotoBtn){ goto(gotoBtn.dataset.goto); return; }
+  const win = t.closest('[data-win]');
+  if(win){ pkVote(+win.dataset.win, win); return; }
+  const skip = t.closest('.pk-skip');
+  if(skip){ renderPK(); return; }
+  const rr = t.closest('[data-r]');
+  if(rr){ openSheet(rr.dataset.r); return; }
+});
+document.getElementById('sheet-back').addEventListener('click', closeSheet);
+document.getElementById('enter').addEventListener('click', ()=>document.getElementById('splash').classList.add('gone'));
+
+/* ---------- boot ---------- */
+renderFeed(); renderRank(); renderMe(); renderPK();
+</script>
+</body>
+</html>

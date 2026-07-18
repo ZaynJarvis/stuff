@@ -72,6 +72,15 @@ const presentation = [
     navSummary: "同一张照片，比较十种人像光法",
     order: ["portrait-lighting-atlas"],
   },
+
+  {
+    id: "try-prototypes",
+    title: "正在做产品原型",
+    summary: "吃了吗：不打分、用「A ⟩ B」两两比较排位的新加坡社交美食 App，可直接上手玩。",
+    navTitle: "我在做产品原型",
+    navSummary: "可以直接上手玩的产品 PoC",
+    order: ["chi-le-ma"],
+  },
 ];
 
 const businessCategories = new Set(["创业与客户访谈", "产品定位", "创始人销售", "创业财务", "职业与个人商业"]);
@@ -81,6 +90,7 @@ const shelfForArtifact = (artifact) => {
   if (artifact.category === "摄影教学") return "learn-lighting";
   if (/research|调研/i.test(artifact.kind)) return "find-customers";
   if (businessCategories.has(artifact.category)) return "build-business";
+  if (artifact.category === "产品原型") return "try-prototypes";
   throw new Error(`No homepage shelf configured for ${artifact.slug} (${artifact.category} / ${artifact.kind})`);
 };
 
