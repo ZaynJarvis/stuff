@@ -28,6 +28,7 @@ for (const artifact of manifest.artifacts) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(artifact.slug)) {
     throw new Error(`Invalid artifact slug: ${artifact.slug}`);
   }
+  if (artifact.slug === "z") throw new Error("Artifact slug z is reserved for the hidden index route");
   if (slugs.has(artifact.slug)) throw new Error(`Duplicate artifact slug: ${artifact.slug}`);
   slugs.add(artifact.slug);
   const detail = join(source, artifact.slug, "index.html");
@@ -172,6 +173,7 @@ await cp(source, destination, {
   recursive: true,
   filter: (path) => !path.endsWith("index.template.html"),
 });
-await writeFile(join(destination, "index.html"), index);
+await mkdir(join(destination, "z"), { recursive: true });
+await writeFile(join(destination, "z", "index.html"), index);
 
 console.log(`Built ${artifacts.length} artifact${artifacts.length === 1 ? "" : "s"} into dist/`);

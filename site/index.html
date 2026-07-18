@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Stuff by Zayn Jarvis." />
+  <meta name="theme-color" content="#eeeae0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="stuff." />
+  <meta property="og:description" content="Stuff by Zayn Jarvis." />
+  <meta property="og:url" content="https://stuff.zaynjarvis.com/" />
+  <link rel="canonical" href="https://stuff.zaynjarvis.com/" />
+  <title>stuff.</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #eeeae0;
+      --ink: #151917;
+      --vermilion: #c94d32;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.78), transparent 34%),
+        radial-gradient(circle at 84% 82%, rgba(201,77,50,.075), transparent 38%),
+        repeating-linear-gradient(0deg, rgba(21,25,23,.018) 0, rgba(21,25,23,.018) 1px, transparent 1px, transparent 4px),
+        var(--paper);
+    }
+
+    main {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(18px, 4vw, 64px);
+      overflow: hidden;
+    }
+
+    .wordmark {
+      margin: 0;
+      white-space: nowrap;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4rem, 31vw, 28rem);
+      font-style: italic;
+      font-weight: 700;
+      line-height: .72;
+      letter-spacing: -.105em;
+      text-shadow: .026em .034em 0 var(--vermilion);
+      text-rendering: geometricPrecision;
+      transform: rotate(-2.25deg) translateY(-.025em);
+    }
+
+    .dot {
+      margin-left: .025em;
+      color: var(--vermilion);
+      font-style: normal;
+      text-shadow: none;
+    }
+
+    @media (prefers-contrast: more) {
+      body { background: var(--paper); }
+      .wordmark { text-shadow: none; }
+    }
+
+    @media (forced-colors: active) {
+      .wordmark, .dot { color: CanvasText; text-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="wordmark" aria-label="stuff."><span aria-hidden="true">stuff<span class="dot">.</span></span></h1>
+  </main>
+</body>
+</html>

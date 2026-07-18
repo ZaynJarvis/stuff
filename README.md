@@ -7,8 +7,9 @@ A small public shelf for useful plans, artifacts, and experiments at
 
 1. **HuaSheng Sales Development Plan** — `/sd-plan/`
 
-The public index is generated from `artifacts.json`. Pinned items stay first;
-other items are ordered by publication date.
+The unlinked public index at `/z/` is generated from `artifacts.json`. Pinned
+items stay first; other items are ordered by publication date. The root route
+is a standalone `stuff.` wordmark with no visible path to the index.
 
 ## Publish an artifact
 
@@ -22,7 +23,8 @@ manifest, validates the build, pushes `main`, and verifies the Cloudflare URL.
 npm run dev
 ```
 
-Open <http://localhost:4173>.
+Open <http://localhost:4173> for the wordmark or <http://localhost:4173/z/> for
+the artifact index.
 
 ## Build and check
 

@@ -6,3 +6,6 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/z/*
+  X-Robots-Tag: noindex, nofollow

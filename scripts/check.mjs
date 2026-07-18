@@ -7,7 +7,7 @@ const artifacts = [...manifest.artifacts].sort((a, b) => {
   if (Boolean(a.pinned) !== Boolean(b.pinned)) return a.pinned ? -1 : 1;
   return b.published.localeCompare(a.published) || a.title.localeCompare(b.title);
 });
-const required = ["dist/index.html", "dist/_headers", ...artifacts.map(({ slug }) => `dist/${slug}/index.html`)];
+const required = ["dist/index.html", "dist/z/index.html", "dist/_headers", ...artifacts.map(({ slug }) => `dist/${slug}/index.html`)];
 
 for (const path of required) {
   const file = resolve(root, path);
@@ -15,15 +15,20 @@ for (const path of required) {
   if (!info.isFile() || info.size === 0) throw new Error(`Missing or empty output: ${path}`);
 }
 
-const index = await readFile(resolve(root, "dist/index.html"), "utf8");
+const home = await readFile(resolve(root, "dist/index.html"), "utf8");
+const index = await readFile(resolve(root, "dist/z/index.html"), "utf8");
 const plan = await readFile(resolve(root, "dist/sd-plan/index.html"), "utf8");
 
 if (index.includes("{{ARTIFACT_")) throw new Error("Index contains unreplaced template placeholders");
+if (!home.includes('aria-label="stuff."')) throw new Error("Root homepage must contain the stuff. wordmark");
+if (/<a\b/i.test(home)) throw new Error("Root homepage must not contain navigation or artifact links");
+if (/href=["']\/z\/?["']/i.test(home)) throw new Error("Root homepage must not expose the hidden /z/ index");
 if (artifacts[0]?.slug !== "sd-plan" || !artifacts[0]?.pinned) throw new Error("SD Plan must remain the first pinned artifact");
 for (const artifact of artifacts) {
   if (!index.includes(`href="/${artifact.slug}/"`)) throw new Error(`Index does not link to /${artifact.slug}/`);
+  if (home.includes(`/${artifact.slug}/`)) throw new Error(`Root homepage exposes artifact route /${artifact.slug}/`);
   const detail = await readFile(resolve(root, `dist/${artifact.slug}/index.html`), "utf8");
-  if (/<a\b[^>]*\bhref\s*=\s*["']\/["'][^>]*>/i.test(detail)) {
+  if (/<a\b[^>]*\bhref\s*=\s*["']\/(?:z\/?)?["'][^>]*>/i.test(detail)) {
     throw new Error(`${artifact.slug} contains Stuff-level navigation; artifact pages must stand alone`);
   }
   // Only an actual resource reference (a live URL, a src/href, or a CSS url())
@@ -46,4 +51,4 @@ if (!accountsSource) throw new Error("SD Plan account data was not found");
 const accounts = Function(`return ${accountsSource[1]}`)();
 if (accounts.length !== 16) throw new Error(`Expected 16 SD Plan accounts, found ${accounts.length}`);
 
-console.log(`Checks passed: ${artifacts.length} artifact${artifacts.length === 1 ? "" : "s"}; index → standalone detail routes; 16 SD Plan accounts`);
+console.log(`Checks passed: stuff. root → hidden /z/ index → ${artifacts.length} standalone artifact${artifacts.length === 1 ? "" : "s"}; 16 SD Plan accounts`);

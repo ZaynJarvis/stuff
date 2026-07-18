@@ -119,8 +119,8 @@ function inspectHtml(html) {
   }
 
   if (/\b(?:localhost|127\.0\.0\.1|file:\/\/)/i.test(html)) errors.push("Contains a local-only URL or hostname");
-  if (/<a\b[^>]*\bhref\s*=\s*["']\/["'][^>]*>/i.test(html)) {
-    errors.push("Artifact pages are standalone destinations and must not link back to the Stuff index");
+  if (/<a\b[^>]*\bhref\s*=\s*["']\/(?:z\/?)?["'][^>]*>/i.test(html)) {
+    errors.push("Artifact pages are standalone destinations and must not link back to Stuff-level routes");
   }
   if (/\b(?:internal review|confidential|do not distribute)\b|内部审阅|机密|请勿外传/i.test(html)) {
     warnings.push("Contains internal or confidential wording; review it before publishing");
@@ -167,6 +167,7 @@ async function main() {
   const manifestPath = join(repo, "artifacts.json");
   const slug = options.slug || slugify(options.title);
   if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error("Provide a lowercase hyphenated --slug");
+  if (slug === "z") throw new Error("Slug z is reserved for the hidden Stuff index");
   if (extname(input).toLowerCase() !== ".html") throw new Error("Only .html artifacts are supported");
   await access(input, constants.R_OK);
   await access(manifestPath, constants.R_OK | constants.W_OK);
